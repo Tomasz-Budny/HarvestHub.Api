@@ -8,7 +8,7 @@ namespace HarvestHub.Modules.Users.Core
         public static IServiceCollection AddCore(this IServiceCollection services)
         {
             services.AddTransient<IUserService, UserService>();
-            services.AddSingleton<IUserService, UserService>();
+            services.AddSingleton<IHashingService, HashingService>();
 
             return services;
         }
