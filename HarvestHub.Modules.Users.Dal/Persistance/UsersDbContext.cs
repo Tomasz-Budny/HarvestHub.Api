@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace HarvestHub.Modules.Users.Dal.Persistance
 {
-    internal sealed class UsersDbContext : DbContext
+    public class UsersDbContext : DbContext
     {
         public DbSet<User> Users { get; set; }
 

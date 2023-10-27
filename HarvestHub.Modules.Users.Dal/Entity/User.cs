@@ -1,6 +1,6 @@
 ﻿namespace HarvestHub.Modules.Users.Dal.Entity
 {
-    internal sealed class User
+    public sealed class User
     {
         public Guid Id { get; private set; }
         public string FirstName { get; private set; }
