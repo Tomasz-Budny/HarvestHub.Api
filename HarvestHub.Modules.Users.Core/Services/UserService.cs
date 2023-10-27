@@ -18,16 +18,17 @@ namespace HarvestHub.Modules.Users.Core.Services
             _hashingService = hashingService;
         }
 
-        public async Task CreateAsync(CreateUserDto dto)
+        public async Task<Guid> CreateAsync(CreateUserDto dto)
         {
             if (await _dbContext.Users.AnyAsync(user => user.Email == dto.Email))
             {
                 throw new UserAlreadyExistsException(dto.Email);
             }
 
+            var userId = Guid.NewGuid();
             (var passwordhash, var passwordSalt) = _hashingService.CreatePasswordHash(dto.Password);
             var user = new User(
-                Guid.NewGuid(),
+                userId,
                 dto.FirstName,
                 dto.LastName,
                 dto.Email,
@@ -40,6 +41,8 @@ namespace HarvestHub.Modules.Users.Core.Services
                 null);
 
             await _dbContext.SaveChangesAsync();
+
+            return userId;
         }
 
         public async Task<UserDto> GetByEmail(string email)

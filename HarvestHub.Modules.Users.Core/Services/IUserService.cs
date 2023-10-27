@@ -5,7 +5,7 @@ namespace HarvestHub.Modules.Users.Core.Services
 {
     public interface IUserService
     {
-        Task CreateAsync(CreateUserDto dto);
+        Task<Guid> CreateAsync(CreateUserDto dto);
 
         Task<UserDto> GetByEmail(string email);
     }
