@@ -56,10 +56,29 @@ namespace HarvestHub.Modules.Users.Core.Services
 
             if(user == null)
             {
-                throw new UserNotFoundException(email);
+                throw new UserNotFoundException();
             }
 
             return UserMapper.MapToDto(user);
+        }
+
+        public async Task Verify(Guid verificationToken)
+        {
+            var user = await _dbContext.Users.SingleOrDefaultAsync(user => user.VerificationToken == verificationToken);
+
+            if(user == null)
+            {
+                throw new UserNotFoundException();
+            }
+
+            if(user.VerifiedAt is not null)
+            {
+                throw new UserAlreadyVerifiedException();
+            }
+
+            user.VerifiedAt = DateTime.Now;
+
+            await _dbContext.SaveChangesAsync();
         }
     }
 }

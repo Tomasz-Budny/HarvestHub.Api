@@ -7,7 +7,7 @@
         public string LastName { get; private set; }
         public string Email { get; private set; }
         public DateTime CreatedAt { get; private set; }
-        public DateTime? VerifiedAt { get; private set; }
+        public DateTime? VerifiedAt { get; set; }
         public byte[] PasswordHash { get; private set; }
         public byte[] PasswordSalt { get; private set; }
         public Guid VerificationToken { get; private set; }
