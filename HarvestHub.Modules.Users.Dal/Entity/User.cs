@@ -1,4 +1,4 @@
-﻿namespace HarvestHub.Modules.Users.Core.Entity
+﻿namespace HarvestHub.Modules.Users.Dal.Entity
 {
     internal sealed class User
     {
