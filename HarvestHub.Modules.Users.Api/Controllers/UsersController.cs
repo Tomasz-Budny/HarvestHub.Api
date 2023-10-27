@@ -15,7 +15,7 @@ namespace HarvestHub.Modules.Users.Api.Controllers
             _usersService = usersService;
         }
 
-        [HttpPost]
+        [HttpPost("register")]
         public async Task<ActionResult> Register(CreateUserDto dto)
         {
             var userId = await _usersService.CreateAsync(dto);
@@ -24,11 +24,19 @@ namespace HarvestHub.Modules.Users.Api.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<UserDto>> Get(string email)
+        public async Task<ActionResult<UserDto>> Get([FromRoute] string email)
         {
             var userDto = await _usersService.GetByEmail(email);
 
             return Ok(userDto);
+        }
+
+        [HttpPost("verify")]
+        public async Task<ActionResult> Verify([FromRoute] Guid verificationToken)
+        {
+            await _usersService.Verify(verificationToken);
+
+            return Ok();
         }
     }
 }
