@@ -2,6 +2,7 @@
 using HarvestHub.Modules.Users.Core.Dtos;
 using HarvestHub.Modules.Users.Core.Exceptions;
 using HarvestHub.Modules.Users.Core.Mappers;
+using HarvestHub.Modules.Users.Dal.Entity;
 using HarvestHub.Modules.Users.Dal.Persistance;
 using Microsoft.EntityFrameworkCore;
 
@@ -10,14 +11,35 @@ namespace HarvestHub.Modules.Users.Core.Services
     internal sealed class UserService : IUserService
     {
         private readonly UsersDbContext _dbContext;
-        public UserService(UsersDbContext dbContext)
+        private readonly IHashingService _hashingService;
+        public UserService(UsersDbContext dbContext, IHashingService hashingService)
         {
             _dbContext = dbContext;
+            _hashingService = hashingService;
         }
 
-        public Task CreateAsync(CreateUserDto dto)
+        public async Task CreateAsync(CreateUserDto dto)
         {
-           throw new NotImplementedException();
+            if (await _dbContext.Users.AnyAsync(user => user.Email == dto.Email))
+            {
+                throw new UserAlreadyExistsException(dto.Email);
+            }
+
+            (var passwordhash, var passwordSalt) = _hashingService.CreatePasswordHash(dto.Password);
+            var user = new User(
+                Guid.NewGuid(),
+                dto.FirstName,
+                dto.LastName,
+                dto.Email,
+                DateTime.Now,
+                null,
+                passwordhash,
+                passwordSalt,
+                Guid.NewGuid(),
+                null,
+                null);
+
+            await _dbContext.SaveChangesAsync();
         }
 
         public async Task<UserDto> GetByEmail(string email)
