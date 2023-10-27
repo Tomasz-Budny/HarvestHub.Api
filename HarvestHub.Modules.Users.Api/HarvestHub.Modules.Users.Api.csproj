@@ -6,4 +6,8 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\HarvestHub.Modules.Users.Core\HarvestHub.Modules.Users.Core.csproj" />
+  </ItemGroup>
+
 </Project>
