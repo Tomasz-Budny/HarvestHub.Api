@@ -11,6 +11,16 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Shared", "Shared", "{070044
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HarvestHub.Shared", "HarvestHub.Shared\HarvestHub.Shared.csproj", "{F9F4F888-84AE-4D6E-B7D4-D05291B79782}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Modules", "Modules", "{7DA7AC88-B3D1-456B-A587-66F83A3701D3}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Users", "Users", "{154D3905-558D-49A0-A3F9-469FF4CBD0F1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HarvestHub.Modules.Users.Api", "HarvestHub.Modules.Users.Api\HarvestHub.Modules.Users.Api.csproj", "{30A807C2-681D-40F9-842A-263E5E813BE5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HarvestHub.Modules.Users.Core", "HarvestHub.Modules.Users.Core\HarvestHub.Modules.Users.Core.csproj", "{471F4E3A-8A7A-4D53-B2A4-570822FDACEE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HarvestHub.Modules.Users.Shared", "HarvestHub.Modules.Users.Shared\HarvestHub.Modules.Users.Shared.csproj", "{C53DC029-44ED-42E3-9906-38AB43C6C429}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -25,6 +35,18 @@ Global
 		{F9F4F888-84AE-4D6E-B7D4-D05291B79782}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F9F4F888-84AE-4D6E-B7D4-D05291B79782}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F9F4F888-84AE-4D6E-B7D4-D05291B79782}.Release|Any CPU.Build.0 = Release|Any CPU
+		{30A807C2-681D-40F9-842A-263E5E813BE5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{30A807C2-681D-40F9-842A-263E5E813BE5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{30A807C2-681D-40F9-842A-263E5E813BE5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{30A807C2-681D-40F9-842A-263E5E813BE5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{471F4E3A-8A7A-4D53-B2A4-570822FDACEE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{471F4E3A-8A7A-4D53-B2A4-570822FDACEE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{471F4E3A-8A7A-4D53-B2A4-570822FDACEE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{471F4E3A-8A7A-4D53-B2A4-570822FDACEE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C53DC029-44ED-42E3-9906-38AB43C6C429}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C53DC029-44ED-42E3-9906-38AB43C6C429}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C53DC029-44ED-42E3-9906-38AB43C6C429}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C53DC029-44ED-42E3-9906-38AB43C6C429}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -32,6 +54,10 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{21D7CB85-9B60-4BFC-B825-A9760AA0B44C} = {179AC572-9B6E-414B-ABEA-90E1E72FBB24}
 		{F9F4F888-84AE-4D6E-B7D4-D05291B79782} = {0700447D-8447-4D14-B905-6DE99604B447}
+		{154D3905-558D-49A0-A3F9-469FF4CBD0F1} = {7DA7AC88-B3D1-456B-A587-66F83A3701D3}
+		{30A807C2-681D-40F9-842A-263E5E813BE5} = {154D3905-558D-49A0-A3F9-469FF4CBD0F1}
+		{471F4E3A-8A7A-4D53-B2A4-570822FDACEE} = {154D3905-558D-49A0-A3F9-469FF4CBD0F1}
+		{C53DC029-44ED-42E3-9906-38AB43C6C429} = {154D3905-558D-49A0-A3F9-469FF4CBD0F1}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {FC2FFB6E-0CAB-498C-8ED1-16B5DE435878}
