@@ -1,5 +1,9 @@
-﻿using HarvestHub.Modules.Users.Core.Dtos;
+﻿using EmailValidation;
+using HarvestHub.Modules.Users.Core.Dtos;
+using HarvestHub.Modules.Users.Core.Exceptions;
+using HarvestHub.Modules.Users.Core.Mappers;
 using HarvestHub.Modules.Users.Dal.Persistance;
+using Microsoft.EntityFrameworkCore;
 
 namespace HarvestHub.Modules.Users.Core.Services
 {
@@ -16,9 +20,21 @@ namespace HarvestHub.Modules.Users.Core.Services
            throw new NotImplementedException();
         }
 
-        public Task<UserDto> GetByEmail(string Email)
+        public async Task<UserDto> GetByEmail(string email)
         {
-            throw new NotImplementedException();
+            if (!EmailValidator.Validate(email))
+            {
+                throw new UserEmailInvalidException(email);
+            }
+
+            var user = await _dbContext.Users.SingleOrDefaultAsync(user => user.Email == email);
+
+            if(user == null)
+            {
+                throw new UserNotFoundException(email);
+            }
+
+            return UserMapper.MapToDto(user);
         }
     }
 }

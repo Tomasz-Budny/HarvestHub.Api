@@ -7,6 +7,6 @@ namespace HarvestHub.Modules.Users.Core.Services
     {
         Task CreateAsync(CreateUserDto dto);
 
-        Task<UserDto> GetByEmail(string Email);
+        Task<UserDto> GetByEmail(string email);
     }
 }
