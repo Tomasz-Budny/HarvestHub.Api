@@ -56,9 +56,9 @@ namespace HarvestHub.Modules.Users.Api.Controllers
         }
 
         [HttpPost("change_password")]
-        public async Task<ActionResult<string>> ChangePassword(string email, Guid resetPasswordToken, [FromBody] string newPassword)
+        public async Task<ActionResult<string>> ChangePassword([FromBody] ChangePasswordDto dto)
         {
-            await _usersService.ChangePassword(email, resetPasswordToken, newPassword);
+            await _usersService.ChangePassword(dto);
 
             return Ok();
         }

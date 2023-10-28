@@ -152,21 +152,21 @@ namespace HarvestHub.Modules.Users.Core.Services
             await _messageBroker.PublishAsync(new ForgetPassword(user.Email, user.FirstName, passwordResetToken));
         }
 
-        public async Task ChangePassword(string email, Guid resetPasswordToken, string newPassword)
+        public async Task ChangePassword(ChangePasswordDto dto)
         {
-            if (!EmailValidator.Validate(email))
+            if (!EmailValidator.Validate(dto.Email))
             {
-                throw new UserEmailInvalidException(email);
+                throw new UserEmailInvalidException(dto.Email);
             }
 
-            var user = await _dbContext.Users.SingleOrDefaultAsync(user => user.Email == email);
+            var user = await _dbContext.Users.SingleOrDefaultAsync(user => user.Email == dto.Email);
 
             if (user is null)
             {
                 throw new UserNotFoundException();
             }
 
-            if(user.PasswordResetToken != resetPasswordToken)
+            if(user.PasswordResetToken != dto.ResetPasswordToken)
             {
                 throw new UserPasswordResetTokenInvalidException();
             }
@@ -176,15 +176,18 @@ namespace HarvestHub.Modules.Users.Core.Services
                 throw new UserPasswordResetTokenExpiresException();
             }
 
-            if(_hashingService.ValidatePassword(newPassword, user.PasswordHash, user.PasswordSalt))
+            if(_hashingService.ValidatePassword(dto.NewPassword, user.PasswordHash, user.PasswordSalt))
             {
                 throw new NewPasswordSameAsOldException();
             }
 
-            (var passwordhash, var passwordSalt) = _hashingService.CreatePasswordHash(newPassword);
+            (var passwordhash, var passwordSalt) = _hashingService.CreatePasswordHash(dto.NewPassword);
 
             user.PasswordHash = passwordhash;
             user.PasswordSalt = passwordSalt;
+
+            user.PasswordResetToken = null;
+            user.ResetTokenExpires = null;
             await _dbContext.SaveChangesAsync();
         }
     }
