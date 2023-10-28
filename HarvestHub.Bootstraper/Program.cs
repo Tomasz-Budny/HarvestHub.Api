@@ -1,10 +1,15 @@
 using HarvestHub.Modules.Users.Api;
+using HarvestHub.Shared;
+using HarvestHub.Shared.Exceptions;
 
 var builder = WebApplication.CreateBuilder(args);
 
 var configuration = builder.Configuration;
 
-builder.Services.AddUsersModule(configuration);
+builder.Services
+    .AddShared()
+    .AddUsersModule(configuration);
+
 
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
@@ -19,6 +24,8 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+
+app.UseMiddleware<ErrorHandlerMiddleware>();
 
 app.UseHttpsRedirection();
 
