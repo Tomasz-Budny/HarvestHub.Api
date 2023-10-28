@@ -1,22 +1,18 @@
-﻿using HarvestHub.Modules.Users.Shared.Events;
+﻿using HarvestHub.Modules.Notifications.Api.Services;
+using HarvestHub.Modules.Users.Shared.Events;
 using HarvestHub.Shared.Events;
-using Microsoft.Extensions.Logging;
 
 namespace HarvestHub.Modules.Notifications.Api.Handlers.Users
 {
     internal sealed class UserCreatedHandler : IEventHandler<UserCreated>
     {
-        private readonly ILogger<UserCreatedHandler> _logger;
-        public UserCreatedHandler(ILogger<UserCreatedHandler> logger)
+        private readonly ISmtpService _smtpService;
+        public UserCreatedHandler(ISmtpService smtpService)
         {
-            _logger = logger;
+            _smtpService = smtpService;
         }
 
         public Task HandleAsync(UserCreated @event, CancellationToken cancellationToken = default)
-        {
-            _logger.LogInformation($"user email {@event.Email}");
-
-            return Task.CompletedTask;
-        }
+        =>  _smtpService.SendConfirmationEmail(@event.Email, @event.FirstName, @event.VerificationToken);
     }
 }

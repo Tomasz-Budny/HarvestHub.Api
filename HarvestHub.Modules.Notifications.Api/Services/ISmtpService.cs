@@ -2,6 +2,6 @@
 {
     internal interface ISmtpService
     {
-        Task SendConfirmationEmail(string receiverEmailAddress, Guid verificationToken);
+        Task SendConfirmationEmail(string receiverEmailAddress, string name, Guid verificationToken);
     }
 }
