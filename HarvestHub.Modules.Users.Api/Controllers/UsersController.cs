@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace HarvestHub.Modules.Users.Api.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
+    [Route("api/user")]
     public class UsersController : ControllerBase
     {
         private readonly IUserService _usersService;
@@ -37,6 +37,14 @@ namespace HarvestHub.Modules.Users.Api.Controllers
             await _usersService.Verify(verificationToken);
 
             return Ok();
+        }
+
+        [HttpPost("login")]
+        public async Task<ActionResult<string>> Login([FromBody] LoginUserDto dto)
+        {
+            var token = await _usersService.Login(dto);
+
+            return Ok(token);
         }
     }
 }
