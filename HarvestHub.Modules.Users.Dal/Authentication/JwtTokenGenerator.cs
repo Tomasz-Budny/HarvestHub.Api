@@ -31,7 +31,7 @@ namespace HarvestHub.Modules.Users.Dal.Authentication
             var securityToken = new JwtSecurityToken(
                 audience: _jwtOptions.Audience,
                 issuer: _jwtOptions.Issuer,
-                expires: DateTime.UtcNow.AddMinutes(_jwtOptions.ExpiryMinutes),
+                expires: DateTime.UtcNow.Add(_jwtOptions.Expiry),
                 claims: claims,
                 signingCredentials: signingCredentials
             );
