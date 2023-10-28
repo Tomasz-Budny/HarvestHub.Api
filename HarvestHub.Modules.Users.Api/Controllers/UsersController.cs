@@ -24,7 +24,7 @@ namespace HarvestHub.Modules.Users.Api.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<UserDto>> GetByEmail([FromBody] string email)
+        public async Task<ActionResult<UserDto>> GetByEmail(string email)
         {
             var userDto = await _usersService.GetByEmail(email);
 
@@ -48,7 +48,7 @@ namespace HarvestHub.Modules.Users.Api.Controllers
         }
 
         [HttpPost("forget_password")]
-        public async Task<ActionResult<string>> ForgetPassword([FromBody] string email)
+        public async Task<ActionResult<string>> ForgetPassword(string email)
         {
             await _usersService.ForgetPassword(email);
 
