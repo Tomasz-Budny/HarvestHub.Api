@@ -10,6 +10,7 @@ using HarvestHub.Modules.Users.Dal.Authentication;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using System.Text;
 using Microsoft.IdentityModel.Tokens;
+using HarvestHub.Shared.Authentication;
 
 namespace HarvestHub.Modules.Users.Dal
 {
@@ -30,6 +31,9 @@ namespace HarvestHub.Modules.Users.Dal
         {
             var jwtOptions = configuration.GetOptions<JwtOptions>(JwtOptions.SectionName);
             services.AddSingleton(Options.Create(jwtOptions));
+
+            services.AddSingleton<IUserContextService, UserContextService>();
+            services.AddHttpContextAccessor();
 
             services.AddSingleton<IJwtTokenGenerator, JwtTokenGenerator>();
 
