@@ -1,4 +1,6 @@
-﻿using HarvestHub.Shared.Events;
+﻿using HarvestHub.Modules.Users.Dal.Authentication;
+using HarvestHub.Shared.Authentication;
+using HarvestHub.Shared.Events;
 using HarvestHub.Shared.Exceptions;
 using HarvestHub.Shared.Messaging;
 using Microsoft.Extensions.Configuration;
@@ -15,6 +17,8 @@ namespace HarvestHub.Shared
             services.AddScoped<ErrorHandlerMiddleware>();
             services.AddSingleton<IExceptionToResponseMapper, ExceptionToResponseMapper>();
 
+            services.AddScoped<IUserContextService, UserContextService>();
+            services.AddHttpContextAccessor();
             return services;
         }
 

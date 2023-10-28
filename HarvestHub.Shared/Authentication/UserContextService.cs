@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Http;
 using System.Security.Claims;
 
-namespace HarvestHub.Modules.Users.Dal.Authentication
+namespace HarvestHub.Shared.Authentication
 {
     internal class UserContextService : IUserContextService
     {

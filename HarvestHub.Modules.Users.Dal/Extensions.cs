@@ -35,9 +35,6 @@ namespace HarvestHub.Modules.Users.Dal
             var usersOptions = configuration.GetOptions<UsersOptions>(UsersOptions.SectionName);
             services.AddSingleton(Options.Create(usersOptions));
 
-            services.AddSingleton<IUserContextService, UserContextService>();
-            services.AddHttpContextAccessor();
-
             services.AddSingleton<IJwtTokenGenerator, JwtTokenGenerator>();
 
             services.AddAuthentication(defaultScheme: JwtBearerDefaults.AuthenticationScheme)
