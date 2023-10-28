@@ -7,6 +7,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="MailKit" Version="4.2.0" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\HarvestHub.Modules.Notifications.Shared\HarvestHub.Modules.Notifications.Shared.csproj" />
     <ProjectReference Include="..\HarvestHub.Modules.Users.Shared\HarvestHub.Modules.Users.Shared.csproj" />
   </ItemGroup>

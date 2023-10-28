@@ -14,7 +14,6 @@ namespace HarvestHub.Modules.Notifications.Api.Handlers.Users
 
         public Task HandleAsync(UserCreated @event, CancellationToken cancellationToken = default)
         {
-            Console.WriteLine($"user email {@event.Email}");
             _logger.LogInformation($"user email {@event.Email}");
 
             return Task.CompletedTask;

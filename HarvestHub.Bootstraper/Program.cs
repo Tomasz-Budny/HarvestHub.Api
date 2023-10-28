@@ -9,7 +9,7 @@ var configuration = builder.Configuration;
 
 builder.Services
     .AddShared()
-    .AddNotificationsModule()
+    .AddNotificationsModule(configuration)
     .AddUsersModule(configuration);
 
 

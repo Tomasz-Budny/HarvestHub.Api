@@ -2,5 +2,5 @@
 
 namespace HarvestHub.Modules.Users.Shared.Events
 {
-    public record UserCreated(Guid Id, string FirstName, string LastName, string Email) : IEvent;
+    public record UserCreated(Guid Id, string FirstName, string LastName, string Email, Guid VerificationToken) : IEvent;
 }

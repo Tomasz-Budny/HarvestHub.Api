@@ -48,7 +48,7 @@ namespace HarvestHub.Modules.Users.Core.Services
                 null);
 
             await _dbContext.SaveChangesAsync();
-            await _messageBroker.PublishAsync(new UserCreated(user.Id, user.FirstName, user.LastName, user.Email));
+            await _messageBroker.PublishAsync(new UserCreated(user.Id, user.FirstName, user.LastName, user.Email, user.VerificationToken));
 
             return userId;
         }
