@@ -20,11 +20,11 @@ namespace HarvestHub.Modules.Users.Api.Controllers
         {
             var userId = await _usersService.CreateAsync(dto);
 
-            return CreatedAtAction(nameof(Get), new { userId }, null);
+            return CreatedAtAction(nameof(GetByEmail), new { userId }, null);
         }
 
         [HttpGet]
-        public async Task<ActionResult<UserDto>> Get([FromRoute] string email)
+        public async Task<ActionResult<UserDto>> GetByEmail([FromBody] string email)
         {
             var userDto = await _usersService.GetByEmail(email);
 
@@ -45,6 +45,14 @@ namespace HarvestHub.Modules.Users.Api.Controllers
             var token = await _usersService.Login(dto);
 
             return Ok(token);
+        }
+
+        [HttpPost("forget_password")]
+        public async Task<ActionResult<string>> ForgetPassword([FromBody] string email)
+        {
+            await _usersService.ForgetPassword(email);
+
+            return Ok();
         }
     }
 }

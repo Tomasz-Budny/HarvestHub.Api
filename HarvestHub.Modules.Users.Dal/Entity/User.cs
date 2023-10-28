@@ -2,17 +2,17 @@
 {
     public sealed class User
     {
-        public Guid Id { get; private set; }
-        public string FirstName { get; private set; }
-        public string LastName { get; private set; }
-        public string Email { get; private set; }
-        public DateTime CreatedAt { get; private set; }
+        public Guid Id { get; set; }
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
+        public string Email { get; set; }
+        public DateTime CreatedAt { get; set; }
         public DateTime? VerifiedAt { get; set; }
-        public byte[] PasswordHash { get; private set; }
-        public byte[] PasswordSalt { get; private set; }
-        public Guid VerificationToken { get; private set; }
-        public Guid? PasswordResetToken { get; private set; }
-        public DateTime? ResetTokenExpires { get; private set; }
+        public byte[] PasswordHash { get; set; }
+        public byte[] PasswordSalt { get; set; }
+        public Guid VerificationToken { get; set; }
+        public Guid? PasswordResetToken { get; set; }
+        public DateTime? ResetTokenExpires { get; set; }
 
         public User(Guid id, string firstName, string lastName, 
                     string email, DateTime createdAt, DateTime? verifiedAt, 

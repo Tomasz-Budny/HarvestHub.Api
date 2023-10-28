@@ -8,6 +8,7 @@ namespace HarvestHub.Modules.Users.Core.Services
         Task<UserDto> GetByEmail(string email);
         Task Verify(Guid verificationToken);
         Task<string> Login(LoginUserDto dto);
+        Task ForgetPassword(string email);
 
     }
 }

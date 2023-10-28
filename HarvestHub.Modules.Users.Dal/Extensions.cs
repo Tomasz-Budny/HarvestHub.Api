@@ -32,6 +32,9 @@ namespace HarvestHub.Modules.Users.Dal
             var jwtOptions = configuration.GetOptions<JwtOptions>(JwtOptions.SectionName);
             services.AddSingleton(Options.Create(jwtOptions));
 
+            var usersOptions = configuration.GetOptions<UsersOptions>(UsersOptions.SectionName);
+            services.AddSingleton(Options.Create(usersOptions));
+
             services.AddSingleton<IUserContextService, UserContextService>();
             services.AddHttpContextAccessor();
 

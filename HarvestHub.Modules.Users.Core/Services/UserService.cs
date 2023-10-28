@@ -3,11 +3,13 @@ using HarvestHub.Modules.Users.Core.Dtos;
 using HarvestHub.Modules.Users.Core.Exceptions;
 using HarvestHub.Modules.Users.Core.Mappers;
 using HarvestHub.Modules.Users.Dal.Authentication;
+using HarvestHub.Modules.Users.Dal.Authentication.Options;
 using HarvestHub.Modules.Users.Dal.Entity;
 using HarvestHub.Modules.Users.Dal.Persistance;
 using HarvestHub.Modules.Users.Shared.Events;
 using HarvestHub.Shared.Messaging;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Options;
 
 namespace HarvestHub.Modules.Users.Core.Services
 {
@@ -17,12 +19,15 @@ namespace HarvestHub.Modules.Users.Core.Services
         private readonly IMessageBroker _messageBroker;
         private readonly IHashingService _hashingService;
         private readonly IJwtTokenGenerator _jwt;
-        public UserService(UsersDbContext dbContext, IHashingService hashingService, IJwtTokenGenerator jwt, IMessageBroker messageBroker)
+        private readonly UsersOptions _usersOptions;
+        public UserService(UsersDbContext dbContext, IHashingService hashingService, IJwtTokenGenerator jwt, 
+            IMessageBroker messageBroker, IOptions<UsersOptions> usersOptions)
         {
             _dbContext = dbContext;
             _hashingService = hashingService;
             _jwt = jwt;
             _messageBroker = messageBroker;
+            _usersOptions = usersOptions.Value;
         }
 
         public async Task<Guid> CreateAsync(CreateUserDto dto)
@@ -123,6 +128,28 @@ namespace HarvestHub.Modules.Users.Core.Services
 
             var token = _jwt.GenerateToken(user.Id);
             return token;
+        }
+
+        public async Task ForgetPassword(string email)
+        {
+            if (!EmailValidator.Validate(email))
+            {
+                throw new UserEmailInvalidException(email);
+            }
+
+            var user = await _dbContext.Users.SingleOrDefaultAsync(user => user.Email == email);
+
+            if (user is null)
+            {
+                throw new UserNotFoundException();
+            }
+
+            var passwordResetToken = Guid.NewGuid();
+            user.PasswordResetToken = passwordResetToken;
+            user.ResetTokenExpires = DateTime.Now.Add(_usersOptions.PasswordResetTokenExpiry);
+
+            await _dbContext.SaveChangesAsync();
+            await _messageBroker.PublishAsync(new ForgetPassword(user.Email, user.FirstName, passwordResetToken));
         }
     }
 }
