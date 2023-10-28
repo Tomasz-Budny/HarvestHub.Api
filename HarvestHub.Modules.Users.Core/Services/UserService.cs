@@ -27,6 +27,11 @@ namespace HarvestHub.Modules.Users.Core.Services
 
         public async Task<Guid> CreateAsync(CreateUserDto dto)
         {
+            if (!EmailValidator.Validate(dto.Email))
+            {
+                throw new UserEmailInvalidException(dto.Email);
+            }
+
             if (await _dbContext.Users.AnyAsync(user => user.Email == dto.Email))
             {
                 throw new UserAlreadyExistsException(dto.Email);
@@ -47,7 +52,9 @@ namespace HarvestHub.Modules.Users.Core.Services
                 null,
                 null);
 
+            _dbContext.Add(user);
             await _dbContext.SaveChangesAsync();
+
             await _messageBroker.PublishAsync(new UserCreated(user.Id, user.FirstName, user.LastName, user.Email, user.VerificationToken));
 
             return userId;

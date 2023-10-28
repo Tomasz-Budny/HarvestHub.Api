@@ -32,7 +32,7 @@ namespace HarvestHub.Modules.Users.Api.Controllers
         }
 
         [HttpPost("verify")]
-        public async Task<ActionResult> Verify([FromRoute] Guid verificationToken)
+        public async Task<ActionResult> Verify([FromQuery] Guid verificationToken)
         {
             await _usersService.Verify(verificationToken);
 
