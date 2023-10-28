@@ -151,5 +151,41 @@ namespace HarvestHub.Modules.Users.Core.Services
             await _dbContext.SaveChangesAsync();
             await _messageBroker.PublishAsync(new ForgetPassword(user.Email, user.FirstName, passwordResetToken));
         }
+
+        public async Task ChangePassword(string email, Guid resetPasswordToken, string newPassword)
+        {
+            if (!EmailValidator.Validate(email))
+            {
+                throw new UserEmailInvalidException(email);
+            }
+
+            var user = await _dbContext.Users.SingleOrDefaultAsync(user => user.Email == email);
+
+            if (user is null)
+            {
+                throw new UserNotFoundException();
+            }
+
+            if(user.PasswordResetToken != resetPasswordToken)
+            {
+                throw new UserPasswordResetTokenInvalidException();
+            }
+
+            if(DateTime.Now > user.ResetTokenExpires)
+            {
+                throw new UserPasswordResetTokenExpiresException();
+            }
+
+            if(_hashingService.ValidatePassword(newPassword, user.PasswordHash, user.PasswordSalt))
+            {
+                throw new NewPasswordSameAsOldException();
+            }
+
+            (var passwordhash, var passwordSalt) = _hashingService.CreatePasswordHash(newPassword);
+
+            user.PasswordHash = passwordhash;
+            user.PasswordSalt = passwordSalt;
+            await _dbContext.SaveChangesAsync();
+        }
     }
 }

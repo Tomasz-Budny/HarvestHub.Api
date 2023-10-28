@@ -54,5 +54,13 @@ namespace HarvestHub.Modules.Users.Api.Controllers
 
             return Ok();
         }
+
+        [HttpPost("change_password")]
+        public async Task<ActionResult<string>> ChangePassword(string email, Guid resetPasswordToken, [FromBody] string newPassword)
+        {
+            await _usersService.ChangePassword(email, resetPasswordToken, newPassword);
+
+            return Ok();
+        }
     }
 }

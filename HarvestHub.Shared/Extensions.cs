@@ -1,5 +1,4 @@
-﻿using HarvestHub.Modules.Users.Dal.Authentication;
-using HarvestHub.Shared.Authentication;
+﻿using HarvestHub.Shared.Authentication;
 using HarvestHub.Shared.Events;
 using HarvestHub.Shared.Exceptions;
 using HarvestHub.Shared.Messaging;
