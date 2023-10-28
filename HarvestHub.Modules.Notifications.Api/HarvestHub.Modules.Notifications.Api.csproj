@@ -7,7 +7,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\HarvestHub.Shared\HarvestHub.Shared.csproj" />
+    <ProjectReference Include="..\HarvestHub.Modules.Notifications.Shared\HarvestHub.Modules.Notifications.Shared.csproj" />
+    <ProjectReference Include="..\HarvestHub.Modules.Users.Shared\HarvestHub.Modules.Users.Shared.csproj" />
   </ItemGroup>
 
 </Project>

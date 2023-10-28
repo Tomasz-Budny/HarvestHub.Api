@@ -21,7 +21,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HarvestHub.Modules.Users.Co
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HarvestHub.Modules.Users.Shared", "HarvestHub.Modules.Users.Shared\HarvestHub.Modules.Users.Shared.csproj", "{C53DC029-44ED-42E3-9906-38AB43C6C429}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HarvestHub.Modules.Users.Dal", "HarvestHub.Modules.Users.Dal\HarvestHub.Modules.Users.Dal.csproj", "{C42F2E76-EA44-44DE-A10D-A4443FC837B9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HarvestHub.Modules.Users.Dal", "HarvestHub.Modules.Users.Dal\HarvestHub.Modules.Users.Dal.csproj", "{C42F2E76-EA44-44DE-A10D-A4443FC837B9}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Notifications", "Notifications", "{2711239A-11C5-4C30-B60F-BF8369C02F70}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HarvestHub.Modules.Notifications.Api", "HarvestHub.Modules.Notifications.Api\HarvestHub.Modules.Notifications.Api.csproj", "{581F6390-2E3A-4749-A8E6-2E85B6901D47}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HarvestHub.Modules.Notifications.Shared", "HarvestHub.Modules.Notifications.Shared\HarvestHub.Modules.Notifications.Shared.csproj", "{FA12699A-266E-4214-8EC2-7A5FDAFB55E3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -53,6 +59,14 @@ Global
 		{C42F2E76-EA44-44DE-A10D-A4443FC837B9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C42F2E76-EA44-44DE-A10D-A4443FC837B9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C42F2E76-EA44-44DE-A10D-A4443FC837B9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{581F6390-2E3A-4749-A8E6-2E85B6901D47}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{581F6390-2E3A-4749-A8E6-2E85B6901D47}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{581F6390-2E3A-4749-A8E6-2E85B6901D47}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{581F6390-2E3A-4749-A8E6-2E85B6901D47}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FA12699A-266E-4214-8EC2-7A5FDAFB55E3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FA12699A-266E-4214-8EC2-7A5FDAFB55E3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FA12699A-266E-4214-8EC2-7A5FDAFB55E3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FA12699A-266E-4214-8EC2-7A5FDAFB55E3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -65,6 +79,9 @@ Global
 		{471F4E3A-8A7A-4D53-B2A4-570822FDACEE} = {154D3905-558D-49A0-A3F9-469FF4CBD0F1}
 		{C53DC029-44ED-42E3-9906-38AB43C6C429} = {154D3905-558D-49A0-A3F9-469FF4CBD0F1}
 		{C42F2E76-EA44-44DE-A10D-A4443FC837B9} = {154D3905-558D-49A0-A3F9-469FF4CBD0F1}
+		{2711239A-11C5-4C30-B60F-BF8369C02F70} = {7DA7AC88-B3D1-456B-A587-66F83A3701D3}
+		{581F6390-2E3A-4749-A8E6-2E85B6901D47} = {2711239A-11C5-4C30-B60F-BF8369C02F70}
+		{FA12699A-266E-4214-8EC2-7A5FDAFB55E3} = {2711239A-11C5-4C30-B60F-BF8369C02F70}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {FC2FFB6E-0CAB-498C-8ED1-16B5DE435878}

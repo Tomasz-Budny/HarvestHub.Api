@@ -1,6 +1,7 @@
 using HarvestHub.Modules.Users.Api;
 using HarvestHub.Shared;
 using HarvestHub.Shared.Exceptions;
+using HarvestHub.Modules.Notifications.Api;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -8,6 +9,7 @@ var configuration = builder.Configuration;
 
 builder.Services
     .AddShared()
+    .AddNotificationsModule()
     .AddUsersModule(configuration);
 
 

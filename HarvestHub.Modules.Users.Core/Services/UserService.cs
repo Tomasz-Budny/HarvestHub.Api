@@ -5,6 +5,8 @@ using HarvestHub.Modules.Users.Core.Mappers;
 using HarvestHub.Modules.Users.Dal.Authentication;
 using HarvestHub.Modules.Users.Dal.Entity;
 using HarvestHub.Modules.Users.Dal.Persistance;
+using HarvestHub.Modules.Users.Shared.Events;
+using HarvestHub.Shared.Messaging;
 using Microsoft.EntityFrameworkCore;
 
 namespace HarvestHub.Modules.Users.Core.Services
@@ -12,13 +14,15 @@ namespace HarvestHub.Modules.Users.Core.Services
     internal sealed class UserService : IUserService
     {
         private readonly UsersDbContext _dbContext;
+        private readonly IMessageBroker _messageBroker;
         private readonly IHashingService _hashingService;
         private readonly IJwtTokenGenerator _jwt;
-        public UserService(UsersDbContext dbContext, IHashingService hashingService, IJwtTokenGenerator jwt)
+        public UserService(UsersDbContext dbContext, IHashingService hashingService, IJwtTokenGenerator jwt, IMessageBroker messageBroker)
         {
             _dbContext = dbContext;
             _hashingService = hashingService;
             _jwt = jwt;
+            _messageBroker = messageBroker;
         }
 
         public async Task<Guid> CreateAsync(CreateUserDto dto)
@@ -44,6 +48,7 @@ namespace HarvestHub.Modules.Users.Core.Services
                 null);
 
             await _dbContext.SaveChangesAsync();
+            await _messageBroker.PublishAsync(new UserCreated(user.Id, user.FirstName, user.LastName, user.Email));
 
             return userId;
         }

@@ -16,6 +16,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\HarvestHub.Modules.Notifications.Api\HarvestHub.Modules.Notifications.Api.csproj" />
     <ProjectReference Include="..\HarvestHub.Modules.Users.Api\HarvestHub.Modules.Users.Api.csproj" />
   </ItemGroup>
 
