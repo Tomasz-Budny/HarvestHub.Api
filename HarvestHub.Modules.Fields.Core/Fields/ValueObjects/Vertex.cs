@@ -1,11 +1,11 @@
 ﻿namespace HarvestHub.Modules.Fields.Core.Fields.ValueObjects
 {
-    public record Vertice
+    public record Vertex
     {
         public Longitude Longitude { get; }
         public Latitude Latitude { get; }
 
-        public Vertice(Longitude longitude, Latitude latitude)
+        public Vertex(Longitude longitude, Latitude latitude)
         {
             Longitude = longitude;
             Latitude = latitude;
