@@ -1,12 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace HarvestHub.Modules.Fields.Core.Owners.ValueObjects
+﻿namespace HarvestHub.Modules.Fields.Core.Owners.ValueObjects
 {
-    internal class FirstName
+    public record FirstName
     {
+        public string Value { get; }
+
+        public FirstName(string value)
+        {
+            Value = value;
+        }
+
+        public static implicit operator FirstName(string value) => new(value);
+
+        public static implicit operator string(FirstName firstName) => firstName.Value;
     }
 }
