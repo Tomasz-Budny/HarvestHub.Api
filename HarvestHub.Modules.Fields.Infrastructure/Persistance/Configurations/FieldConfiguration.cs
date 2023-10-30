@@ -1,5 +1,6 @@
 ﻿using HarvestHub.Modules.Fields.Core.Fields.Aggregates;
 using HarvestHub.Modules.Fields.Core.Fields.Entities;
+using HarvestHub.Modules.Fields.Core.Fields.ValueObjects;
 using HarvestHub.Modules.Fields.Core.SharedKernel.ValueObjects;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
@@ -11,9 +12,23 @@ namespace HarvestHub.Modules.Fields.Infrastructure.Persistance.Configurations
     {
         public void Configure(EntityTypeBuilder<Field> builder)
         {
+            ConfigureFieldsTable(builder);
+            ConfigureVerticesTable(builder);
+        }
+
+        private void ConfigureFieldsTable(EntityTypeBuilder<Field> builder)
+        {
             builder.ToTable("Fields");
             builder.HasIndex(x => new { x.Id, x.OwnerId }).IsUnique();
             builder.HasKey(x => x.Id);
+
+            builder.Property(x => x.Id)
+                .IsRequired()
+                .HasConversion(x => x.Value, x => new(x));
+
+            builder.Property(x => x.OwnerId)
+                .IsRequired()
+                .HasConversion(x => x.Value, x => new(x));
 
             builder.Property(x => x.Name)
                 .IsRequired()
@@ -41,8 +56,6 @@ namespace HarvestHub.Modules.Fields.Infrastructure.Persistance.Configurations
                 .IsRequired()
                 .HasMaxLength(7)
                 .HasConversion(x => x.Value, x => new(x));
-
-            ConfigureVerticesTable(builder);
         }
 
         private void ConfigureVerticesTable(EntityTypeBuilder<Field> builder)
@@ -52,7 +65,28 @@ namespace HarvestHub.Modules.Fields.Infrastructure.Persistance.Configurations
                 vb.ToTable("Vertices");
                 vb.HasIndex("FieldId", "Order").IsUnique();
                 vb.WithOwner().HasForeignKey("FieldId");
+
+                vb.HasKey("Id");
+
+                vb.Property<VertexId>("Id")
+                    .IsRequired()
+                    .HasConversion(x => x.Value, x => new(x));
+
+                vb.Property<Order>("Order")
+                    .IsRequired()
+                    .HasConversion(x => x.Value, x => new(x));
+
+                vb.Property<Latitude>("Latitude")
+                    .IsRequired()
+                    .HasConversion(x => x.Value, x => new(x));
+
+                vb.Property<Longitude>("Longitude")
+                    .IsRequired()
+                    .HasConversion(x => x.Value, x => new(x));
             });
+
+            builder.Metadata.FindNavigation("_vertices")!
+                    .SetPropertyAccessMode(PropertyAccessMode.Field);
         }
     }
 }

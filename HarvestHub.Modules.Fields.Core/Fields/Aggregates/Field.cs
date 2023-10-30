@@ -23,7 +23,7 @@ namespace HarvestHub.Modules.Fields.Core.Fields.Aggregates
 
         public Field(FieldId Id, OwnerId ownerId, Name name, Point center, 
             DateTime createdAt, Area area, FieldClassStatus @class, OwnershipStatus ownershipStatus, 
-            Address address, HexColor color, LinkedList<Vertex> vertices)
+            Address address, HexColor color)
             :base(Id)
         {
             OwnerId = ownerId;
@@ -35,7 +35,6 @@ namespace HarvestHub.Modules.Fields.Core.Fields.Aggregates
             OwnershipStatus = ownershipStatus;
             Address = address;
             Color = color;
-            _vertices = vertices;
         }
 
         public void InsertVertices(LinkedList<Vertex> insertVertices)
