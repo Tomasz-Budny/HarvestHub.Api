@@ -56,5 +56,25 @@ namespace HarvestHub.Modules.Fields.Core.Fields.Aggregates
 
             return vertex;
         }
+
+        public void UpdateVertex(Vertex updatedVertex)
+        {
+            var vertex = GetVertex(updatedVertex.Id);
+
+            if (vertex == null)
+            {
+                throw new VertexNotFoundException(updatedVertex.Id);
+            }
+
+            _vertices.Find(vertex).Value = updatedVertex;
+        }
+
+        public void UpdateVertices(IEnumerable<Vertex> updatedVertices)
+        {
+            foreach (var vertex in updatedVertices)
+            {
+                UpdateVertex(vertex);
+            }
+        }
     }
 }
