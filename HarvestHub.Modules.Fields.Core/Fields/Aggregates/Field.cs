@@ -76,5 +76,17 @@ namespace HarvestHub.Modules.Fields.Core.Fields.Aggregates
                 UpdateVertex(vertex);
             }
         }
+
+        public void SetVertices(IEnumerable<Vertex> vertices)
+        {
+            var linkedList = new LinkedList<Vertex>();
+            foreach (var vertex in vertices)
+            {
+                linkedList.AddLast(vertex);
+            }
+
+            _vertices = linkedList;
+
+        }
     }
 }
