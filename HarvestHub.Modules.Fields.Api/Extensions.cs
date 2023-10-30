@@ -12,5 +12,4 @@ namespace HarvestHub.Modules.Fields.Api
             return services;
         }
     }
-
 }

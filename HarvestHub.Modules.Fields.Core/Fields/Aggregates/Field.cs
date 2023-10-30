@@ -11,7 +11,7 @@ namespace HarvestHub.Modules.Fields.Core.Fields.Aggregates
     {
         public OwnerId OwnerId { get; set; }
         public Name Name { get; set; }
-        public Vertex Center { get; set; }
+        public Point Center { get; set; }
         public DateTime CreatedAt { get; set; }
         public Area Area { get; set; }
         public FieldClassStatus Class { get; set; }
@@ -21,7 +21,7 @@ namespace HarvestHub.Modules.Fields.Core.Fields.Aggregates
 
         protected LinkedList<Vertex> _vertices = new();
 
-        public Field(FieldId Id, OwnerId ownerId, Name name, Vertex center, 
+        public Field(FieldId Id, OwnerId ownerId, Name name, Point center, 
             DateTime createdAt, Area area, FieldClassStatus @class, OwnershipStatus ownershipStatus, 
             Address address, HexColor color, LinkedList<Vertex> vertices)
             :base(Id)
