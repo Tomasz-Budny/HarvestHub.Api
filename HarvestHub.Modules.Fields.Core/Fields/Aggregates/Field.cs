@@ -1,4 +1,5 @@
 ﻿using HarvestHub.Modules.Fields.Core.Fields.Entities;
+using HarvestHub.Modules.Fields.Core.Fields.Exceptions;
 using HarvestHub.Modules.Fields.Core.Fields.ValueObjects;
 using HarvestHub.Modules.Fields.Core.SharedKernel.ValueObjects;
 using HarvestHub.Shared.Primitives;
@@ -42,6 +43,18 @@ namespace HarvestHub.Modules.Fields.Core.Fields.Aggregates
                 orderCount++;
                 currentNode = currentNode.Next;
             }
+        }
+
+        public Vertex GetVertex(VertexId vertexId)
+        {
+            var vertex = _vertices.SingleOrDefault(vertex => vertex.Id == vertexId);
+
+            if(vertex == null)
+            {
+                throw new VertexNotFoundException(vertexId);
+            }
+
+            return vertex;
         }
     }
 }
