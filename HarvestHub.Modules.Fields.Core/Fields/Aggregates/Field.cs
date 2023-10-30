@@ -1,5 +1,6 @@
 ﻿using HarvestHub.Modules.Fields.Core.Fields.Entities;
 using HarvestHub.Modules.Fields.Core.Fields.Exceptions;
+using HarvestHub.Modules.Fields.Core.Fields.Primitives;
 using HarvestHub.Modules.Fields.Core.Fields.ValueObjects;
 using HarvestHub.Modules.Fields.Core.SharedKernel.ValueObjects;
 using HarvestHub.Shared.Primitives;
@@ -13,13 +14,27 @@ namespace HarvestHub.Modules.Fields.Core.Fields.Aggregates
         public Vertex Center { get; set; }
         public DateTime CreatedAt { get; set; }
         public Area Area { get; set; }
-        public Class Class { get; set; }
+        public FieldClassStatus Class { get; set; }
+        public OwnershipStatus OwnershipStatus { get; set; }
         public Address Address { get; set; }
 
         protected LinkedList<Vertex> _vertices = new();
 
-        public Field(FieldId id) : base(id)
+        public Field(FieldId Id, OwnerId ownerId, Name name, 
+            Vertex center, DateTime createdAt, Area area, FieldClassStatus 
+            classStatus, OwnershipStatus ownershipStatus, 
+            Address address, LinkedList<Vertex> vertices)
+                :base(Id)
         {
+            OwnerId = ownerId;
+            Name = name;
+            Center = center;
+            CreatedAt = createdAt;
+            Area = area;
+            Class = classStatus;
+            OwnershipStatus = ownershipStatus;
+            Address = address;
+            _vertices = vertices;
         }
 
         public void InsertVertices(LinkedList<Vertex> insertVertices)
