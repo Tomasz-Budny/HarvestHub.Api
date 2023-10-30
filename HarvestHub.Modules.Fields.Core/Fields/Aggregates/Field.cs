@@ -17,6 +17,7 @@ namespace HarvestHub.Modules.Fields.Core.Fields.Aggregates
         public FieldClassStatus Class { get; set; }
         public OwnershipStatus OwnershipStatus { get; set; }
         public Address Address { get; set; }
+        public HexColor Color { get; set; }
 
         protected LinkedList<Vertex> _vertices = new();
 
