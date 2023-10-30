@@ -11,6 +11,7 @@ namespace HarvestHub.Modules.Fields.Core.Fields.Aggregates
         public OwnerId OwnerId { get; set; }
         public Name Name { get; set; }
         public Vertex Center { get; set; }
+        public DateTime CreatedAt { get; set; }
         public Area Area { get; set; }
         public Class Class { get; set; }
         public Address Address { get; set; }
@@ -79,14 +80,11 @@ namespace HarvestHub.Modules.Fields.Core.Fields.Aggregates
 
         public void SetVertices(IEnumerable<Vertex> vertices)
         {
-            var linkedList = new LinkedList<Vertex>();
+            _vertices.Clear();
             foreach (var vertex in vertices)
             {
-                linkedList.AddLast(vertex);
+                _vertices.AddLast(vertex);
             }
-
-            _vertices = linkedList;
-
         }
     }
 }
