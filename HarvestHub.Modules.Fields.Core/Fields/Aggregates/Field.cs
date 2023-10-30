@@ -21,20 +21,20 @@ namespace HarvestHub.Modules.Fields.Core.Fields.Aggregates
 
         protected LinkedList<Vertex> _vertices = new();
 
-        public Field(FieldId Id, OwnerId ownerId, Name name, 
-            Vertex center, DateTime createdAt, Area area, FieldClassStatus 
-            classStatus, OwnershipStatus ownershipStatus, 
-            Address address, LinkedList<Vertex> vertices)
-                :base(Id)
+        public Field(FieldId Id, OwnerId ownerId, Name name, Vertex center, 
+            DateTime createdAt, Area area, FieldClassStatus @class, OwnershipStatus ownershipStatus, 
+            Address address, HexColor color, LinkedList<Vertex> vertices)
+            :base(Id)
         {
             OwnerId = ownerId;
             Name = name;
             Center = center;
             CreatedAt = createdAt;
             Area = area;
-            Class = classStatus;
+            Class = @class;
             OwnershipStatus = ownershipStatus;
             Address = address;
+            Color = color;
             _vertices = vertices;
         }
 
@@ -48,8 +48,8 @@ namespace HarvestHub.Modules.Fields.Core.Fields.Aggregates
             {
                 currentNode.Value.Order = orderCount;
                 while (currInsertNode is not null &&
-                    currentNode is not null &&
-                    currInsertNode.Value.Order == currentNode.Value.Order)
+                       currentNode is not null &&
+                       currInsertNode.Value.Order == currentNode.Value.Order)
                 {
                     _vertices.AddBefore(currentNode, currInsertNode.Value);
                     orderCount++;
