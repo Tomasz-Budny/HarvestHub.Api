@@ -9,7 +9,7 @@
             Value = value;
         }
 
-        public static implicit operator OwnerId(string value) => new(value);
+        public static implicit operator OwnerId(Guid value) => new(value);
 
         public static implicit operator Guid(OwnerId ownerId) => ownerId.Value;
     }

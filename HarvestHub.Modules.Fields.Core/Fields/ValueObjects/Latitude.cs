@@ -16,7 +16,7 @@ namespace HarvestHub.Modules.Fields.Core.Fields.ValueObjects
             Value = value;
         }
 
-        public static implicit operator Latitude(string value) => new(value);
+        public static implicit operator Latitude(double value) => new(value);
 
         public static implicit operator double(Latitude longitude) => longitude.Value;
     }

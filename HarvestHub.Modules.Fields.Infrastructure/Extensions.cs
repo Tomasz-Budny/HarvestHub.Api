@@ -4,6 +4,8 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using HarvestHub.Shared;
+using HarvestHub.Modules.Fields.Core.Fields.Repositories;
+using HarvestHub.Modules.Fields.Infrastructure.Persistance.Repositories;
 
 namespace HarvestHub.Modules.Fields.Infrastructure
 {
@@ -14,6 +16,8 @@ namespace HarvestHub.Modules.Fields.Infrastructure
             var options = configuration.GetOptions<SqlOptions>(SqlOptions.SectionName);
             services.AddDbContext<FieldsDbContext>(ctx =>
                 ctx.UseSqlServer(options.ConnectionString));
+
+            services.AddScoped<IFieldRepository, FieldRepository>();
 
             return services;
         }

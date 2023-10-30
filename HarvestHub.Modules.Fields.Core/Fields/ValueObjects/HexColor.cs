@@ -17,5 +17,9 @@ namespace HarvestHub.Modules.Fields.Core.Fields.ValueObjects
 
             Value = value;
         }
+
+        public static implicit operator HexColor(string value) => new(value);
+
+        public static implicit operator string(HexColor hexColor) => hexColor.Value;
     }
 }

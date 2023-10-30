@@ -9,7 +9,7 @@
             Value = value;
         }
 
-        public static implicit operator FieldId(string value) => new(value);
+        public static implicit operator FieldId(Guid value) => new(value);
 
         public static implicit operator Guid(FieldId fieldId) => fieldId.Value;
     }

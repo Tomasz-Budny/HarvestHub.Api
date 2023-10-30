@@ -2,6 +2,7 @@
 {
     public enum FieldClassStatus
     {
+        Unkown = 0,
         First = 1,
         Second = 2,
         Third = 3,
