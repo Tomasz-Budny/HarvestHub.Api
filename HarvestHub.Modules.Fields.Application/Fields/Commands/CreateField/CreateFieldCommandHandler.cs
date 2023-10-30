@@ -2,7 +2,7 @@
 
 namespace HarvestHub.Modules.Fields.Application.Fields.Commands.CreateField
 {
-    internal class CreateFieldCommandHandler : ICommandHandler<CreateFieldCommand>
+    public class CreateFieldCommandHandler : ICommandHandler<CreateFieldCommand>
     {
         public Task Handle(CreateFieldCommand request, CancellationToken cancellationToken)
         {
