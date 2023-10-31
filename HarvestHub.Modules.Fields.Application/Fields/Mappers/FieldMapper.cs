@@ -1,4 +1,5 @@
 ﻿using HarvestHub.Modules.Fields.Application.Fields.Dtos;
+using HarvestHub.Modules.Fields.Application.Mappers;
 using HarvestHub.Modules.Fields.Core.Fields.Aggregates;
 
 namespace HarvestHub.Modules.Fields.Application.Fields.Mappers
