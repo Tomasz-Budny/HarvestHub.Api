@@ -1,4 +1,5 @@
 ﻿using HarvestHub.Modules.Fields.Application.Dtos;
+using HarvestHub.Modules.Fields.Application.Fields.Dtos;
 using HarvestHub.Shared.Messaging;
 
 namespace HarvestHub.Modules.Fields.Application.Fields.Commands.CreateField

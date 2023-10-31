@@ -1,4 +1,4 @@
-﻿using HarvestHub.Modules.Fields.Application.Dtos;
+﻿using HarvestHub.Modules.Fields.Application.Fields.Dtos;
 using HarvestHub.Modules.Fields.Core.Fields.Entities;
 
 namespace HarvestHub.Modules.Fields.Application.Mappers
