@@ -24,7 +24,7 @@ namespace HarvestHub.Modules.Fields.Application.Fields.Commands.CreateField
             var vertices = verticesDto.Select((dto, i) => VertexMapper.Map(dto, i));
 
             var field = 
-                new Field(Guid.NewGuid(), ownerId, name, center, DateTime.Now, 
+                new Field(id, ownerId, name, center, DateTime.Now, 
                 area, FieldClassStatus.Unkown, OwnershipStatus.Unknown, address, color);
 
             field.SetVertices(vertices);
