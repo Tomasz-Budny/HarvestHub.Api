@@ -15,10 +15,10 @@ namespace HarvestHub.Modules.Fields.Core.SharedKernel.ValueObjects
 
         public static Point Create(string value)
         {
-            var splitPointCoordinates = value.Split(',');
+            var splitPointCoordinates = value.Split('|');
             return new Point(double.Parse(splitPointCoordinates[0]), double.Parse(splitPointCoordinates.Last()));
         }
 
-        public override string ToString() => $"{Latitude.Value},{Longitude.Value}";
+        public override string ToString() => $"{Latitude.Value}|{Longitude.Value}";
     }
 }

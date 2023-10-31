@@ -22,6 +22,7 @@ namespace HarvestHub.Modules.Fields.Infrastructure.Persistance.Queries.Handlers
                 .AsNoTracking()
                 .Include(x => x.Vertices.OrderBy(vertex => vertex.Order))
                 .Where(x => x.OwnerId == new OwnerId(request.OwnerId))
+                .OrderBy(x => x.CreatedAt)
                 .Select(x => FieldMapper.MapToDto(x))
                 .ToListAsync(cancellationToken);
         }
