@@ -4,5 +4,5 @@ using HarvestHub.Shared.Messaging;
 
 namespace HarvestHub.Modules.Fields.Application.Fields.Commands.CreateField
 {
-    public record CreateFieldCommand(Guid Id, Guid OwnerId, string Name, PointDto Center, double Area, string Color, IEnumerable<VertexDto> Vertices) : ICommand;
+    public record CreateFieldCommand(Guid FieldId, Guid OwnerId, string Name, PointDto Center, double Area, string Color, IEnumerable<VertexDto> Vertices) : ICommand;
 }
