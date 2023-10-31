@@ -3,5 +3,5 @@ using HarvestHub.Shared.Messaging;
 
 namespace HarvestHub.Modules.Fields.Application.Fields.Queries
 {
-    internal record GetFieldQuery(Guid FieldId) : IQuery<FieldDto>;
+    public record GetFieldQuery(Guid FieldId) : IQuery<FieldDto>;
 }

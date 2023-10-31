@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using HarvestHub.Modules.Fields.Application.Fields.Commands.CreateField;
 using MediatR;
+using HarvestHub.Modules.Fields.Application.Fields.Queries;
 
 namespace HarvestHub.Modules.Fields.Api.Controllers
 {
@@ -14,7 +15,15 @@ namespace HarvestHub.Modules.Fields.Api.Controllers
         {
             await _sender.Send(dto, cancellationToken);
 
-            return Ok();
+            return CreatedAtAction(nameof(Get), null);
+        }
+
+        [HttpGet("{id:guid}")]
+        public async Task<ActionResult> Get([FromRoute] Guid id, CancellationToken cancellationToken)
+        {
+            var field = await _sender.Send(new GetFieldQuery(id), cancellationToken);
+
+            return Ok(field);
         }
     }
 }

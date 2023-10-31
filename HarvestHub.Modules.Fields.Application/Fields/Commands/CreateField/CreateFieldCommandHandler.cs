@@ -1,4 +1,4 @@
-﻿using HarvestHub.Modules.Fields.Application.Mappers;
+﻿using HarvestHub.Modules.Fields.Application.Fields.Mappers;
 using HarvestHub.Modules.Fields.Core.Fields.Aggregates;
 using HarvestHub.Modules.Fields.Core.Fields.Primitives;
 using HarvestHub.Modules.Fields.Core.Fields.Repositories;
@@ -7,7 +7,7 @@ using HarvestHub.Shared.Messaging;
 
 namespace HarvestHub.Modules.Fields.Application.Fields.Commands.CreateField
 {
-    public class CreateFieldCommandHandler : ICommandHandler<CreateFieldCommand>
+    public sealed class CreateFieldCommandHandler : ICommandHandler<CreateFieldCommand>
     {
         private readonly IFieldRepository _fieldRepository;
 
