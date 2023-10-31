@@ -33,7 +33,7 @@ namespace HarvestHub.Modules.Fields.Api.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult> GetAll(CancellationToken cancellationToken)
+        public async Task<ActionResult<IEnumerable<FieldDto>>> GetAll(CancellationToken cancellationToken)
         {
             // change to context service
             var ownerId = new Guid();

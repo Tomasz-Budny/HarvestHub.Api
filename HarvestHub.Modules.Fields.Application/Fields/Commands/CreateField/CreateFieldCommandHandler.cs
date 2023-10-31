@@ -7,7 +7,7 @@ using HarvestHub.Shared.Messaging;
 
 namespace HarvestHub.Modules.Fields.Application.Fields.Commands.CreateField
 {
-    public sealed class CreateFieldCommandHandler : ICommandHandler<CreateFieldCommand>
+    internal sealed class CreateFieldCommandHandler : ICommandHandler<CreateFieldCommand>
     {
         private readonly IFieldRepository _fieldRepository;
 
