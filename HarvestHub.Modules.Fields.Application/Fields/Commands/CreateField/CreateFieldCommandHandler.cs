@@ -18,21 +18,14 @@ namespace HarvestHub.Modules.Fields.Application.Fields.Commands.CreateField
 
         public async Task Handle(CreateFieldCommand request, CancellationToken cancellationToken)
         {
-            var center = new Point(request.Center.Lat, request.Center.Lng);
+            var (id, ownerId, name, point, area, color, verticesDto) = request;
+            var center = new Point(point.Lat, point.Lng);
             var address = new Address("Poland", "Mazowieckie", "", "Żebry Kordy");
-            var vertices = request.Vertices.Select((dto, i) => VertexMapper.Map(dto, i));
+            var vertices = verticesDto.Select((dto, i) => VertexMapper.Map(dto, i));
 
-            var field = new Field(
-                request.Id,
-                request.OwnerId,
-                request.Name,
-                center,
-                DateTime.Now,
-                request.Area,
-                FieldClassStatus.Unkown,
-                OwnershipStatus.Unknown,
-                address,
-                request.Color);
+            var field = 
+                new Field(id, ownerId, name, center, DateTime.Now, 
+                area, FieldClassStatus.Unkown, OwnershipStatus.Unknown, address, color);
 
             field.SetVertices(vertices);
 
