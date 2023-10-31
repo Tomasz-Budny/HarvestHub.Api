@@ -5,6 +5,7 @@ using HarvestHub.Shared.Messaging;
 using Microsoft.EntityFrameworkCore;
 using HarvestHub.Modules.Fields.Core.Fields.Exceptions;
 using HarvestHub.Modules.Fields.Application.Fields.Mappers;
+using HarvestHub.Modules.Fields.Core.Fields.ValueObjects;
 
 namespace HarvestHub.Modules.Fields.Infrastructure.Persistance.Queries.Handlers
 {
@@ -18,7 +19,10 @@ namespace HarvestHub.Modules.Fields.Infrastructure.Persistance.Queries.Handlers
         }
         public async Task<FieldDto> Handle(GetFieldQuery request, CancellationToken cancellationToken)
         {
-            var field = await _fields.SingleOrDefaultAsync(f => f.Id.Value == request.FieldId);
+            var field = await _fields
+                .AsNoTracking()
+                .Where(f => f.Id == new FieldId(request.FieldId))
+                .SingleOrDefaultAsync(cancellationToken);
 
             if(field == null)
             {

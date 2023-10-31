@@ -19,6 +19,11 @@ namespace HarvestHub.Modules.Fields.Infrastructure
 
             services.AddScoped<IFieldRepository, FieldRepository>();
 
+            services.AddMediatR(configuration =>
+            {
+                configuration.RegisterServicesFromAssemblies(typeof(Extensions).Assembly);
+            });
+
             return services;
         }
     }
