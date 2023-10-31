@@ -60,7 +60,7 @@ namespace HarvestHub.Modules.Fields.Infrastructure.Persistance.Configurations
 
         private void ConfigureVerticesTable(EntityTypeBuilder<Field> builder)
         {
-            builder.OwnsMany(typeof(Vertex), "_vertices", vb =>
+            builder.OwnsMany(x => x.Vertices, vb =>
             {
                 vb.ToTable("Vertices");
                 vb.HasIndex("FieldId", "Order").IsUnique();
@@ -85,7 +85,7 @@ namespace HarvestHub.Modules.Fields.Infrastructure.Persistance.Configurations
                     .HasConversion(x => x.Value, x => new(x));
             });
 
-            builder.Metadata.FindNavigation("_vertices")!
+            builder.Metadata.FindNavigation(nameof(Field.Vertices))!
                     .SetPropertyAccessMode(PropertyAccessMode.Field);
         }
     }

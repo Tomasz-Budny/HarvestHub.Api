@@ -12,10 +12,11 @@ namespace HarvestHub.Modules.Fields.Api.Controllers
 
         [HttpPost]
         public async Task<ActionResult> Create(CreateFieldCommand dto, CancellationToken cancellationToken)
-        {
+        {      
             await _sender.Send(dto, cancellationToken);
 
-            return CreatedAtAction(nameof(Get), null);
+            //return CreatedAtAction(nameof(Get), new { }, null);
+            return Ok();
         }
 
         [HttpGet("{id:guid}")]

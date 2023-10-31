@@ -18,7 +18,7 @@ namespace HarvestHub.Modules.Fields.Application.Fields.Mappers
 
         public static VertexDto MapToDto(Vertex vertex)
         {
-            return new VertexDto(vertex.Latitude, vertex.Longitude);
+            return new VertexDto(vertex.Latitude, vertex.Longitude, vertex.Order);
         }
     }
 }

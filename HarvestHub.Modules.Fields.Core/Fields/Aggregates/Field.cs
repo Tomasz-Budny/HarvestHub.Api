@@ -21,6 +21,7 @@ namespace HarvestHub.Modules.Fields.Core.Fields.Aggregates
         public HexColor Color { get; set; }
 
         protected LinkedList<Vertex> _vertices = new();
+        public IReadOnlyCollection<Vertex> Vertices => _vertices;
 
         public Field(FieldId Id, OwnerId ownerId, Name name, Point center, 
             DateTime createdAt, Area area, FieldClassStatus @class, OwnershipStatus ownershipStatus, 
@@ -62,10 +63,10 @@ namespace HarvestHub.Modules.Fields.Core.Fields.Aggregates
             }
         }
 
-        public IEnumerable<Vertex> GetVertices()
-        {
-            return _vertices.ToImmutableList();
-        }
+        //public IEnumerable<Vertex> GetVertices()
+        //{
+        //    return _vertices.ToImmutableList();
+        //}
 
         public Vertex GetVertex(VertexId vertexId)
         {
