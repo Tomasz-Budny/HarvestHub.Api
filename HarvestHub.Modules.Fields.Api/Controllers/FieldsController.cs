@@ -3,6 +3,7 @@ using HarvestHub.Modules.Fields.Application.Fields.Commands.CreateField;
 using MediatR;
 using HarvestHub.Modules.Fields.Application.Fields.Queries;
 using HarvestHub.Modules.Fields.Application.Fields.Dtos;
+using HarvestHub.Modules.Fields.Application.Fields.Commands.DeleteField;
 
 namespace HarvestHub.Modules.Fields.Api.Controllers
 {
@@ -40,6 +41,16 @@ namespace HarvestHub.Modules.Fields.Api.Controllers
             var fields = await _sender.Send(new GetAllFieldsQuery(ownerId), cancellationToken);
 
             return Ok(fields);
+        }
+
+        [HttpDelete("fieldId:guid")]
+        public async Task<ActionResult> Delete([FromRoute] Guid fieldId, CancellationToken cancellationToken)
+        {
+            // change to context service
+            var ownerId = new Guid();
+            await _sender.Send(new DeleteFieldCommand(fieldId, ownerId), cancellationToken);
+
+            return NoContent();
         }
     }
 }

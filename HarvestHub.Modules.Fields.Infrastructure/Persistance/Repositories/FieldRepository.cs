@@ -1,5 +1,7 @@
 ﻿using HarvestHub.Modules.Fields.Core.Fields.Aggregates;
 using HarvestHub.Modules.Fields.Core.Fields.Repositories;
+using HarvestHub.Modules.Fields.Core.Fields.ValueObjects;
+using HarvestHub.Modules.Fields.Core.SharedKernel.ValueObjects;
 using Microsoft.EntityFrameworkCore;
 
 namespace HarvestHub.Modules.Fields.Infrastructure.Persistance.Repositories
@@ -20,5 +22,15 @@ namespace HarvestHub.Modules.Fields.Infrastructure.Persistance.Repositories
             await _fields.AddAsync(field);
             await _dbContext.SaveChangesAsync();
         }
+
+        public async Task DeleteAsync(Field field)
+        {
+            _fields.Remove(field);
+            await _dbContext.SaveChangesAsync();
+        }
+
+        public async Task<Field?> GetAsync(FieldId fieldId, OwnerId ownerId)
+            => await _fields.SingleOrDefaultAsync(x => x.Id == fieldId && x.OwnerId == ownerId);
+        
     }
 }
