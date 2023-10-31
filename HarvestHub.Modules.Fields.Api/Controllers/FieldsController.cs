@@ -31,5 +31,15 @@ namespace HarvestHub.Modules.Fields.Api.Controllers
 
             return Ok(field);
         }
+
+        [HttpGet]
+        public async Task<ActionResult> GetAll(CancellationToken cancellationToken)
+        {
+            // change to context service
+            var ownerId = new Guid();
+            var fields = await _sender.Send(new GetAllFieldsQuery(ownerId), cancellationToken);
+
+            return Ok(fields);
+        }
     }
 }

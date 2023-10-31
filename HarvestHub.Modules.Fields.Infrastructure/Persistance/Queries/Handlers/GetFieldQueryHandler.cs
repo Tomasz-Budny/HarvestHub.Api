@@ -6,7 +6,6 @@ using Microsoft.EntityFrameworkCore;
 using HarvestHub.Modules.Fields.Core.Fields.Exceptions;
 using HarvestHub.Modules.Fields.Application.Fields.Mappers;
 using HarvestHub.Modules.Fields.Core.Fields.ValueObjects;
-using HarvestHub.Modules.Fields.Core.Fields.Entities;
 
 namespace HarvestHub.Modules.Fields.Infrastructure.Persistance.Queries.Handlers
 {
@@ -26,7 +25,7 @@ namespace HarvestHub.Modules.Fields.Infrastructure.Persistance.Queries.Handlers
                 .Include(x => x.Vertices.OrderBy(vertex => vertex.Order))
                 .SingleOrDefaultAsync(cancellationToken);
 
-            if(field == null)
+            if (field == null)
             {
                 throw new FieldNotFoundException(request.FieldId);
             }
