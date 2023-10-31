@@ -4,7 +4,6 @@ using HarvestHub.Modules.Fields.Core.Fields.Primitives;
 using HarvestHub.Modules.Fields.Core.Fields.ValueObjects;
 using HarvestHub.Modules.Fields.Core.SharedKernel.ValueObjects;
 using HarvestHub.Shared.Primitives;
-using System.Collections.Immutable;
 
 namespace HarvestHub.Modules.Fields.Core.Fields.Aggregates
 {
@@ -62,11 +61,6 @@ namespace HarvestHub.Modules.Fields.Core.Fields.Aggregates
                 currentNode = currentNode.Next;
             }
         }
-
-        //public IEnumerable<Vertex> GetVertices()
-        //{
-        //    return _vertices.ToImmutableList();
-        //}
 
         public Vertex GetVertex(VertexId vertexId)
         {

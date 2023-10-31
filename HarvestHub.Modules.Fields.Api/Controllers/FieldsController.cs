@@ -43,7 +43,7 @@ namespace HarvestHub.Modules.Fields.Api.Controllers
             return Ok(fields);
         }
 
-        [HttpDelete("fieldId:guid")]
+        [HttpDelete("{fieldId:guid}")]
         public async Task<ActionResult> Delete([FromRoute] Guid fieldId, CancellationToken cancellationToken)
         {
             // change to context service
