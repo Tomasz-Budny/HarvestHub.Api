@@ -8,6 +8,7 @@ namespace HarvestHub.Modules.Fields.Core.Fields.Repositories
     {
         Task AddAsync (Field field);
         Task DeleteAsync (Field field);
+        Task UpdateAsync (Field field);
         Task<Field?> GetAsync (FieldId fieldId, OwnerId ownerId);
     }
 }

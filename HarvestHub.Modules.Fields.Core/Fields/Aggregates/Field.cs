@@ -78,7 +78,7 @@ namespace HarvestHub.Modules.Fields.Core.Fields.Aggregates
         {
             var vertex = GetVertex(updatedVertex.Id);
 
-            if (vertex == null)
+            if (vertex is null)
             {
                 throw new VertexNotFoundException(updatedVertex.Id);
             }

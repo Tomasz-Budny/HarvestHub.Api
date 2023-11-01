@@ -16,6 +16,17 @@ namespace HarvestHub.Modules.Fields.Application.Fields.Mappers
             return new Vertex(id, (uint)index + 1, dto.Lat, dto.Lng);
         }
 
+        public static Vertex Map(VertexDto dto)
+        {
+            if (dto is null)
+            {
+                throw new ArgumentNullException(nameof(dto));
+            }
+
+            var id = Guid.NewGuid();
+            return new Vertex(id, dto.Order, dto.Lat, dto.Lng);
+        }
+
         public static VertexDto MapToDto(Vertex vertex)
         {
             return new VertexDto(vertex.Latitude, vertex.Longitude, vertex.Order);

@@ -18,7 +18,7 @@ namespace HarvestHub.Modules.Fields.Application.Fields.Commands.DeleteField
 
             var field = await _fieldRepository.GetAsync(fieldId, ownerId);
 
-            if (field == null)
+            if (field is null)
             {
                 throw new FieldNotFoundException(fieldId);
             }

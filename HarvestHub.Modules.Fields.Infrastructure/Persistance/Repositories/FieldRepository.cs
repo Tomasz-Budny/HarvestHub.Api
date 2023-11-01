@@ -29,6 +29,12 @@ namespace HarvestHub.Modules.Fields.Infrastructure.Persistance.Repositories
             await _dbContext.SaveChangesAsync();
         }
 
+        public async Task UpdateAsync(Field field)
+        {
+            _fields.Update(field);
+            await _dbContext.SaveChangesAsync();
+        }
+
         public async Task<Field?> GetAsync(FieldId fieldId, OwnerId ownerId)
             => await _fields.SingleOrDefaultAsync(x => x.Id == fieldId && x.OwnerId == ownerId);
         
