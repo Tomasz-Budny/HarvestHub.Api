@@ -36,7 +36,9 @@ namespace HarvestHub.Modules.Fields.Infrastructure.Persistance.Repositories
         }
 
         public async Task<Field?> GetAsync(FieldId fieldId, OwnerId ownerId)
-            => await _fields.SingleOrDefaultAsync(x => x.Id == fieldId && x.OwnerId == ownerId);
-        
+            => await _fields
+             .Include(x => x.Vertices.OrderBy(x => x.Order))
+             .SingleOrDefaultAsync(x => x.Id == fieldId && x.OwnerId == ownerId);
+
     }
 }

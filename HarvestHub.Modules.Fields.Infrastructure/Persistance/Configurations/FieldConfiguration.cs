@@ -63,7 +63,7 @@ namespace HarvestHub.Modules.Fields.Infrastructure.Persistance.Configurations
             builder.OwnsMany(x => x.Vertices, vb =>
             {
                 vb.ToTable("Vertices");
-                vb.HasIndex("FieldId", "Order").IsUnique();
+                vb.HasIndex("FieldId", "Id").IsUnique();
                 vb.WithOwner().HasForeignKey("FieldId");
 
                 vb.HasKey("Id");

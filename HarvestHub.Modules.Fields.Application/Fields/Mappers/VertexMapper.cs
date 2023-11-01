@@ -13,7 +13,7 @@ namespace HarvestHub.Modules.Fields.Application.Fields.Mappers
             }
 
             var id = Guid.NewGuid();
-            return new Vertex(id, (uint)index + 1, dto.Lat, dto.Lng);
+            return new Vertex(id, (uint)index, dto.Lat, dto.Lng);
         }
 
         public static Vertex Map(VertexDto dto)

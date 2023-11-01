@@ -60,6 +60,15 @@ namespace HarvestHub.Modules.Fields.Core.Fields.Aggregates
                 orderCount++;
                 currentNode = currentNode.Next;
             }
+
+            while(currInsertNode != null)
+            {
+                currInsertNode.Value.Order = orderCount;
+                _vertices.AddLast(currInsertNode.Value);
+
+                currInsertNode = currInsertNode.Next;
+                orderCount++;
+            }
         }
 
         public Vertex GetVertex(VertexId vertexId)
