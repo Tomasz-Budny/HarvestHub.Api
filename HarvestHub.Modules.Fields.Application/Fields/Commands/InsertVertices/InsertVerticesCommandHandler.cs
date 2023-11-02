@@ -21,7 +21,7 @@ namespace HarvestHub.Modules.Fields.Application.Fields.Commands.InsertVertices
         {
             var (fieldId, ownerId, verticesDto, newArea) = request;
 
-            var field = await _fieldRepository.GetAsync(fieldId, ownerId);
+            var field = await _fieldRepository.GetAsync(fieldId, ownerId, cancellationToken);
 
 
             if (field is null)
@@ -34,7 +34,7 @@ namespace HarvestHub.Modules.Fields.Application.Fields.Commands.InsertVertices
             field.InsertVertices(new LinkedList<Vertex>(vertices));
             field.Area = newArea;
 
-            await _fieldRepository.UpdateAsync(field);
+            await _fieldRepository.UpdateAsync(field, cancellationToken);
             await _messageBroker.PublishAsync(new FieldAreaChanged(fieldId, ownerId, oldArea, newArea));
         }
     }

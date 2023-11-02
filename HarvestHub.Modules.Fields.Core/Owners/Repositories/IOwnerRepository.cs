@@ -5,8 +5,8 @@ namespace HarvestHub.Modules.Fields.Core.Owners.Repositories
 {
     public interface IOwnerRepository
     {
-        Task UpdateAsync(Owner field);
-        Task<Owner?> GetAsync(OwnerId ownerId);
-        Task AddAsync(Owner owner);
+        Task UpdateAsync(Owner field, CancellationToken cancellationToken);
+        Task<Owner?> GetAsync(OwnerId ownerId, CancellationToken cancellationToken);
+        Task AddAsync(Owner owner, CancellationToken cancellationToken);
     }
 }

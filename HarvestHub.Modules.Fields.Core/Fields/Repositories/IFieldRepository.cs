@@ -6,9 +6,9 @@ namespace HarvestHub.Modules.Fields.Core.Fields.Repositories
 {
     public interface IFieldRepository
     {
-        Task AddAsync (Field field);
-        Task DeleteAsync (Field field);
-        Task UpdateAsync (Field field);
-        Task<Field?> GetAsync (FieldId fieldId, OwnerId ownerId);
+        Task AddAsync (Field field, CancellationToken cancellationToken);
+        Task DeleteAsync (Field field, CancellationToken cancellationToken);
+        Task UpdateAsync (Field field, CancellationToken cancellationToken);
+        Task<Field?> GetAsync (FieldId fieldId, OwnerId ownerId, CancellationToken cancellationToken);
     }
 }

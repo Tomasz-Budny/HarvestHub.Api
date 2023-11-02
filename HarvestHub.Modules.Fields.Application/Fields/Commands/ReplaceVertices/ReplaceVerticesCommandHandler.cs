@@ -20,7 +20,7 @@ namespace HarvestHub.Modules.Fields.Application.Fields.Commands.ReplaceVertices
         {
             var (fieldId, ownerId, verticesDto, newArea) = request;
 
-            var field = await _fieldRepository.GetAsync(fieldId, ownerId);
+            var field = await _fieldRepository.GetAsync(fieldId, ownerId, cancellationToken);
 
             if (field is null)
             {
@@ -32,7 +32,7 @@ namespace HarvestHub.Modules.Fields.Application.Fields.Commands.ReplaceVertices
             field.SetVertices(vertices);
             field.Area = newArea;
 
-            await _fieldRepository.UpdateAsync(field);
+            await _fieldRepository.UpdateAsync(field, cancellationToken);
             await _messageBroker.PublishAsync(new FieldAreaChanged(fieldId, ownerId, oldArea, newArea));
         }
     }

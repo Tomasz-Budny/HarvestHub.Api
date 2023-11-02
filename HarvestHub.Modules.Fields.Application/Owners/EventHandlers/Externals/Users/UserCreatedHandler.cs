@@ -18,14 +18,14 @@ namespace HarvestHub.Modules.Fields.Application.Owners.EventHandlers.Externals.U
         {
             var (id, firstName, lastName, _, _) = @event;
 
-            if(await _ownerRepository.GetAsync(@event.Id) is not null)
+            if(await _ownerRepository.GetAsync(@event.Id, cancellationToken) is not null)
             {
                 throw new OwnerAlreadyExistsException(@event.Id);
             }
 
             var owner = new Owner(id, firstName, lastName, null, null, 0, 0);
 
-            await _ownerRepository.AddAsync(owner);
+            await _ownerRepository.AddAsync(owner, cancellationToken);
         }
     }
 }

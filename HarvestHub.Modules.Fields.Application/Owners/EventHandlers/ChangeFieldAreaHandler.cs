@@ -15,7 +15,7 @@ namespace HarvestHub.Modules.Fields.Application.Owners.EventHandlers
         }
         public async Task HandleAsync(FieldAreaChanged @event, CancellationToken cancellationToken = default)
         {
-            var owner = await _ownerRepository.GetAsync(@event.OwnerId);
+            var owner = await _ownerRepository.GetAsync(@event.OwnerId, cancellationToken);
 
             if (owner is null)
             {
@@ -24,7 +24,7 @@ namespace HarvestHub.Modules.Fields.Application.Owners.EventHandlers
 
             owner.ChangeFieldArea(@event.OldArea, @event.NewArea);
 
-            await _ownerRepository.UpdateAsync(owner);
+            await _ownerRepository.UpdateAsync(owner, cancellationToken);
         }
     }
 }

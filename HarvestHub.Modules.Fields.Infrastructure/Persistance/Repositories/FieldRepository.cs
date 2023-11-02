@@ -17,28 +17,29 @@ namespace HarvestHub.Modules.Fields.Infrastructure.Persistance.Repositories
             _fields = dbContext.Fields;
         }
 
-        public async Task AddAsync(Field field)
+        public async Task AddAsync(Field field, CancellationToken cancellationToken)
         {
             await _fields.AddAsync(field);
-            await _dbContext.SaveChangesAsync();
+            await _dbContext.SaveChangesAsync(cancellationToken);
         }
 
-        public async Task DeleteAsync(Field field)
+        public async Task DeleteAsync(Field field, CancellationToken cancellationToken)
         {
             _fields.Remove(field);
-            await _dbContext.SaveChangesAsync();
+            await _dbContext.SaveChangesAsync(cancellationToken);
         }
 
-        public async Task UpdateAsync(Field field)
+        public async Task UpdateAsync(Field field, CancellationToken cancellationToken)
         {
             _fields.Update(field);
-            await _dbContext.SaveChangesAsync();
+            await _dbContext.SaveChangesAsync(cancellationToken);
         }
 
-        public async Task<Field?> GetAsync(FieldId fieldId, OwnerId ownerId)
+        public async Task<Field?> GetAsync(FieldId fieldId, OwnerId ownerId, CancellationToken cancellationToken)
             => await _fields
              .Include(x => x.Vertices.OrderBy(x => x.Order))
-             .SingleOrDefaultAsync(x => x.Id == fieldId && x.OwnerId == ownerId);
+             .Where(x => x.Id == fieldId && x.OwnerId == ownerId)
+             .SingleOrDefaultAsync(cancellationToken);
 
     }
 }

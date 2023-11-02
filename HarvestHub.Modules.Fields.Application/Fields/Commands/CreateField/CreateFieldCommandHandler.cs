@@ -32,7 +32,7 @@ namespace HarvestHub.Modules.Fields.Application.Fields.Commands.CreateField
 
             field.SetVertices(vertices);
 
-            await _fieldRepository.AddAsync(field);
+            await _fieldRepository.AddAsync(field, cancellationToken);
             await _messageBroker.PublishAsync(new FieldCreated(fieldId, ownerId, name, area));
         }
     }

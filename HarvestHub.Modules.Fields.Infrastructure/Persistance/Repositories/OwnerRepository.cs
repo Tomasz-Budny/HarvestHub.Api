@@ -15,20 +15,21 @@ namespace HarvestHub.Modules.Fields.Infrastructure.Persistance.Repositories
             _dbContext = dbContext;
             _owners = dbContext.Owners;
         }
-        public async Task<Owner?> GetAsync(OwnerId ownerId)
+        public async Task<Owner?> GetAsync(OwnerId ownerId, CancellationToken cancellationToken)
          => await _owners
-            .SingleOrDefaultAsync(x => x.Id == ownerId);
+            .Where(x => x.Id == ownerId)
+            .SingleOrDefaultAsync(cancellationToken);
 
-        public async Task UpdateAsync(Owner field)
+        public async Task UpdateAsync(Owner field, CancellationToken cancellationToken)
         {
             _owners.Update(field);
-            await _dbContext.SaveChangesAsync();
+            await _dbContext.SaveChangesAsync(cancellationToken);
         }
 
-        public async Task AddAsync(Owner owner)
+        public async Task AddAsync(Owner owner, CancellationToken cancellationToken)
         {
             _dbContext.Add(owner);
-            await _dbContext.SaveChangesAsync();
+            await _dbContext.SaveChangesAsync(cancellationToken);
         }
     }
 }
