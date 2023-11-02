@@ -24,5 +24,11 @@ namespace HarvestHub.Modules.Fields.Infrastructure.Persistance.Repositories
             _owners.Update(field);
             await _dbContext.SaveChangesAsync();
         }
+
+        public async Task AddAsync(Owner owner)
+        {
+            _dbContext.Add(owner);
+            await _dbContext.SaveChangesAsync();
+        }
     }
 }

@@ -7,5 +7,6 @@ namespace HarvestHub.Modules.Fields.Core.Owners.Repositories
     {
         Task UpdateAsync(Owner field);
         Task<Owner?> GetAsync(OwnerId ownerId);
+        Task AddAsync(Owner owner);
     }
 }
