@@ -30,7 +30,7 @@ namespace HarvestHub.Modules.Fields.Core.Owners.Aggregates
             Address = address;
         }
 
-        public void AddNewField(Area area)
+        public void AddField(Area area)
         {
             SumArea += area;
             NumberOfFields++;

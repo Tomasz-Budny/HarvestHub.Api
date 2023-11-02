@@ -1,4 +1,5 @@
 ﻿using HarvestHub.Modules.Fields.Core.Fields.Aggregates;
+using HarvestHub.Modules.Fields.Core.Owners.Aggregates;
 using Microsoft.EntityFrameworkCore;
 
 namespace HarvestHub.Modules.Fields.Infrastructure.Persistance
@@ -10,6 +11,7 @@ namespace HarvestHub.Modules.Fields.Infrastructure.Persistance
         }
 
         public DbSet<Field> Fields { get; set; }
+        public DbSet<Owner> Owners { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
