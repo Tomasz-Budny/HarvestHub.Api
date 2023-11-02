@@ -1,5 +1,4 @@
 ﻿using HarvestHub.Modules.Fields.Core.Fields.Aggregates;
-using HarvestHub.Modules.Fields.Core.Fields.Entities;
 using HarvestHub.Modules.Fields.Core.Fields.ValueObjects;
 using HarvestHub.Modules.Fields.Core.SharedKernel.ValueObjects;
 using Microsoft.EntityFrameworkCore;
