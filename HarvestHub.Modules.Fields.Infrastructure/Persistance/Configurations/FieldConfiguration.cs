@@ -35,9 +35,11 @@ namespace HarvestHub.Modules.Fields.Infrastructure.Persistance.Configurations
 
             var pointConverter = new ValueConverter<Point, string>(x => x.ToString(), x => Point.Create(x));
             builder.Property(x => x.Center)
+                .IsRequired()
                 .HasConversion(pointConverter);
 
             builder.Property(x => x.Area)
+                .IsRequired()
                 .HasConversion(x => x.Value, x => new(x));
 
             builder.Property(x => x.Area)

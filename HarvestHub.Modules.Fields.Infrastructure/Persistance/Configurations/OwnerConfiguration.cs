@@ -26,14 +26,12 @@ namespace HarvestHub.Modules.Fields.Infrastructure.Persistance.Configurations
                 .IsRequired()
                 .HasConversion(x => x.Value, x => new(x));
 
-            var pointConverter = new ValueConverter<Point, string>(x => x.ToString(), x => Point.Create(x));
+            var pointConverter = new ValueConverter<Point?, string>(x => x.ToString(), x => Point.Create(x));
             builder.Property(x => x.StartLocation)
-                .IsRequired()
                 .HasConversion(pointConverter);
 
-            var addressConverter = new ValueConverter<Address, string>(x => x.ToString(), x => Address.Create(x));
+            var addressConverter = new ValueConverter<Address?, string>(x => x.ToString(), x => Address.Create(x));
             builder.Property(x => x.Address)
-                .IsRequired()
                 .HasConversion(addressConverter);
 
             builder.Property(x => x.NumberOfFields)
