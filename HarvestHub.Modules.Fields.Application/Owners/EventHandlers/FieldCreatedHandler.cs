@@ -5,7 +5,7 @@ using HarvestHub.Shared.Events;
 
 namespace HarvestHub.Modules.Fields.Application.Owners.EventHandlers
 {
-    internal sealed class FieldCreatedHandler : IEventHandler<FieldCreated>
+    internal class FieldCreatedHandler : IEventHandler<FieldCreated>
     {
         private readonly IOwnerRepository _ownerRepository;
 
@@ -16,6 +16,7 @@ namespace HarvestHub.Modules.Fields.Application.Owners.EventHandlers
 
         public async Task HandleAsync(FieldCreated @event, CancellationToken cancellationToken = default)
         {
+            Console.WriteLine("Test owner");
             var owner = await _ownerRepository.GetAsync(@event.OwnerId);
 
             if (owner is null)

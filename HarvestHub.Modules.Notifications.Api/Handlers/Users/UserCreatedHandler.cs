@@ -13,6 +13,6 @@ namespace HarvestHub.Modules.Notifications.Api.Handlers.Users
         }
 
         public Task HandleAsync(UserCreated @event, CancellationToken cancellationToken = default)
-            =>  _smtpService.SendConfirmationEmail(@event.Email, @event.FirstName, @event.VerificationToken);
+            => _smtpService.SendConfirmationEmail(@event.Email, @event.FirstName, @event.VerificationToken);
     }
 }

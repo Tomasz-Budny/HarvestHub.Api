@@ -1,4 +1,6 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using HarvestHub.Shared.Events;
+using Microsoft.Extensions.DependencyInjection;
+using System.Reflection;
 
 namespace HarvestHub.Modules.Fields.Application
 {
@@ -10,6 +12,11 @@ namespace HarvestHub.Modules.Fields.Application
             {
                 configuration.RegisterServicesFromAssemblies(typeof(Extensions).Assembly);
             });
+
+            services.Scan(s => s.FromAssemblies(Assembly.GetExecutingAssembly())
+                .AddClasses(c => c.AssignableTo(typeof(IEventHandler<>)))
+                .AsImplementedInterfaces()
+                .WithScopedLifetime());
 
             return services;
         }
