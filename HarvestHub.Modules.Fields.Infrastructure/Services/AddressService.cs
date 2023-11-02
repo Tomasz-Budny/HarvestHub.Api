@@ -1,9 +1,8 @@
-﻿using HarvestHub.Modules.Fields.Application.Fields.Dtos.Externals.GoogleGeoCode;
+﻿using HarvestHub.Modules.Fields.Application.Dtos.Externals.GoogleGeoCode;
 using HarvestHub.Modules.Fields.Application.Services;
 using HarvestHub.Modules.Fields.Core.SharedKernel.ValueObjects;
 using HarvestHub.Modules.Fields.Infrastructure.Services.Options;
 using Microsoft.Extensions.Options;
-using System.Net.Http;
 using System.Net.Http.Json;
 
 namespace HarvestHub.Modules.Fields.Infrastructure.Services

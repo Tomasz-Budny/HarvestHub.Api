@@ -1,4 +1,4 @@
-﻿namespace HarvestHub.Modules.Fields.Application.Fields.Dtos.Externals.GoogleGeoCode
+﻿namespace HarvestHub.Modules.Fields.Application.Dtos.Externals.GoogleGeoCode
 {
     public class PlusCode
     {
