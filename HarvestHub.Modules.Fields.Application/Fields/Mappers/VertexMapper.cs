@@ -5,7 +5,7 @@ namespace HarvestHub.Modules.Fields.Application.Fields.Mappers
 {
     public static class VertexMapper
     {
-        public static Vertex Map(VertexDto dto, int index)
+        public static Vertex Map(CreateVertexDto dto)
         {
             if (dto is null)
             {
@@ -13,7 +13,18 @@ namespace HarvestHub.Modules.Fields.Application.Fields.Mappers
             }
 
             var id = Guid.NewGuid();
-            return new Vertex(id, (uint)index, dto.Lat, dto.Lng);
+            return new Vertex(id, 0, dto.Lat, dto.Lng);
+        }
+
+        public static Vertex Map(ReplaceVertexDto dto)
+        {
+            if (dto is null)
+            {
+                throw new ArgumentNullException(nameof(dto));
+            }
+
+            var id = Guid.NewGuid();
+            return new Vertex(id, 0, dto.Lat, dto.Lng);
         }
 
         public static Vertex Map(VertexDto dto)

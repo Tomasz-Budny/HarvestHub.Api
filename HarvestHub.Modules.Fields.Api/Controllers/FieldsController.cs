@@ -22,7 +22,7 @@ namespace HarvestHub.Modules.Fields.Api.Controllers
 
             await _sender.Send(new CreateFieldCommand(fieldId, ownerId, name, center, area, color, vertices), cancellationToken);
 
-            return CreatedAtAction(nameof(Get), new { Id = fieldId }, null);
+            return CreatedAtAction(nameof(Get), new { Id = fieldId }, new { Id = fieldId }); 
         }
 
         [HttpGet("{id:guid}")]

@@ -106,9 +106,12 @@ namespace HarvestHub.Modules.Fields.Core.Fields.Aggregates
         public void SetVertices(IEnumerable<Vertex> vertices)
         {
             _vertices.Clear();
+            uint index = 0;
             foreach (var vertex in vertices)
             {
+                vertex.Order = index;
                 _vertices.AddLast(vertex);
+                index++;
             }
         }
     }

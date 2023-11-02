@@ -21,7 +21,7 @@ namespace HarvestHub.Modules.Fields.Application.Fields.Commands.CreateField
             var (id, ownerId, name, point, area, color, verticesDto) = request;
             var center = new Point(point.Lat, point.Lng);
             var address = new Address("Poland", "Mazowieckie", "", "Żebry Kordy");
-            var vertices = verticesDto.Select((dto, i) => VertexMapper.Map(dto, i));
+            var vertices = verticesDto.Select((dto, i) => VertexMapper.Map(dto));
 
             var field = 
                 new Field(id, ownerId, name, center, DateTime.Now, 

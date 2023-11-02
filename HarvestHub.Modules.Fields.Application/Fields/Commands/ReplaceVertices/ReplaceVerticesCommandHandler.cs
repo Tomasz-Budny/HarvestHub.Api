@@ -1,25 +1,23 @@
 ﻿using HarvestHub.Modules.Fields.Application.Fields.Mappers;
-using HarvestHub.Modules.Fields.Core.Fields.Entities;
 using HarvestHub.Modules.Fields.Core.Fields.Exceptions;
 using HarvestHub.Modules.Fields.Core.Fields.Repositories;
 using HarvestHub.Shared.Messaging;
 
-namespace HarvestHub.Modules.Fields.Application.Fields.Commands.InsertVertices
+namespace HarvestHub.Modules.Fields.Application.Fields.Commands.ReplaceVertices
 {
-    internal class InsertVerticesCommandHandler : ICommandHandler<InsertVerticesCommand>
+    internal class ReplaceVerticesCommandHandler : ICommandHandler<ReplaceVerticesCommand>
     {
         private readonly IFieldRepository _fieldRepository;
 
-        public InsertVerticesCommandHandler(IFieldRepository fieldRepository)
+        public ReplaceVerticesCommandHandler(IFieldRepository fieldRepository)
         {
             _fieldRepository = fieldRepository;
         }
-        public async Task Handle(InsertVerticesCommand request, CancellationToken cancellationToken)
+        public async Task Handle(ReplaceVerticesCommand request, CancellationToken cancellationToken)
         {
             var (fieldId, ownerId, verticesDto, area) = request;
 
             var field = await _fieldRepository.GetAsync(fieldId, ownerId);
-
 
             if (field is null)
             {
@@ -27,9 +25,8 @@ namespace HarvestHub.Modules.Fields.Application.Fields.Commands.InsertVertices
             }
 
             var vertices = verticesDto.Select(x => VertexMapper.Map(x));
-            field.InsertVertices(new LinkedList<Vertex>(vertices));
+            field.SetVertices(vertices);
             field.Area = area;
-
             await _fieldRepository.UpdateAsync(field);
         }
     }
