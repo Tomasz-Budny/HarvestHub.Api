@@ -6,6 +6,7 @@ using Microsoft.Extensions.DependencyInjection;
 using HarvestHub.Shared;
 using HarvestHub.Modules.Fields.Core.Fields.Repositories;
 using HarvestHub.Modules.Fields.Infrastructure.Persistance.Repositories;
+using HarvestHub.Modules.Fields.Core.Owners.Repositories;
 
 namespace HarvestHub.Modules.Fields.Infrastructure
 {
@@ -18,6 +19,7 @@ namespace HarvestHub.Modules.Fields.Infrastructure
                 ctx.UseSqlServer(options.ConnectionString));
 
             services.AddScoped<IFieldRepository, FieldRepository>();
+            services.AddScoped<IOwnerRepository, OwnerRepository>();
 
             services.AddMediatR(configuration =>
             {
