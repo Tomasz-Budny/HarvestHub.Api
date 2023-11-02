@@ -7,6 +7,10 @@ using HarvestHub.Shared;
 using HarvestHub.Modules.Fields.Core.Fields.Repositories;
 using HarvestHub.Modules.Fields.Infrastructure.Persistance.Repositories;
 using HarvestHub.Modules.Fields.Core.Owners.Repositories;
+using HarvestHub.Modules.Fields.Infrastructure.Services.Options;
+using Microsoft.Extensions.Options;
+using HarvestHub.Modules.Fields.Application.Services;
+using HarvestHub.Modules.Fields.Infrastructure.Services;
 
 namespace HarvestHub.Modules.Fields.Infrastructure
 {
@@ -20,6 +24,17 @@ namespace HarvestHub.Modules.Fields.Infrastructure
 
             services.AddScoped<IFieldRepository, FieldRepository>();
             services.AddScoped<IOwnerRepository, OwnerRepository>();
+
+            var smtpOtions = configuration.GetOptions<GoogleApiOptions>(GoogleApiOptions.SectionName);
+            services.AddSingleton(Options.Create(smtpOtions));
+
+            services.AddScoped<IAddressService, AddressService>();
+
+            services.AddHttpClient<IAddressService, AddressService>((serviceProvider, httpClient) =>
+            {
+                httpClient.BaseAddress = new Uri($"https://maps.googleapis.com/maps/api/geocode/");
+                httpClient.DefaultRequestHeaders.Add("Accept-Language", "pl-PL,pl;q=0.9,en-US;q=0.8,en;q=0.7");
+            });
 
             services.AddMediatR(configuration =>
             {

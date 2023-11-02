@@ -1,6 +1,4 @@
-﻿using HarvestHub.Modules.Fields.Core.Fields.ValueObjects;
-
-namespace HarvestHub.Modules.Fields.Core.SharedKernel.ValueObjects
+﻿namespace HarvestHub.Modules.Fields.Core.SharedKernel.ValueObjects
 {
     public record Address
     {

@@ -1,4 +1,5 @@
 ﻿using HarvestHub.Modules.Fields.Application.Fields.Mappers;
+using HarvestHub.Modules.Fields.Application.Services;
 using HarvestHub.Modules.Fields.Core.Fields.Aggregates;
 using HarvestHub.Modules.Fields.Core.Fields.Primitives;
 using HarvestHub.Modules.Fields.Core.Fields.Repositories;
@@ -12,18 +13,21 @@ namespace HarvestHub.Modules.Fields.Application.Fields.Commands.CreateField
     {
         private readonly IFieldRepository _fieldRepository;
         private readonly IMessageBroker _messageBroker;
+        private readonly IAddressService _addressService;
 
-        public CreateFieldCommandHandler(IFieldRepository fieldRepository, IMessageBroker messageBroker)
+        public CreateFieldCommandHandler(IFieldRepository fieldRepository, IMessageBroker messageBroker, IAddressService addressService)
         {
             _fieldRepository = fieldRepository;
             _messageBroker = messageBroker;
+            _addressService = addressService;
         }
 
         public async Task Handle(CreateFieldCommand request, CancellationToken cancellationToken)
         {
             var (fieldId, ownerId, name, point, area, color, verticesDto) = request;
             var center = new Point(point.Lat, point.Lng);
-            var address = new Address("Poland", "Mazowieckie", "", "Żebry Kordy");
+
+            var address = await _addressService.GetAddressAsync(point.Lat, point.Lng);
             var vertices = verticesDto.Select((dto, i) => VertexMapper.Map(dto));
 
             var field = 
