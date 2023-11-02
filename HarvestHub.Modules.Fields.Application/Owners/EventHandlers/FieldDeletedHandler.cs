@@ -5,16 +5,15 @@ using HarvestHub.Shared.Events;
 
 namespace HarvestHub.Modules.Fields.Application.Owners.EventHandlers
 {
-    internal class FieldCreatedHandler : IEventHandler<FieldCreated>
+    internal class FieldDeletedHandler : IEventHandler<FieldDeleted>
     {
         private readonly IOwnerRepository _ownerRepository;
 
-        public FieldCreatedHandler(IOwnerRepository ownerRepository)
+        public FieldDeletedHandler(IOwnerRepository ownerRepository)
         {
             _ownerRepository = ownerRepository;
         }
-
-        public async Task HandleAsync(FieldCreated @event, CancellationToken cancellationToken = default)
+        public async Task HandleAsync(FieldDeleted @event, CancellationToken cancellationToken = default)
         {
             var owner = await _ownerRepository.GetAsync(@event.OwnerId);
 
@@ -23,7 +22,7 @@ namespace HarvestHub.Modules.Fields.Application.Owners.EventHandlers
                 throw new OwnerNotFoundException(@event.OwnerId);
             }
 
-            owner.AddField(@event.Area);
+            owner.RemoveField(@event.Area);
 
             await _ownerRepository.UpdateAsync(owner);
         }

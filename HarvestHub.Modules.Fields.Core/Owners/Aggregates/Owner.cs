@@ -41,5 +41,10 @@ namespace HarvestHub.Modules.Fields.Core.Owners.Aggregates
             SumArea -= area;
             NumberOfFields--;
         }
+
+        public void ChangeFieldArea(Area oldArea, Area newArea)
+        {
+            SumArea = SumArea - oldArea + newArea;
+        }
     }
 }
