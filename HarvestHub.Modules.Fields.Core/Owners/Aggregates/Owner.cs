@@ -9,8 +9,8 @@ namespace HarvestHub.Modules.Fields.Core.Owners.Aggregates
     {
         public FirstName FirstName { get; set; }
         public LastName LastName { get; set; }
-        public Point StartLocation { get; private set; }
-        public Address Address { get; private set; }
+        public Point? StartLocation { get; private set; }
+        public Address? Address { get; private set; }
         public uint NumberOfFields { get; private set; } = 0;
         public Area SumArea { get; private set; } = 0;
 
