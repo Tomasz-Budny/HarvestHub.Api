@@ -52,5 +52,15 @@ namespace HarvestHub.Modules.Fields.Api.Controllers
 
             return NoContent();
         }
+
+        [HttpGet("{fieldId:guid}/details")]
+        public async Task<ActionResult> GetDetails([FromRoute] Guid fieldId, CancellationToken cancellationToken)
+        {
+            // change to context service
+            var ownerId = new Guid();
+            var field = await _sender.Send(new GetFieldDetailsQuery(ownerId, fieldId), cancellationToken);
+
+            return Ok(field);
+        }
     }
 }

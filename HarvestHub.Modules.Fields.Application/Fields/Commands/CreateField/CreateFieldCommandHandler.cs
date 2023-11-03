@@ -28,6 +28,7 @@ namespace HarvestHub.Modules.Fields.Application.Fields.Commands.CreateField
             var center = new Point(point.Lat, point.Lng);
 
             var address = await _addressService.GetAddressAsync(point.Lat, point.Lng);
+                
             var vertices = verticesDto.Select((dto, i) => VertexMapper.Map(dto));
 
             var field = 

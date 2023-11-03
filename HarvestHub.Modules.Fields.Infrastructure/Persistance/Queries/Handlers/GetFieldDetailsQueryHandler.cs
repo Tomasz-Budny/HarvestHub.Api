@@ -20,7 +20,7 @@ namespace HarvestHub.Modules.Fields.Infrastructure.Persistance.Queries.Handlers
         }
         public async Task<FieldDetailsDto> Handle(GetFieldDetailsQuery request, CancellationToken cancellationToken)
         {
-            var (fieldId, ownerId) = request;
+            var (ownerId, fieldId) = request;
 
             var field = await _fields
                 .SingleOrDefaultAsync(x => x.Id == new FieldId(fieldId) && 

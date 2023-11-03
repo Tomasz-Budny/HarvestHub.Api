@@ -20,12 +20,19 @@ namespace HarvestHub.Modules.Fields.Infrastructure.Services
         public async Task<Address> GetAddressAsync(double Latitude, double Longitude)
         {
             var url = $"json?latlng={Latitude.ToString().Replace(',', '.')},{Longitude.ToString().Replace(',', '.')}&key={_googleApiOptions.Key}";
-            var response = await _httpClient.GetFromJsonAsync<GeoCode>(url);
+            var response = await _httpClient.GetAsync(url);
 
-            string country = response.Results[0].Address_components.Find(a => a.Types.Contains("country"))?.Long_name;
-            string administrativeDivisionLevelOne = response.Results[0].Address_components.Find(a => a.Types.Contains("administrative_area_level_1"))?.Long_name;
-            string administrativeDivisionLevelTwo = response.Results[0].Address_components.Find(a => a.Types.Contains("administrative_area_level_2"))?.Long_name;
-            string city = response.Results[0].Address_components.Find(a => a.Types.Contains("locality"))?.Long_name;
+            if(!response.IsSuccessStatusCode)
+            {
+                return new Address("Nieznane", "Nieznane", null, "Nieznane");
+            }
+
+            var geoCodeDto = await response.Content.ReadFromJsonAsync<GeoCodeDto>();
+
+            var country = geoCodeDto?.Results[0].Address_components.Find(a => a.Types.Contains("country"))?.Long_name ?? "Nieznane";
+            var administrativeDivisionLevelOne = geoCodeDto?.Results[0].Address_components.Find(a => a.Types.Contains("administrative_area_level_1"))?.Long_name ?? "";
+            var administrativeDivisionLevelTwo = geoCodeDto?.Results[0].Address_components.Find(a => a.Types.Contains("administrative_area_level_2"))?.Long_name ?? "";
+            var city = geoCodeDto?.Results[0].Address_components.Find(a => a.Types.Contains("locality") || a.Types.Contains("postal_town"))?.Long_name ?? "Nieznane";
 
             return new Address(country, administrativeDivisionLevelOne, administrativeDivisionLevelTwo, city);
         }

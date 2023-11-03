@@ -54,7 +54,7 @@
         public List<string> Types { get; set; }
     }
 
-    public class GeoCode
+    public class GeoCodeDto
     {
         public PlusCode Plus_code { get; set; }
         public List<Result> Results { get; set; }
