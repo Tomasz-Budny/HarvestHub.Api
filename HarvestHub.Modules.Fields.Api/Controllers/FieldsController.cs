@@ -4,6 +4,7 @@ using MediatR;
 using HarvestHub.Modules.Fields.Application.Fields.Queries;
 using HarvestHub.Modules.Fields.Application.Fields.Dtos;
 using HarvestHub.Modules.Fields.Application.Fields.Commands.DeleteField;
+using HarvestHub.Modules.Fields.Application.Fields.Commands.PatchFieldDetails;
 
 namespace HarvestHub.Modules.Fields.Api.Controllers
 {
@@ -61,6 +62,17 @@ namespace HarvestHub.Modules.Fields.Api.Controllers
             var field = await _sender.Send(new GetFieldDetailsQuery(ownerId, fieldId), cancellationToken);
 
             return Ok(field);
+        }
+
+        [HttpPatch("{fieldId:guid}/details")]
+        public async Task<ActionResult<FieldDetailsDto>> PatchFieldDetails([FromRoute] Guid fieldId,[FromBody] PatchFieldDetailsRequest request, CancellationToken cancellationToken)
+        {
+            var (name, classStatus, ownershipStatus, color) = request;
+            // change to context service
+            var ownerId = new Guid();
+            await _sender.Send(new PatchFieldDetailsCommand(fieldId, ownerId, name, classStatus, ownershipStatus, color), cancellationToken);
+
+            return Ok();
         }
     }
 }
