@@ -1,5 +1,6 @@
 ﻿using HarvestHub.Modules.Fields.Application.Fields.Commands.InsertVertices;
 using HarvestHub.Modules.Fields.Application.Fields.Commands.ReplaceVertices;
+using HarvestHub.Modules.Fields.Application.Fields.Commands.UpdateVertices;
 using HarvestHub.Modules.Fields.Application.Fields.Dtos;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
@@ -31,6 +32,18 @@ namespace HarvestHub.Modules.Fields.Api.Controllers
             var ownerId = new Guid();
 
             await _sender.Send(new ReplaceVerticesCommand(fieldId, ownerId, verticesDto, area, pointDto), cancellationToken);
+
+            return Ok();
+        }
+
+        [HttpPost("update")]
+        public async Task<ActionResult> Update([FromRoute] Guid fieldId, [FromBody] UpdateVerticesRequest request, CancellationToken cancellationToken)
+        {
+            var (verticesDto, area, pointDto) = request;
+            // change to context service
+            var ownerId = new Guid();
+
+            await _sender.Send(new UpdateVerticesCommand(fieldId, ownerId, verticesDto, area, pointDto), cancellationToken);
 
             return Ok();
         }

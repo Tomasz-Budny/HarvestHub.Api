@@ -27,6 +27,16 @@ namespace HarvestHub.Modules.Fields.Application.Fields.Mappers
             return new Vertex(id, 0, dto.Lat, dto.Lng);
         }
 
+        public static Vertex Map(UpdateVertexDto dto)
+        {
+            if (dto is null)
+            {
+                throw new ArgumentNullException(nameof(dto));
+            }
+
+            return new Vertex(dto.VertexId, 0, dto.Lat, dto.Lng);
+        }
+
         public static Vertex Map(VertexDto dto)
         {
             if (dto is null)

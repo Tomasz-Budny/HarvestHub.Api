@@ -1,5 +1,4 @@
 ﻿using HarvestHub.Modules.Fields.Core.Fields.ValueObjects;
-using HarvestHub.Modules.Fields.Core.SharedKernel.ValueObjects;
 using HarvestHub.Shared.Primitives;
 
 namespace HarvestHub.Modules.Fields.Core.Fields.Entities

@@ -58,7 +58,7 @@ namespace HarvestHub.Modules.Fields.Core.Fields.Aggregates
                 }
 
                 orderCount++;
-                currentNode = currentNode.Next;
+                currentNode = currentNode?.Next;
             }
 
             while(currInsertNode != null)

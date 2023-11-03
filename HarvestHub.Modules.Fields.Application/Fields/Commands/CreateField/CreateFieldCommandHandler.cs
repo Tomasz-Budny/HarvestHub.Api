@@ -4,7 +4,6 @@ using HarvestHub.Modules.Fields.Application.Services;
 using HarvestHub.Modules.Fields.Core.Fields.Aggregates;
 using HarvestHub.Modules.Fields.Core.Fields.Primitives;
 using HarvestHub.Modules.Fields.Core.Fields.Repositories;
-using HarvestHub.Modules.Fields.Core.SharedKernel.ValueObjects;
 using HarvestHub.Modules.Fields.Shared.Events.Fields;
 using HarvestHub.Shared.Messaging;
 
