@@ -26,7 +26,7 @@ namespace HarvestHub.Modules.Fields.Api.Controllers
         }
 
         [HttpGet("{id:guid}")]
-        public async Task<ActionResult> Get([FromRoute] Guid id, CancellationToken cancellationToken)
+        public async Task<ActionResult<FieldDto>> Get([FromRoute] Guid id, CancellationToken cancellationToken)
         {
             var field = await _sender.Send(new GetFieldQuery(id), cancellationToken);
 
@@ -54,7 +54,7 @@ namespace HarvestHub.Modules.Fields.Api.Controllers
         }
 
         [HttpGet("{fieldId:guid}/details")]
-        public async Task<ActionResult> GetDetails([FromRoute] Guid fieldId, CancellationToken cancellationToken)
+        public async Task<ActionResult<FieldDetailsDto>> GetDetails([FromRoute] Guid fieldId, CancellationToken cancellationToken)
         {
             // change to context service
             var ownerId = new Guid();
