@@ -26,11 +26,11 @@ namespace HarvestHub.Modules.Fields.Api.Controllers
         [HttpPost("replace")]
         public async Task<ActionResult> Insert([FromRoute] Guid fieldId, [FromBody] ReplaceVerticesRequest request, CancellationToken cancellationToken)
         {
-            var (verticesDto, area) = request;
+            var (verticesDto, area, pointDto) = request;
             // change to context service
             var ownerId = new Guid();
 
-            await _sender.Send(new ReplaceVerticesCommand(fieldId, ownerId, verticesDto, area), cancellationToken);
+            await _sender.Send(new ReplaceVerticesCommand(fieldId, ownerId, verticesDto, area, pointDto), cancellationToken);
 
             return Ok();
         }

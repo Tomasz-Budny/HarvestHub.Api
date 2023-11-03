@@ -1,4 +1,5 @@
 ﻿using HarvestHub.Modules.Fields.Application.Fields.Mappers;
+using HarvestHub.Modules.Fields.Application.Mappers;
 using HarvestHub.Modules.Fields.Application.Services;
 using HarvestHub.Modules.Fields.Core.Fields.Aggregates;
 using HarvestHub.Modules.Fields.Core.Fields.Primitives;
@@ -25,7 +26,7 @@ namespace HarvestHub.Modules.Fields.Application.Fields.Commands.CreateField
         public async Task Handle(CreateFieldCommand request, CancellationToken cancellationToken)
         {
             var (fieldId, ownerId, name, point, area, color, verticesDto) = request;
-            var center = new Point(point.Lat, point.Lng);
+            var center = PointMapper.Map(point);
 
             var address = await _addressService.GetAddressAsync(point.Lat, point.Lng);
                 

@@ -1,4 +1,5 @@
 ﻿using HarvestHub.Modules.Fields.Application.Fields.Mappers;
+using HarvestHub.Modules.Fields.Application.Mappers;
 using HarvestHub.Modules.Fields.Core.Fields.Exceptions;
 using HarvestHub.Modules.Fields.Core.Fields.Repositories;
 using HarvestHub.Modules.Fields.Shared.Events.Fields;
@@ -18,7 +19,7 @@ namespace HarvestHub.Modules.Fields.Application.Fields.Commands.ReplaceVertices
         }
         public async Task Handle(ReplaceVerticesCommand request, CancellationToken cancellationToken)
         {
-            var (fieldId, ownerId, verticesDto, newArea) = request;
+            var (fieldId, ownerId, verticesDto, newArea, newCenter) = request;
 
             var field = await _fieldRepository.GetAsync(fieldId, ownerId, cancellationToken);
 
@@ -31,6 +32,7 @@ namespace HarvestHub.Modules.Fields.Application.Fields.Commands.ReplaceVertices
             var vertices = verticesDto.Select(x => VertexMapper.Map(x));
             field.SetVertices(vertices);
             field.Area = newArea;
+            field.Center = PointMapper.Map(newCenter);
 
             await _fieldRepository.UpdateAsync(field, cancellationToken);
             await _messageBroker.PublishAsync(new FieldAreaChanged(fieldId, ownerId, oldArea, newArea));

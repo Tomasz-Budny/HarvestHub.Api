@@ -9,5 +9,10 @@ namespace HarvestHub.Modules.Fields.Application.Mappers
         {
             return new PointDto(point.Latitude, point.Longitude);
         }
+
+        public static Point Map(PointDto point)
+        {
+            return new Point(point.Lat, point.Lng) ;
+        }
     }
 }
