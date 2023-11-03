@@ -1,0 +1,16 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\HarvestHub.Modules.Fields.Core\HarvestHub.Modules.Fields.Core.csproj" />
+    <ProjectReference Include="..\HarvestHub.Modules.Fields.Shared\HarvestHub.Modules.Fields.Shared.csproj" />
+    <ProjectReference Include="..\HarvestHub.Modules.Notifications.Shared\HarvestHub.Modules.Notifications.Shared.csproj" />
+    <ProjectReference Include="..\HarvestHub.Modules.Users.Shared\HarvestHub.Modules.Users.Shared.csproj" />
+  </ItemGroup>
+
+</Project>

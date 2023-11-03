@@ -4,6 +4,7 @@ using HarvestHub.Shared.Exceptions;
 using HarvestHub.Shared.Messaging;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using System.Reflection;
 
 namespace HarvestHub.Shared
 {
@@ -15,6 +16,7 @@ namespace HarvestHub.Shared
             services.AddMessaging();
             services.AddScoped<ErrorHandlerMiddleware>();
             services.AddSingleton<IExceptionToResponseMapper, ExceptionToResponseMapper>();
+            services.AddMediatR(cfg => cfg.RegisterServicesFromAssemblies(Assembly.GetExecutingAssembly()));
 
             services.AddScoped<IUserContextService, UserContextService>();
             services.AddHttpContextAccessor();
@@ -28,5 +30,7 @@ namespace HarvestHub.Shared
 
             return options;
         }
+
+
     }
 }

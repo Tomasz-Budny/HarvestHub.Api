@@ -25,9 +25,21 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HarvestHub.Modules.Users.Da
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Notifications", "Notifications", "{2711239A-11C5-4C30-B60F-BF8369C02F70}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HarvestHub.Modules.Notifications.Api", "HarvestHub.Modules.Notifications.Api\HarvestHub.Modules.Notifications.Api.csproj", "{581F6390-2E3A-4749-A8E6-2E85B6901D47}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HarvestHub.Modules.Notifications.Api", "HarvestHub.Modules.Notifications.Api\HarvestHub.Modules.Notifications.Api.csproj", "{581F6390-2E3A-4749-A8E6-2E85B6901D47}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HarvestHub.Modules.Notifications.Shared", "HarvestHub.Modules.Notifications.Shared\HarvestHub.Modules.Notifications.Shared.csproj", "{FA12699A-266E-4214-8EC2-7A5FDAFB55E3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HarvestHub.Modules.Notifications.Shared", "HarvestHub.Modules.Notifications.Shared\HarvestHub.Modules.Notifications.Shared.csproj", "{FA12699A-266E-4214-8EC2-7A5FDAFB55E3}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Fields", "Fields", "{42D67394-48B4-4E3D-8F10-F4A42915106C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HarvestHub.Modules.Fields.Api", "HarvestHub.Modules.Fields.Api\HarvestHub.Modules.Fields.Api.csproj", "{29EE788A-7C5B-45E0-B556-F4C929EEF70D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HarvestHub.Modules.Fields.Application", "HarvestHub.Modules.Fields.Application\HarvestHub.Modules.Fields.Application.csproj", "{EB50B9BA-6EC2-4610-A7F9-2E20C4D9F34E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HarvestHub.Modules.Fields.Core", "HarvestHub.Modules.Fields.Core\HarvestHub.Modules.Fields.Core.csproj", "{E572BB72-B2B6-43D2-ADCB-3235ED9C12C9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HarvestHub.Modules.Fields.Infrastructure", "HarvestHub.Modules.Fields.Infrastructure\HarvestHub.Modules.Fields.Infrastructure.csproj", "{8F66955C-0FBF-42FF-8297-FDDA39E1544F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HarvestHub.Modules.Fields.Shared", "HarvestHub.Modules.Fields.Shared\HarvestHub.Modules.Fields.Shared.csproj", "{A9D401A8-DD6C-42DF-B12D-C380B3098B88}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -67,6 +79,26 @@ Global
 		{FA12699A-266E-4214-8EC2-7A5FDAFB55E3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FA12699A-266E-4214-8EC2-7A5FDAFB55E3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FA12699A-266E-4214-8EC2-7A5FDAFB55E3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{29EE788A-7C5B-45E0-B556-F4C929EEF70D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{29EE788A-7C5B-45E0-B556-F4C929EEF70D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{29EE788A-7C5B-45E0-B556-F4C929EEF70D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{29EE788A-7C5B-45E0-B556-F4C929EEF70D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EB50B9BA-6EC2-4610-A7F9-2E20C4D9F34E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EB50B9BA-6EC2-4610-A7F9-2E20C4D9F34E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EB50B9BA-6EC2-4610-A7F9-2E20C4D9F34E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EB50B9BA-6EC2-4610-A7F9-2E20C4D9F34E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E572BB72-B2B6-43D2-ADCB-3235ED9C12C9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E572BB72-B2B6-43D2-ADCB-3235ED9C12C9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E572BB72-B2B6-43D2-ADCB-3235ED9C12C9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E572BB72-B2B6-43D2-ADCB-3235ED9C12C9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8F66955C-0FBF-42FF-8297-FDDA39E1544F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8F66955C-0FBF-42FF-8297-FDDA39E1544F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8F66955C-0FBF-42FF-8297-FDDA39E1544F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8F66955C-0FBF-42FF-8297-FDDA39E1544F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A9D401A8-DD6C-42DF-B12D-C380B3098B88}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A9D401A8-DD6C-42DF-B12D-C380B3098B88}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A9D401A8-DD6C-42DF-B12D-C380B3098B88}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A9D401A8-DD6C-42DF-B12D-C380B3098B88}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -82,6 +114,12 @@ Global
 		{2711239A-11C5-4C30-B60F-BF8369C02F70} = {7DA7AC88-B3D1-456B-A587-66F83A3701D3}
 		{581F6390-2E3A-4749-A8E6-2E85B6901D47} = {2711239A-11C5-4C30-B60F-BF8369C02F70}
 		{FA12699A-266E-4214-8EC2-7A5FDAFB55E3} = {2711239A-11C5-4C30-B60F-BF8369C02F70}
+		{42D67394-48B4-4E3D-8F10-F4A42915106C} = {7DA7AC88-B3D1-456B-A587-66F83A3701D3}
+		{29EE788A-7C5B-45E0-B556-F4C929EEF70D} = {42D67394-48B4-4E3D-8F10-F4A42915106C}
+		{EB50B9BA-6EC2-4610-A7F9-2E20C4D9F34E} = {42D67394-48B4-4E3D-8F10-F4A42915106C}
+		{E572BB72-B2B6-43D2-ADCB-3235ED9C12C9} = {42D67394-48B4-4E3D-8F10-F4A42915106C}
+		{8F66955C-0FBF-42FF-8297-FDDA39E1544F} = {42D67394-48B4-4E3D-8F10-F4A42915106C}
+		{A9D401A8-DD6C-42DF-B12D-C380B3098B88} = {42D67394-48B4-4E3D-8F10-F4A42915106C}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {FC2FFB6E-0CAB-498C-8ED1-16B5DE435878}

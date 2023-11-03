@@ -1,0 +1,78 @@
+﻿using Microsoft.AspNetCore.Mvc;
+using HarvestHub.Modules.Fields.Application.Fields.Commands.CreateField;
+using MediatR;
+using HarvestHub.Modules.Fields.Application.Fields.Queries;
+using HarvestHub.Modules.Fields.Application.Fields.Dtos;
+using HarvestHub.Modules.Fields.Application.Fields.Commands.DeleteField;
+using HarvestHub.Modules.Fields.Application.Fields.Commands.PatchFieldDetails;
+
+namespace HarvestHub.Modules.Fields.Api.Controllers
+{
+    [Route("api/fields")]
+    public class FieldsController : ApiController
+    {
+        public FieldsController(ISender sender) : base(sender) { }
+
+        [HttpPost]
+        public async Task<ActionResult> Create(CreateFieldRequest request, CancellationToken cancellationToken)
+        {
+            var (name, center, area, color, vertices) = request;
+            var fieldId = Guid.NewGuid();
+            // change to context service
+            var ownerId = new Guid();
+
+            await _sender.Send(new CreateFieldCommand(fieldId, ownerId, name, center, area, color, vertices), cancellationToken);
+
+            return CreatedAtAction(nameof(Get), new { Id = fieldId }, new { Id = fieldId }); 
+        }
+
+        [HttpGet("{id:guid}")]
+        public async Task<ActionResult<FieldDto>> Get([FromRoute] Guid id, CancellationToken cancellationToken)
+        {
+            var field = await _sender.Send(new GetFieldQuery(id), cancellationToken);
+
+            return Ok(field);
+        }
+
+        [HttpGet]
+        public async Task<ActionResult<IEnumerable<FieldDto>>> GetAll(CancellationToken cancellationToken)
+        {
+            // change to context service
+            var ownerId = new Guid();
+            var fields = await _sender.Send(new GetAllFieldsQuery(ownerId), cancellationToken);
+
+            return Ok(fields);
+        }
+
+        [HttpDelete("{fieldId:guid}")]
+        public async Task<ActionResult> Delete([FromRoute] Guid fieldId, CancellationToken cancellationToken)
+        {
+            // change to context service
+            var ownerId = new Guid();
+            await _sender.Send(new DeleteFieldCommand(fieldId, ownerId), cancellationToken);
+
+            return NoContent();
+        }
+
+        [HttpGet("{fieldId:guid}/details")]
+        public async Task<ActionResult<FieldDetailsDto>> GetDetails([FromRoute] Guid fieldId, CancellationToken cancellationToken)
+        {
+            // change to context service
+            var ownerId = new Guid();
+            var field = await _sender.Send(new GetFieldDetailsQuery(ownerId, fieldId), cancellationToken);
+
+            return Ok(field);
+        }
+
+        [HttpPatch("{fieldId:guid}/details")]
+        public async Task<ActionResult<FieldDetailsDto>> PatchFieldDetails([FromRoute] Guid fieldId,[FromBody] PatchFieldDetailsRequest request, CancellationToken cancellationToken)
+        {
+            var (name, classStatus, ownershipStatus, color) = request;
+            // change to context service
+            var ownerId = new Guid();
+            await _sender.Send(new PatchFieldDetailsCommand(fieldId, ownerId, name, classStatus, ownershipStatus, color), cancellationToken);
+
+            return Ok();
+        }
+    }
+}

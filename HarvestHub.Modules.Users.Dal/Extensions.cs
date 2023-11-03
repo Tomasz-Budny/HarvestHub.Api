@@ -10,7 +10,6 @@ using HarvestHub.Modules.Users.Dal.Authentication;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using System.Text;
 using Microsoft.IdentityModel.Tokens;
-using HarvestHub.Shared.Authentication;
 
 namespace HarvestHub.Modules.Users.Dal
 {
