@@ -5,9 +5,9 @@ using HarvestHub.Shared.Primitives;
 
 namespace HarvestHub.Modules.Fields.Core.Fields.Aggregates
 {
-    internal class CultivationHistory : AggregateRoot<CultivationHistoryId>
+    public class CultivationHistory : AggregateRoot<CultivationHistoryId>
     {
-        protected List<HistoryRecord> _history = new List<HistoryRecord>();
+        protected List<HistoryRecord> _history = new();
         public IReadOnlyList<HistoryRecord> History => _history.AsReadOnly();
 
         public CultivationHistory(CultivationHistoryId id) : base(id) { }
