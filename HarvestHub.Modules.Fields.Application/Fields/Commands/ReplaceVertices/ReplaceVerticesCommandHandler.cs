@@ -35,7 +35,7 @@ namespace HarvestHub.Modules.Fields.Application.Fields.Commands.ReplaceVertices
             field.Center = PointMapper.Map(newCenter);
 
             await _fieldRepository.UpdateAsync(field, cancellationToken);
-            await _messageBroker.PublishAsync(new FieldAreaChanged(fieldId, ownerId, oldArea, newArea));
+            await _messageBroker.PublishAsync(new FieldAreaChanged(fieldId, ownerId, oldArea, newArea), cancellationToken);
         }
     }
 }

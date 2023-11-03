@@ -27,7 +27,7 @@ namespace HarvestHub.Modules.Fields.Application.Fields.Commands.DeleteField
             }
 
             await _fieldRepository.DeleteAsync(field, cancellationToken);
-            await _messageBroker.PublishAsync(new FieldDeleted(fieldId, ownerId, field.Name, field.Area));
+            await _messageBroker.PublishAsync(new FieldDeleted(fieldId, ownerId, field.Name, field.Area), cancellationToken);
         }
     }
 }
