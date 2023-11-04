@@ -30,7 +30,7 @@ namespace HarvestHub.Modules.Fields.Api.Controllers
                     cropType,
                     humidity), cancellationToken);
 
-            return CreatedAtAction("Get", new { Id = historyRecordId }, new { Id = historyRecordId });
+            return Created("Get", new { Id = historyRecordId });
         }
     }
 }

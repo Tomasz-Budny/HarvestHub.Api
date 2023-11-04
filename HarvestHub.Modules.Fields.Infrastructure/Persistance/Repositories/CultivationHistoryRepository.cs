@@ -23,7 +23,7 @@ namespace HarvestHub.Modules.Fields.Infrastructure.Persistance.Repositories
 
         public async Task UpdateAsync(CultivationHistory cultivationHistory, CancellationToken cancellationToken)
         {
-            _history.Update(cultivationHistory);
+            _history.Attach(cultivationHistory);
             await _dbContext.SaveChangesAsync(cancellationToken);
         }
         
