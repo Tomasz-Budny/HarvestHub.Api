@@ -8,10 +8,10 @@ namespace HarvestHub.Modules.Fields.Infrastructure.Persistance.Repositories
 {
     internal class CultivationHistoryRepository : ICultivationHistoryRepository
     {
-        private readonly HistoryDbContext _dbContext;
+        private readonly FieldsDbContext _dbContext;
         private readonly DbSet<CultivationHistory> _history;
 
-        public CultivationHistoryRepository(HistoryDbContext dbContext)
+        public CultivationHistoryRepository(FieldsDbContext dbContext)
         {
             _dbContext = dbContext;
             _history = dbContext.History;

@@ -21,10 +21,7 @@ namespace HarvestHub.Modules.Fields.Infrastructure
             var options = configuration.GetOptions<SqlOptions>(SqlOptions.SectionName);
             services.AddDbContext<FieldsDbContext>(ctx =>
                 ctx.UseSqlServer(options.ConnectionString));
-
-            services.AddDbContext<HistoryDbContext>(ctx =>
-                ctx.UseSqlServer(options.ConnectionString));
-
+                
             services.AddScoped<IFieldRepository, FieldRepository>();
             services.AddScoped<ICultivationHistoryRepository, CultivationHistoryRepository>();
             services.AddScoped<IOwnerRepository, OwnerRepository>();

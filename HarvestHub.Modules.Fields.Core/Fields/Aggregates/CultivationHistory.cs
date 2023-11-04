@@ -8,7 +8,7 @@ namespace HarvestHub.Modules.Fields.Core.Fields.Aggregates
 {
     public class CultivationHistory : AggregateRoot<CultivationHistoryId>
     {
-        public OwnerId OwnerId { get; set; }
+        public OwnerId OwnerId { get; }
 
         protected List<HistoryRecord> _history = new();
         public IReadOnlyList<HistoryRecord> History => _history.AsReadOnly();

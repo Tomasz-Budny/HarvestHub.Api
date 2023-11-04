@@ -1,4 +1,5 @@
 ﻿using HarvestHub.Modules.Fields.Core.Fields.Entities;
+using HarvestHub.Modules.Fields.Core.Fields.ValueObjects;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
@@ -19,7 +20,8 @@ namespace HarvestHub.Modules.Fields.Infrastructure.Persistance.Configurations
             builder.Property(x => x.Date)
                 .IsRequired();
 
-            builder.Property<Guid>("FieldId");
+            builder.Property<CultivationHistoryId>("FieldId")
+                .HasConversion(x => x.Value, x => new(x));
 
             builder
                 .HasDiscriminator<string>("Type")
