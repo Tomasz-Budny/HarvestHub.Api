@@ -1,6 +1,5 @@
 ﻿using HarvestHub.Modules.Fields.Application.CultivationHistories.Commands.AddHarvestHistoryRecord;
 using HarvestHub.Modules.Fields.Application.CultivationHistories.Dtos;
-using HarvestHub.Modules.Fields.Application.Fields.Dtos;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
