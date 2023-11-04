@@ -1,16 +1,22 @@
 ﻿using HarvestHub.Modules.Fields.Core.Fields.Entities;
 using HarvestHub.Modules.Fields.Core.Fields.Exceptions;
 using HarvestHub.Modules.Fields.Core.Fields.ValueObjects;
+using HarvestHub.Modules.Fields.Core.SharedKernel.ValueObjects;
 using HarvestHub.Shared.Primitives;
 
 namespace HarvestHub.Modules.Fields.Core.Fields.Aggregates
 {
     public class CultivationHistory : AggregateRoot<CultivationHistoryId>
     {
+        public OwnerId OwnerId { get; set; }
+
         protected List<HistoryRecord> _history = new();
         public IReadOnlyList<HistoryRecord> History => _history.AsReadOnly();
 
-        public CultivationHistory(CultivationHistoryId id) : base(id) { }
+        public CultivationHistory(CultivationHistoryId id, OwnerId ownerId) : base(id) 
+        {
+            OwnerId = ownerId;
+        }
 
         public void Add(HistoryRecord newHistoryRecord)
         {

@@ -8,13 +8,12 @@ namespace HarvestHub.Modules.Fields.Core.Fields.Entities
         public FertilizerType FertilizerType { get; }
         public Amount Amount { get; }
         public FertilizationHistoryRecord(
-            HistoryRecordId id, 
-            FieldId fieldId, 
+            HistoryRecordId id,
             DateTime date,
             FertilizerType fertilizerType,
             Amount amount
 
-        ) : base(id, fieldId, date)
+        ) : base(id, date)
         {
             FertilizerType = fertilizerType;
             Amount = amount;

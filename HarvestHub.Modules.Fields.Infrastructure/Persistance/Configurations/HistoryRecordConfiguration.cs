@@ -19,9 +19,7 @@ namespace HarvestHub.Modules.Fields.Infrastructure.Persistance.Configurations
             builder.Property(x => x.Date)
                 .IsRequired();
 
-            builder.Property(x => x.FieldId)
-                .IsRequired()
-                .HasConversion(x => x.Value, x => new(x));
+            builder.Property<Guid>("FieldId");
 
             builder
                 .HasDiscriminator<string>("Type")

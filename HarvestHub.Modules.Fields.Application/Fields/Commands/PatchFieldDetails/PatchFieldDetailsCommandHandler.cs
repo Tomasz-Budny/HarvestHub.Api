@@ -7,14 +7,18 @@ namespace HarvestHub.Modules.Fields.Application.Fields.Commands.PatchFieldDetail
     internal class PatchFieldDetailsCommandHandler : ICommandHandler<PatchFieldDetailsCommand>
     {
         private readonly IFieldRepository _fieldRepository;
+        private readonly ICultivationHistoryRepository _cultivationHistoryRepository;
 
-        public PatchFieldDetailsCommandHandler(IFieldRepository fieldRepository)
+        public PatchFieldDetailsCommandHandler(IFieldRepository fieldRepository, ICultivationHistoryRepository cultivationHistoryRepository)
         {
             _fieldRepository = fieldRepository;
+            _cultivationHistoryRepository = cultivationHistoryRepository;
         }
         public async Task Handle(PatchFieldDetailsCommand request, CancellationToken cancellationToken)
         {
             var (fieldId, ownerId, name, classStatus, ownershipStatus, color) = request;
+
+            var history = await _cultivationHistoryRepository.GetAsync(fieldId, ownerId, cancellationToken);
 
             var field = await _fieldRepository.GetAsync(fieldId, ownerId, cancellationToken);
 
