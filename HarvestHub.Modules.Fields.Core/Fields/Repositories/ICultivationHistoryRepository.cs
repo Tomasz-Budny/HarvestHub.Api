@@ -7,5 +7,7 @@ namespace HarvestHub.Modules.Fields.Core.Fields.Repositories
     public interface ICultivationHistoryRepository
     {
         Task<CultivationHistory?> GetAsync(CultivationHistoryId historyId, OwnerId ownerId, CancellationToken cancellationToken);
+        Task UpdateAsync(CultivationHistory cultivationHistory, CancellationToken cancellationToken);
+
     }
 }

@@ -8,7 +8,7 @@ namespace HarvestHub.Modules.Fields.Infrastructure.Persistance.Configurations
     {
         public void Configure(EntityTypeBuilder<CultivationHistory> builder)
         {
-            builder.ToView("Fields");
+            builder.ToTable("Fields");
 
             builder.Property(x => x.Id)
                 .IsRequired()

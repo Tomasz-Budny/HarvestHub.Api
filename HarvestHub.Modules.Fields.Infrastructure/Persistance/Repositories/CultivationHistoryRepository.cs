@@ -20,5 +20,12 @@ namespace HarvestHub.Modules.Fields.Infrastructure.Persistance.Repositories
             => await _history
                 .Include(x => x.History)
                 .SingleOrDefaultAsync(x => x.Id == historyId && x.OwnerId == ownerId, cancellationToken);
+
+        public async Task UpdateAsync(CultivationHistory cultivationHistory, CancellationToken cancellationToken)
+        {
+            _history.Update(cultivationHistory);
+            await _dbContext.SaveChangesAsync(cancellationToken);
+        }
+        
     }
 }

@@ -18,8 +18,6 @@ namespace HarvestHub.Modules.Fields.Application.Fields.Commands.PatchFieldDetail
         {
             var (fieldId, ownerId, name, classStatus, ownershipStatus, color) = request;
 
-            var history = await _cultivationHistoryRepository.GetAsync(fieldId, ownerId, cancellationToken);
-
             var field = await _fieldRepository.GetAsync(fieldId, ownerId, cancellationToken);
 
             if (field is null)
