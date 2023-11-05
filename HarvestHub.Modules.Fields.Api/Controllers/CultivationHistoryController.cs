@@ -1,5 +1,6 @@
 ﻿using HarvestHub.Modules.Fields.Application.CultivationHistories.Commands.AddHarvestHistoryRecord;
 using HarvestHub.Modules.Fields.Application.CultivationHistories.Dtos;
+using HarvestHub.Modules.Fields.Application.CultivationHistories.Queries;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
@@ -30,6 +31,17 @@ namespace HarvestHub.Modules.Fields.Api.Controllers
                     humidity), cancellationToken);
 
             return Created("Get", new { Id = historyRecordId });
+        }
+
+        [HttpGet("harvest")]
+        public async Task<ActionResult<IEnumerable<HarvestHistoryRecordDto>>> GetHarvestHistoryRecords([FromRoute] Guid fieldId, CancellationToken cancellationToken)
+        {
+            // change to context service
+            var ownerId = new Guid();
+
+            var records = await _sender.Send(new GetHarvestHistoryRecordsQuery(fieldId, ownerId), cancellationToken);
+
+            return Ok(records);
         }
     }
 }
