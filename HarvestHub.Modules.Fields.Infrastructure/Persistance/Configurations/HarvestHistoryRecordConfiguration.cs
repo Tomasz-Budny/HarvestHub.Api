@@ -10,7 +10,8 @@ namespace HarvestHub.Modules.Fields.Infrastructure.Persistance.Configurations
         {
             builder.Property(x => x.Amount)
                 .IsRequired()
-                .HasConversion(x => x.Value, x => new(x));
+                .HasConversion(x => x.Value, x => new(x))
+                .HasColumnName("Amount");
 
             builder.Property(x => x.Humidity)
                 .IsRequired()
