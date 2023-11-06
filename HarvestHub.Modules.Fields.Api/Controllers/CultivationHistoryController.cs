@@ -30,7 +30,7 @@ namespace HarvestHub.Modules.Fields.Api.Controllers
                     cropType,
                     humidity), cancellationToken);
 
-            return Created("Get", new { Id = historyRecordId });
+            return CreatedAtAction(nameof(GetHarvestHistoryRecords), new { FieldId = fieldId }, new { Id = historyRecordId });
         }
 
         [HttpGet("harvest")]

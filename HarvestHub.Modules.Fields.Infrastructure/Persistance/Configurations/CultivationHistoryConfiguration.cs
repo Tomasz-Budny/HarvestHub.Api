@@ -18,7 +18,7 @@ namespace HarvestHub.Modules.Fields.Infrastructure.Persistance.Configurations
                 .IsRequired()
                 .HasConversion(x => x.Value, x => new(x));
 
-            builder.HasMany(x => x.History).WithOne().HasForeignKey("FieldId");
+            builder.HasMany(x => x.History).WithOne().HasForeignKey("FieldId").OnDelete(DeleteBehavior.Cascade);
         }
     }
 }

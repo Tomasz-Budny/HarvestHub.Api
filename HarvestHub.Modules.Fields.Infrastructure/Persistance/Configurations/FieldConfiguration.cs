@@ -1,4 +1,5 @@
 ﻿using HarvestHub.Modules.Fields.Core.Fields.Aggregates;
+using HarvestHub.Modules.Fields.Core.Fields.Entities;
 using HarvestHub.Modules.Fields.Core.Fields.ValueObjects;
 using HarvestHub.Modules.Fields.Core.SharedKernel.ValueObjects;
 using Microsoft.EntityFrameworkCore;
@@ -55,6 +56,8 @@ namespace HarvestHub.Modules.Fields.Infrastructure.Persistance.Configurations
                 .IsRequired()
                 .HasMaxLength(7)
                 .HasConversion(x => x.Value, x => new(x));
+
+            builder.HasMany<HistoryRecord>().WithOne().HasForeignKey(x => x.Id).OnDelete(DeleteBehavior.Cascade);
         }
 
         private void ConfigureVerticesTable(EntityTypeBuilder<Field> builder)
