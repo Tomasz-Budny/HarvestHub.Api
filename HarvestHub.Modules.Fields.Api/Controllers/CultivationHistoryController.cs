@@ -15,15 +15,12 @@ namespace HarvestHub.Modules.Fields.Api.Controllers
         public async Task<ActionResult> AddHarvestHistoryRecord([FromRoute] Guid fieldId, [FromBody] AddHarvestHistoryRecordRequest request, CancellationToken cancellationToken)
         {
             var (date, amount, cropType, humidity) = request;
-            // change to context service
-            var ownerId = new Guid();
 
             var historyRecordId = Guid.NewGuid();
 
             await _sender.Send(
                 new AddHarvestHistoryRecordCommand(
                     fieldId,
-                    ownerId,
                     historyRecordId,
                     date,
                     amount,
@@ -39,7 +36,7 @@ namespace HarvestHub.Modules.Fields.Api.Controllers
             // change to context service
             var ownerId = new Guid();
 
-            var records = await _sender.Send(new GetHarvestHistoryRecordsQuery(fieldId, ownerId), cancellationToken);
+            var records = await _sender.Send(new GetHarvestHistoryRecordsByFieldIdQuery(fieldId, ownerId), cancellationToken);
 
             return Ok(records);
         }

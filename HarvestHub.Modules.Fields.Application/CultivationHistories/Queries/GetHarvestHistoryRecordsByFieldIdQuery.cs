@@ -3,5 +3,5 @@ using HarvestHub.Shared.Messaging;
 
 namespace HarvestHub.Modules.Fields.Application.CultivationHistories.Queries
 {
-    public record GetHarvestHistoryRecordsQuery(Guid CultivationHistoryId, Guid OwnerId) : IQuery<IEnumerable<HarvestHistoryRecordDto>>;
+    public record GetHarvestHistoryRecordsByFieldIdQuery(Guid FieldId, Guid OwnerId) : IQuery<IEnumerable<HarvestHistoryRecordDto>>;
 }

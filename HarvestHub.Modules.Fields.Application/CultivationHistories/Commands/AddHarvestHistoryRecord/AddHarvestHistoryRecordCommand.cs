@@ -4,8 +4,7 @@ using HarvestHub.Shared.Messaging;
 namespace HarvestHub.Modules.Fields.Application.CultivationHistories.Commands.AddHarvestHistoryRecord
 {
     public record AddHarvestHistoryRecordCommand(
-        Guid CultivationHistoryId, 
-        Guid OwnerId,
+        Guid CultivationHistoryId,
         Guid HistoryRecordId,
         DateTime Date,
         double Amount, 

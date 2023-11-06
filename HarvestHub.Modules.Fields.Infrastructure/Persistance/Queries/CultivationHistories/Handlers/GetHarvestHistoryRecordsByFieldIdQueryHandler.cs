@@ -11,22 +11,31 @@ using Microsoft.EntityFrameworkCore;
 
 namespace HarvestHub.Modules.Fields.Infrastructure.Persistance.Queries.CultivationHistories.Handlers
 {
-    internal class GetHarvestHistoryRecordsQueryHandler : IQueryHandler<GetHarvestHistoryRecordsQuery, IEnumerable<HarvestHistoryRecordDto>>
+    internal class GetHarvestHistoryRecordsByFieldIdQueryHandler : IQueryHandler<GetHarvestHistoryRecordsByFieldIdQuery, IEnumerable<HarvestHistoryRecordDto>>
     {
         private readonly DbSet<CultivationHistory> _history;
+        private readonly FieldsDbContext _dbContext;
 
-        public GetHarvestHistoryRecordsQueryHandler(FieldsDbContext dbContext)
+        public GetHarvestHistoryRecordsByFieldIdQueryHandler(FieldsDbContext dbContext)
         {
             _history = dbContext.History;
+            _dbContext = dbContext;
         }
 
-        public async Task<IEnumerable<HarvestHistoryRecordDto>> Handle(GetHarvestHistoryRecordsQuery request, CancellationToken cancellationToken)
+        public async Task<IEnumerable<HarvestHistoryRecordDto>> Handle(GetHarvestHistoryRecordsByFieldIdQuery request, CancellationToken cancellationToken)
         {
             var (historyId, ownerId) = request;
 
+            var fieldExists = await _dbContext.Fields.AnyAsync(x => x.Id == new FieldId(historyId) && x.OwnerId == new OwnerId(ownerId));
+
+            if(!fieldExists)
+            {
+                throw new FieldNotFoundException(historyId);
+            }
+
             var Cultivationhistory = await _history
                 .Include(x => x.History)
-                .SingleOrDefaultAsync(x => x.Id == new CultivationHistoryId(historyId), cancellationToken);
+                .SingleOrDefaultAsync(x => x.FieldId == new FieldId(historyId), cancellationToken);
 
             if (Cultivationhistory is null)
             {

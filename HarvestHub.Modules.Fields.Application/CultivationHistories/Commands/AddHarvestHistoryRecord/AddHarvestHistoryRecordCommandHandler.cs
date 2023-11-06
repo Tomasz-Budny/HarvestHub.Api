@@ -16,9 +16,9 @@ namespace HarvestHub.Modules.Fields.Application.CultivationHistories.Commands.Ad
 
         public async Task Handle(AddHarvestHistoryRecordCommand request, CancellationToken cancellationToken)
         {
-            var (cultivationHistoryId, ownerId, historyRecordId, date, amount, cropType, humidity) = request;
+            var (cultivationHistoryId, historyRecordId, date, amount, cropType, humidity) = request;
 
-            var history = await _historyRepository.GetAsync(cultivationHistoryId, ownerId, cancellationToken);
+            var history = await _historyRepository.GetAsync(cultivationHistoryId, cancellationToken);
 
             if (history is null)
             {
