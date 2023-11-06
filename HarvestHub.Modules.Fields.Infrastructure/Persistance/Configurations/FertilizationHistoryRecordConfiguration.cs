@@ -1,4 +1,4 @@
-﻿using HarvestHub.Modules.Fields.Core.Fields.Entities;
+﻿using HarvestHub.Modules.Fields.Core.CultivationHistories.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 

@@ -1,8 +1,8 @@
-﻿using HarvestHub.Modules.Fields.Core.Fields.Aggregates;
-using HarvestHub.Modules.Fields.Core.Fields.ValueObjects;
+﻿using HarvestHub.Modules.Fields.Core.CultivationHistories.Aggregates;
+using HarvestHub.Modules.Fields.Core.CultivationHistories.ValueObjects;
 using HarvestHub.Modules.Fields.Core.SharedKernel.ValueObjects;
 
-namespace HarvestHub.Modules.Fields.Core.Fields.Repositories
+namespace HarvestHub.Modules.Fields.Core.CultivationHistories.Repositories
 {
     public interface ICultivationHistoryRepository
     {

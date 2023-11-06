@@ -1,4 +1,4 @@
-﻿using HarvestHub.Modules.Fields.Core.Fields.Primitives;
+﻿using HarvestHub.Modules.Fields.Core.CultivationHistories.Primitives;
 using HarvestHub.Shared.Messaging;
 
 namespace HarvestHub.Modules.Fields.Application.CultivationHistories.Commands.AddHarvestHistoryRecord

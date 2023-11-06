@@ -1,4 +1,5 @@
-﻿using HarvestHub.Modules.Fields.Core.Fields.Aggregates;
+﻿using HarvestHub.Modules.Fields.Core.CultivationHistories.Aggregates;
+using HarvestHub.Modules.Fields.Core.Fields.Aggregates;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 

@@ -1,4 +1,4 @@
-﻿using HarvestHub.Modules.Fields.Core.Fields.Aggregates;
+﻿using HarvestHub.Modules.Fields.Core.CultivationHistories.Aggregates;
 
 namespace HarvestHub.Modules.Fields.Application.CultivationHistories.Services
 {

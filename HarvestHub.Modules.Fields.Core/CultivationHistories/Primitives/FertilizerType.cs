@@ -1,4 +1,4 @@
-﻿namespace HarvestHub.Modules.Fields.Core.Fields.Primitives
+﻿namespace HarvestHub.Modules.Fields.Core.CultivationHistories.Primitives
 {
     public enum FertilizerType
     {

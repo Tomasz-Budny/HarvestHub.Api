@@ -1,7 +1,6 @@
 ﻿using HarvestHub.Modules.Fields.Application.CultivationHistories.Services;
-using HarvestHub.Modules.Fields.Core.Fields.Entities;
-using HarvestHub.Modules.Fields.Core.Fields.Exceptions;
-using HarvestHub.Modules.Fields.Core.Fields.Repositories;
+using HarvestHub.Modules.Fields.Core.CultivationHistories.Entities;
+using HarvestHub.Modules.Fields.Core.CultivationHistories.Repositories;
 using HarvestHub.Shared.Messaging;
 
 namespace HarvestHub.Modules.Fields.Application.CultivationHistories.Commands.AddHarvestHistoryRecord

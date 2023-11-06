@@ -1,6 +1,6 @@
-﻿using HarvestHub.Modules.Fields.Core.Fields.Aggregates;
-using HarvestHub.Modules.Fields.Core.Fields.Repositories;
-using HarvestHub.Modules.Fields.Core.Fields.ValueObjects;
+﻿using HarvestHub.Modules.Fields.Core.CultivationHistories.Aggregates;
+using HarvestHub.Modules.Fields.Core.CultivationHistories.Repositories;
+using HarvestHub.Modules.Fields.Core.CultivationHistories.ValueObjects;
 using Microsoft.EntityFrameworkCore;
 
 namespace HarvestHub.Modules.Fields.Infrastructure.Persistance.Repositories

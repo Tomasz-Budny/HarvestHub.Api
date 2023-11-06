@@ -1,4 +1,4 @@
-﻿using HarvestHub.Modules.Fields.Core.Fields.Primitives;
+﻿using HarvestHub.Modules.Fields.Core.CultivationHistories.Primitives;
 
 namespace HarvestHub.Modules.Fields.Application.CultivationHistories.Dtos
 {

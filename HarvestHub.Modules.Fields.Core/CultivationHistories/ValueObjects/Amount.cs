@@ -1,6 +1,6 @@
-﻿using HarvestHub.Modules.Fields.Core.Fields.Exceptions;
+﻿using HarvestHub.Modules.Fields.Core.CultivationHistories.Exceptions;
 
-namespace HarvestHub.Modules.Fields.Core.Fields.ValueObjects
+namespace HarvestHub.Modules.Fields.Core.CultivationHistories.ValueObjects
 {
     public record Amount
     {
@@ -8,7 +8,7 @@ namespace HarvestHub.Modules.Fields.Core.Fields.ValueObjects
 
         public Amount(double value)
         {
-            if(value < 0)
+            if (value < 0)
             {
                 throw new InvalidAmountValueException(value);
             }

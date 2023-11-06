@@ -1,4 +1,5 @@
-﻿using HarvestHub.Modules.Fields.Core.Fields.Exceptions;
+﻿using HarvestHub.Modules.Fields.Core.CultivationHistories.Repositories;
+using HarvestHub.Modules.Fields.Core.Fields.Exceptions;
 using HarvestHub.Modules.Fields.Core.Fields.Repositories;
 using HarvestHub.Shared.Messaging;
 

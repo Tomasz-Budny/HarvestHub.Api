@@ -1,6 +1,6 @@
 ﻿using HarvestHub.Shared.Exceptions;
 
-namespace HarvestHub.Modules.Fields.Core.Fields.Exceptions
+namespace HarvestHub.Modules.Fields.Core.CultivationHistories.Exceptions
 {
     public class HistoryRecordAlreadyExistsException : HarvestHubException
     {

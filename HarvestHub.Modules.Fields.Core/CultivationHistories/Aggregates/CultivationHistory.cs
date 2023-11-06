@@ -1,9 +1,11 @@
-﻿using HarvestHub.Modules.Fields.Core.Fields.Entities;
+﻿using HarvestHub.Modules.Fields.Core.CultivationHistories.Entities;
+using HarvestHub.Modules.Fields.Core.CultivationHistories.Exceptions;
+using HarvestHub.Modules.Fields.Core.CultivationHistories.ValueObjects;
 using HarvestHub.Modules.Fields.Core.Fields.Exceptions;
-using HarvestHub.Modules.Fields.Core.Fields.ValueObjects;
+using HarvestHub.Modules.Fields.Core.SharedKernel.ValueObjects;
 using HarvestHub.Shared.Primitives;
 
-namespace HarvestHub.Modules.Fields.Core.Fields.Aggregates
+namespace HarvestHub.Modules.Fields.Core.CultivationHistories.Aggregates
 {
     public class CultivationHistory : AggregateRoot<CultivationHistoryId>
     {
@@ -12,7 +14,7 @@ namespace HarvestHub.Modules.Fields.Core.Fields.Aggregates
         protected List<HistoryRecord> _history = new();
         public IReadOnlyList<HistoryRecord> History => _history.AsReadOnly();
 
-        public CultivationHistory(CultivationHistoryId id, FieldId fieldId) : base(id) 
+        public CultivationHistory(CultivationHistoryId id, FieldId fieldId) : base(id)
         {
             FieldId = fieldId;
         }
@@ -20,7 +22,7 @@ namespace HarvestHub.Modules.Fields.Core.Fields.Aggregates
         public void Add(HistoryRecord newHistoryRecord)
         {
             var alreadyExists = _history.Any(historyRecord => historyRecord == newHistoryRecord);
-            if(alreadyExists)
+            if (alreadyExists)
             {
                 throw new HistoryRecordAlreadyExistsException(newHistoryRecord.Id);
             }
@@ -32,11 +34,11 @@ namespace HarvestHub.Modules.Fields.Core.Fields.Aggregates
         {
             var historyRecord = _history.Find(historyRecord => historyRecord.Id == historyRecordId);
 
-            if(historyRecord is null)
+            if (historyRecord is null)
             {
                 throw new HistoryRecordNotExistException(historyRecordId);
             }
-         
+
             _history.Remove(historyRecord);
         }
     }

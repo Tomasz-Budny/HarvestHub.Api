@@ -1,5 +1,5 @@
-﻿using HarvestHub.Modules.Fields.Core.Fields.Entities;
-using HarvestHub.Modules.Fields.Core.Fields.ValueObjects;
+﻿using HarvestHub.Modules.Fields.Core.CultivationHistories.Entities;
+using HarvestHub.Modules.Fields.Core.CultivationHistories.ValueObjects;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 

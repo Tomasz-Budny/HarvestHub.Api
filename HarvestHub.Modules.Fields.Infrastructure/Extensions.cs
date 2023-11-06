@@ -12,7 +12,8 @@ using Microsoft.Extensions.Options;
 using HarvestHub.Modules.Fields.Application.Services;
 using HarvestHub.Modules.Fields.Infrastructure.Services;
 using HarvestHub.Modules.Fields.Application.CultivationHistories.Services;
-using HarvestHub.Modules.Fields.Infrastructure.Persistance.Services;
+using HarvestHub.Modules.Fields.Core.CultivationHistories.Repositories;
+using HarvestHub.Modules.CultivationHistories.Infrastructure.Persistance.Services;
 
 namespace HarvestHub.Modules.Fields.Infrastructure
 {

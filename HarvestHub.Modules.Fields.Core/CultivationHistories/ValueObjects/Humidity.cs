@@ -1,14 +1,14 @@
-﻿using HarvestHub.Modules.Fields.Core.Fields.Exceptions;
+﻿using HarvestHub.Modules.Fields.Core.CultivationHistories.Exceptions;
 
-namespace HarvestHub.Modules.Fields.Core.Fields.ValueObjects
+namespace HarvestHub.Modules.Fields.Core.CultivationHistories.ValueObjects
 {
     public record Humidity
     {
         public uint Value { get; }
 
         public Humidity(uint value)
-        { 
-            if(value > 100)
+        {
+            if (value > 100)
             {
                 throw new InvalidHumidityValueException(value);
             }

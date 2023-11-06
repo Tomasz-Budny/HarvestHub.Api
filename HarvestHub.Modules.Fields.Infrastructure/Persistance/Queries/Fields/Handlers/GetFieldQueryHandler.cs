@@ -6,6 +6,7 @@ using Microsoft.EntityFrameworkCore;
 using HarvestHub.Modules.Fields.Core.Fields.Exceptions;
 using HarvestHub.Modules.Fields.Application.Fields.Mappers;
 using HarvestHub.Modules.Fields.Core.Fields.ValueObjects;
+using HarvestHub.Modules.Fields.Core.SharedKernel.ValueObjects;
 
 namespace HarvestHub.Modules.Fields.Infrastructure.Persistance.Queries.Handlers
 {

@@ -1,11 +1,12 @@
 ﻿using HarvestHub.Modules.Fields.Application.CultivationHistories.Services;
-using HarvestHub.Modules.Fields.Core.Fields.Aggregates;
+using HarvestHub.Modules.Fields.Core.CultivationHistories.Aggregates;
+using HarvestHub.Modules.Fields.Core.CultivationHistories.Exceptions;
 using HarvestHub.Modules.Fields.Core.Fields.Exceptions;
-using HarvestHub.Modules.Fields.Core.Fields.ValueObjects;
 using HarvestHub.Modules.Fields.Core.SharedKernel.ValueObjects;
+using HarvestHub.Modules.Fields.Infrastructure.Persistance;
 using Microsoft.EntityFrameworkCore;
 
-namespace HarvestHub.Modules.Fields.Infrastructure.Persistance.Services
+namespace HarvestHub.Modules.CultivationHistories.Infrastructure.Persistance.Services
 {
     internal class CultivationHistoryService : ICultivationHistoryService
     {

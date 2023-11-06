@@ -1,7 +1,7 @@
-﻿using HarvestHub.Modules.Fields.Core.Fields.Primitives;
-using HarvestHub.Modules.Fields.Core.Fields.ValueObjects;
+﻿using HarvestHub.Modules.Fields.Core.CultivationHistories.Primitives;
+using HarvestHub.Modules.Fields.Core.CultivationHistories.ValueObjects;
 
-namespace HarvestHub.Modules.Fields.Core.Fields.Entities
+namespace HarvestHub.Modules.Fields.Core.CultivationHistories.Entities
 {
     public class FertilizationHistoryRecord : HistoryRecord
     {

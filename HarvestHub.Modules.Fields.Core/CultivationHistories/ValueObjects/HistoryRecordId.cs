@@ -1,4 +1,4 @@
-﻿namespace HarvestHub.Modules.Fields.Core.Fields.ValueObjects
+﻿namespace HarvestHub.Modules.Fields.Core.CultivationHistories.ValueObjects
 {
     public record HistoryRecordId
     {

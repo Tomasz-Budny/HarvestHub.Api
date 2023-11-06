@@ -1,5 +1,5 @@
 ﻿using HarvestHub.Modules.Fields.Application.CultivationHistories.Dtos;
-using HarvestHub.Modules.Fields.Core.Fields.Entities;
+using HarvestHub.Modules.Fields.Core.CultivationHistories.Entities;
 
 namespace HarvestHub.Modules.Fields.Application.CultivationHistories.Mappers
 {

@@ -1,7 +1,7 @@
-﻿using HarvestHub.Modules.Fields.Core.Fields.ValueObjects;
+﻿using HarvestHub.Modules.Fields.Core.CultivationHistories.ValueObjects;
 using HarvestHub.Shared.Primitives;
 
-namespace HarvestHub.Modules.Fields.Core.Fields.Entities
+namespace HarvestHub.Modules.Fields.Core.CultivationHistories.Entities
 {
     public abstract class HistoryRecord : Entity<HistoryRecordId>
     {

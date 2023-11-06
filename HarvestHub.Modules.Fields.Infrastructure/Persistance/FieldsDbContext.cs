@@ -1,7 +1,6 @@
-﻿using HarvestHub.Modules.Fields.Core.Fields.Aggregates;
-using HarvestHub.Modules.Fields.Core.Fields.Entities;
+﻿using HarvestHub.Modules.Fields.Core.CultivationHistories.Aggregates;
+using HarvestHub.Modules.Fields.Core.Fields.Aggregates;
 using HarvestHub.Modules.Fields.Core.Owners.Aggregates;
-using HarvestHub.Modules.Fields.Infrastructure.Persistance.Configurations;
 using Microsoft.EntityFrameworkCore;
 
 namespace HarvestHub.Modules.Fields.Infrastructure.Persistance

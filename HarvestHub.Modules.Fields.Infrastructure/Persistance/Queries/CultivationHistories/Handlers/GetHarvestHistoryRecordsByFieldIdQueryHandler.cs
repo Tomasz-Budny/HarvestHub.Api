@@ -2,7 +2,7 @@
 using HarvestHub.Modules.Fields.Application.CultivationHistories.Mappers;
 using HarvestHub.Modules.Fields.Application.CultivationHistories.Queries;
 using HarvestHub.Modules.Fields.Application.CultivationHistories.Services;
-using HarvestHub.Modules.Fields.Core.Fields.Entities;
+using HarvestHub.Modules.Fields.Core.CultivationHistories.Entities;
 using HarvestHub.Shared.Messaging;
 
 namespace HarvestHub.Modules.Fields.Infrastructure.Persistance.Queries.CultivationHistories.Handlers
