@@ -26,7 +26,7 @@ namespace HarvestHub.Modules.Fields.Infrastructure.Persistance.Queries.Cultivati
 
             var Cultivationhistory = await _history
                 .Include(x => x.History)
-                .SingleOrDefaultAsync(x => x.Id == new CultivationHistoryId(historyId) && x.OwnerId == new OwnerId(ownerId), cancellationToken);
+                .SingleOrDefaultAsync(x => x.Id == new CultivationHistoryId(historyId), cancellationToken);
 
             if (Cultivationhistory is null)
             {

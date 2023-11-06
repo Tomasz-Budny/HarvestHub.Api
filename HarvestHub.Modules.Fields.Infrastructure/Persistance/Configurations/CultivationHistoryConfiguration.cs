@@ -8,17 +8,19 @@ namespace HarvestHub.Modules.Fields.Infrastructure.Persistance.Configurations
     {
         public void Configure(EntityTypeBuilder<CultivationHistory> builder)
         {
-            builder.ToView("Fields");
+            builder.ToTable("CultivationHistories");
 
             builder.Property(x => x.Id)
                 .IsRequired()
                 .HasConversion(x => x.Value, x => new(x));
 
-            builder.Property(x => x.OwnerId)
+            builder.Property(x => x.FieldId)
                 .IsRequired()
                 .HasConversion(x => x.Value, x => new(x));
 
-            builder.HasMany(x => x.History).WithOne().HasForeignKey("FieldId").OnDelete(DeleteBehavior.Cascade);
+            builder.HasMany(x => x.History).WithOne().HasForeignKey("CultivationHistoryId").OnDelete(DeleteBehavior.Cascade);
+
+            builder.HasOne<Field>().WithOne().HasForeignKey<CultivationHistory>(x => x.FieldId);
         }
     }
 }

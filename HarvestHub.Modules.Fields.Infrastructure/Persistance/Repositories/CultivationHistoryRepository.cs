@@ -19,7 +19,7 @@ namespace HarvestHub.Modules.Fields.Infrastructure.Persistance.Repositories
         public async Task<CultivationHistory?> GetAsync(CultivationHistoryId historyId, OwnerId ownerId, CancellationToken cancellationToken)
             => await _history
                 .Include(x => x.History)
-                .SingleOrDefaultAsync(x => x.Id == historyId && x.OwnerId == ownerId, cancellationToken);
+                .SingleOrDefaultAsync(x => x.Id == historyId, cancellationToken);
 
         public async Task UpdateAsync(CultivationHistory cultivationHistory, CancellationToken cancellationToken)
         {

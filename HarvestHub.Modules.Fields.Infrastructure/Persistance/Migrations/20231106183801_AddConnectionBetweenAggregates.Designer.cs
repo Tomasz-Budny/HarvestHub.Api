@@ -4,6 +4,7 @@ using HarvestHub.Modules.Fields.Infrastructure.Persistance;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace HarvestHub.Modules.Fields.Infrastructure.Persistance.Migrations
 {
     [DbContext(typeof(FieldsDbContext))]
-    partial class FieldsDbContextModelSnapshot : ModelSnapshot
+    [Migration("20231106183801_AddConnectionBetweenAggregates")]
+    partial class AddConnectionBetweenAggregates
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -90,11 +93,13 @@ namespace HarvestHub.Modules.Fields.Infrastructure.Persistance.Migrations
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid?>("CultivationHistoryId")
-                        .HasColumnType("uniqueidentifier")
-                        .HasColumnName("CultivationHistoryId");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime>("Date")
                         .HasColumnType("datetime2");
+
+                    b.Property<Guid?>("FieldId")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Type")
                         .IsRequired()

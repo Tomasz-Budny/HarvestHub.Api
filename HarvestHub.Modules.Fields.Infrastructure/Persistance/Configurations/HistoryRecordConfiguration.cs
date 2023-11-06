@@ -9,7 +9,7 @@ namespace HarvestHub.Modules.Fields.Infrastructure.Persistance.Configurations
     {
         public void Configure(EntityTypeBuilder<HistoryRecord> builder)
         {
-            builder.ToTable("CultivationHistory");
+            builder.ToTable("HistoryRecords");
 
             builder.HasKey(x => x.Id);
 
@@ -20,8 +20,9 @@ namespace HarvestHub.Modules.Fields.Infrastructure.Persistance.Configurations
             builder.Property(x => x.Date)
                 .IsRequired();
 
-            builder.Property<CultivationHistoryId>("FieldId")
-                .HasConversion(x => x.Value, x => new(x));
+            builder.Property<CultivationHistoryId>("CultivationHistoryId")
+                .HasConversion(x => x.Value, x => new(x))
+                .HasColumnName("CultivationHistoryId");
 
             builder
                 .HasDiscriminator<string>("Type")
