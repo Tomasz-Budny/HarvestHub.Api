@@ -1,29 +1,27 @@
-﻿using HarvestHub.Modules.Fields.Core.Fields.Entities;
+﻿using HarvestHub.Modules.Fields.Application.CultivationHistories.Services;
+using HarvestHub.Modules.Fields.Core.Fields.Entities;
 using HarvestHub.Modules.Fields.Core.Fields.Exceptions;
 using HarvestHub.Modules.Fields.Core.Fields.Repositories;
 using HarvestHub.Shared.Messaging;
 
 namespace HarvestHub.Modules.Fields.Application.CultivationHistories.Commands.AddHarvestHistoryRecord
 {
-    internal class AddHarvestHistoryRecordCommandHandler : ICommandHandler<AddHarvestHistoryRecordCommand>
+    internal class AddHarvestHistoryRecordCommandHandler : ICommandHandler<AddHarvestHistoryRecordByFieldIdCommand>
     {
+        private readonly ICultivationHistoryService _historyService;
         private readonly ICultivationHistoryRepository _historyRepository;
 
-        public AddHarvestHistoryRecordCommandHandler(ICultivationHistoryRepository historyRepository)
+        public AddHarvestHistoryRecordCommandHandler(ICultivationHistoryService historyService, ICultivationHistoryRepository cultivationHistoryRepository)
         {
-            _historyRepository = historyRepository;
+            _historyService = historyService;
+            _historyRepository = cultivationHistoryRepository;
         }
 
-        public async Task Handle(AddHarvestHistoryRecordCommand request, CancellationToken cancellationToken)
+        public async Task Handle(AddHarvestHistoryRecordByFieldIdCommand request, CancellationToken cancellationToken)
         {
-            var (cultivationHistoryId, historyRecordId, date, amount, cropType, humidity) = request;
+            var (fieldId, ownerId, historyRecordId, date, amount, cropType, humidity) = request;
 
-            var history = await _historyRepository.GetAsync(cultivationHistoryId, cancellationToken);
-
-            if (history is null)
-            {
-                throw new CultivationHistoryNotFoundException(cultivationHistoryId);
-            }
+            var history = await _historyService.GetByFieldId(fieldId, ownerId, cancellationToken);
 
             var harvestHistoryRecord = new HarvestHistoryRecord(
                 historyRecordId,

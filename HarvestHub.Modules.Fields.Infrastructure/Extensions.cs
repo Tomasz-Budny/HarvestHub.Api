@@ -11,6 +11,8 @@ using HarvestHub.Modules.Fields.Infrastructure.Services.Options;
 using Microsoft.Extensions.Options;
 using HarvestHub.Modules.Fields.Application.Services;
 using HarvestHub.Modules.Fields.Infrastructure.Services;
+using HarvestHub.Modules.Fields.Application.CultivationHistories.Services;
+using HarvestHub.Modules.Fields.Infrastructure.Persistance.Services;
 
 namespace HarvestHub.Modules.Fields.Infrastructure
 {
@@ -25,6 +27,7 @@ namespace HarvestHub.Modules.Fields.Infrastructure
             services.AddScoped<IFieldRepository, FieldRepository>();
             services.AddScoped<ICultivationHistoryRepository, CultivationHistoryRepository>();
             services.AddScoped<IOwnerRepository, OwnerRepository>();
+            services.AddScoped<ICultivationHistoryService, CultivationHistoryService>();
 
             var smtpOtions = configuration.GetOptions<GoogleApiOptions>(GoogleApiOptions.SectionName);
             services.AddSingleton(Options.Create(smtpOtions));

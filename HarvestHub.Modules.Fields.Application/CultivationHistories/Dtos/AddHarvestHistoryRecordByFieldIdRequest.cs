@@ -2,7 +2,7 @@
 
 namespace HarvestHub.Modules.Fields.Application.CultivationHistories.Dtos
 {
-    public record AddHarvestHistoryRecordRequest(
+    public record AddHarvestHistoryRecordByFieldIdRequest(
         DateTime Date,
         double Amount,
         CropType CropType,
