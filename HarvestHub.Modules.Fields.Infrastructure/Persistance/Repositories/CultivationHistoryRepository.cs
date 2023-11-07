@@ -25,6 +25,12 @@ namespace HarvestHub.Modules.Fields.Infrastructure.Persistance.Repositories
             _history.Update(cultivationHistory);
             await _dbContext.SaveChangesAsync(cancellationToken);
         }
-        
+
+        public async Task AddAsync(CultivationHistory cultivationHistory, CancellationToken cancellationToken)
+        {
+            await _history.AddAsync(cultivationHistory);
+            await _dbContext.SaveChangesAsync(cancellationToken);
+        }
+
     }
 }

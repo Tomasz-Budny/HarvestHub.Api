@@ -1,7 +1,6 @@
 ﻿using HarvestHub.Modules.Fields.Core.CultivationHistories.Entities;
 using HarvestHub.Modules.Fields.Core.CultivationHistories.Exceptions;
 using HarvestHub.Modules.Fields.Core.CultivationHistories.ValueObjects;
-using HarvestHub.Modules.Fields.Core.Fields.Exceptions;
 using HarvestHub.Modules.Fields.Core.SharedKernel.ValueObjects;
 using HarvestHub.Shared.Primitives;
 

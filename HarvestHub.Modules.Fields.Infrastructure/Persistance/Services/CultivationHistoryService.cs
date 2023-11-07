@@ -37,5 +37,8 @@ namespace HarvestHub.Modules.CultivationHistories.Infrastructure.Persistance.Ser
 
             return cultivationhistory;
         }
+
+        public async Task<bool> ExistsByFieldId(Guid fieldId, CancellationToken cancellationToken)
+         => await _history.AnyAsync(x => x.FieldId == new FieldId(fieldId), cancellationToken);
     }
 }

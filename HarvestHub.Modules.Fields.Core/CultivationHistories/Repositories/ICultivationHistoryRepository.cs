@@ -1,6 +1,5 @@
 ﻿using HarvestHub.Modules.Fields.Core.CultivationHistories.Aggregates;
 using HarvestHub.Modules.Fields.Core.CultivationHistories.ValueObjects;
-using HarvestHub.Modules.Fields.Core.SharedKernel.ValueObjects;
 
 namespace HarvestHub.Modules.Fields.Core.CultivationHistories.Repositories
 {
@@ -8,6 +7,7 @@ namespace HarvestHub.Modules.Fields.Core.CultivationHistories.Repositories
     {
         Task<CultivationHistory?> GetAsync(CultivationHistoryId historyId, CancellationToken cancellationToken);
         Task UpdateAsync(CultivationHistory cultivationHistory, CancellationToken cancellationToken);
+        Task AddAsync(CultivationHistory cultivationHistory, CancellationToken cancellationToken);
 
     }
 }
