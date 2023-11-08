@@ -1,4 +1,5 @@
-﻿using HarvestHub.Modules.Fields.Application.CultivationHistories.Dtos;
+﻿using AutoMapper;
+using HarvestHub.Modules.Fields.Application.CultivationHistories.Dtos;
 using HarvestHub.Modules.Fields.Application.CultivationHistories.Mappers;
 using HarvestHub.Modules.Fields.Application.CultivationHistories.Queries;
 using HarvestHub.Modules.Fields.Application.CultivationHistories.Services;
@@ -10,10 +11,12 @@ namespace HarvestHub.Modules.Fields.Infrastructure.Persistance.Queries.Cultivati
     internal class GetHarvestHistoryRecordsByFieldIdQueryHandler : IQueryHandler<GetHarvestHistoryRecordsByFieldIdQuery, IEnumerable<HarvestHistoryRecordDto>>
     {
         private readonly ICultivationHistoryService _cultivationHistoryService;
+        private readonly IMapper _mapper;
 
-        public GetHarvestHistoryRecordsByFieldIdQueryHandler(ICultivationHistoryService cultivationHistoryService)
+        public GetHarvestHistoryRecordsByFieldIdQueryHandler(ICultivationHistoryService cultivationHistoryService, IMapper mapper)
         {
             _cultivationHistoryService = cultivationHistoryService;
+            _mapper = mapper;
         }
 
         public async Task<IEnumerable<HarvestHistoryRecordDto>> Handle(GetHarvestHistoryRecordsByFieldIdQuery request, CancellationToken cancellationToken)
@@ -24,7 +27,9 @@ namespace HarvestHub.Modules.Fields.Infrastructure.Persistance.Queries.Cultivati
 
             var harvestHistoryRecords = cultivationhistory.GetAllByType<HarvestHistoryRecord>();
 
-            return harvestHistoryRecords.Select(x => CultivationHistoryMapper.MapToHarvestHistoryRecordDto(x));
+            return _mapper
+                .Map<IEnumerable<HarvestHistoryRecordDto>>(harvestHistoryRecords);
+            //return harvestHistoryRecords.Select(x => CultivationHistoryMapper.MapToHarvestHistoryRecordDto(x));
         }
     }
 }

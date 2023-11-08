@@ -45,7 +45,7 @@ namespace HarvestHub.Modules.Fields.Api.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<HarvestHistoryRecordDto>>> GetAllHistoryRecords([FromRoute] Guid fieldId, CancellationToken cancellationToken)
+        public async Task<ActionResult<IEnumerable<HistoryRecordDto>>> GetAllHistoryRecords([FromRoute] Guid fieldId, CancellationToken cancellationToken)
         {
             // change to context service
             var ownerId = new Guid();
