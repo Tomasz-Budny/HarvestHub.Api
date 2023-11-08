@@ -22,7 +22,7 @@ namespace HarvestHub.Modules.Fields.Infrastructure.Persistance.Queries.Cultivati
 
             var cultivationhistory = await _cultivationHistoryService.GetByFieldId(fieldId, ownerId, cancellationToken);
 
-            var harvestHistoryRecords = cultivationhistory.History.OfType<HarvestHistoryRecord>();
+            var harvestHistoryRecords = cultivationhistory.GetAllByType<HarvestHistoryRecord>();
 
             return harvestHistoryRecords.Select(x => CultivationHistoryMapper.MapToHarvestHistoryRecordDto(x));
         }

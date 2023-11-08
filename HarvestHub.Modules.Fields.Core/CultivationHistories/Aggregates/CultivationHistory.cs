@@ -40,5 +40,10 @@ namespace HarvestHub.Modules.Fields.Core.CultivationHistories.Aggregates
 
             _history.Remove(historyRecord);
         }
+
+        public IEnumerable<T> GetAllByType<T>() where T : HistoryRecord
+        {
+            return _history.OfType<T>();
+        }
     }
 }

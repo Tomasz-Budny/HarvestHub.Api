@@ -43,5 +43,16 @@ namespace HarvestHub.Modules.Fields.Api.Controllers
 
             return Ok(records);
         }
+
+        [HttpGet]
+        public async Task<ActionResult<IEnumerable<HarvestHistoryRecordDto>>> GetAllHistoryRecords([FromRoute] Guid fieldId, CancellationToken cancellationToken)
+        {
+            // change to context service
+            var ownerId = new Guid();
+
+            var records = await _sender.Send(new GetAllHistoryRecordsByFieldIdQuery(fieldId, ownerId), cancellationToken);
+
+            return Ok(records);
+        }
     }
 }
