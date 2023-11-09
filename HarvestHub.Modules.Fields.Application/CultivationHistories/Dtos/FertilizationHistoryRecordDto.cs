@@ -2,9 +2,11 @@
 
 namespace HarvestHub.Modules.Fields.Application.CultivationHistories.Dtos
 {
-    public record AddFertilizationHistoryRecordByFieldIdRequest(
+    public record FertilizationHistoryRecordDto(
+        Guid Id,
         DateTime Date,
-        double Amount,
-        FertilizerType FertilizerType
-    );
+        FertilizerType FertilizerType,
+        double Amount
+
+    ) : HistoryRecordDto(Id, Date);
 }

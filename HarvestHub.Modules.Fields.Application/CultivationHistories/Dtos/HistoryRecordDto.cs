@@ -3,8 +3,9 @@
 namespace HarvestHub.Modules.Fields.Application.CultivationHistories.Dtos
 {
     [JsonDerivedType(typeof(HarvestHistoryRecordDto))]
-    public record HistoryRecordDto(
-        Guid Id,
-        DateTime Date
-    );
+    [JsonDerivedType(typeof(FertilizationHistoryRecordDto))]
+    public record HistoryRecordDto(Guid Id, DateTime Date)
+    {
+        public string Type { get; set; } = "Unknown";
+    }
 }

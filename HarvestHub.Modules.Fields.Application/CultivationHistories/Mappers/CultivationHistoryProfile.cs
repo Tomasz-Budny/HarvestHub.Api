@@ -9,13 +9,17 @@ namespace HarvestHub.Modules.Fields.Application.CultivationHistories.Mappers
         public CultivationHistoryProfile()
         {
             CreateMap<HarvestHistoryRecord, HarvestHistoryRecordDto>()
-                .ForMember(dto => dto.Id, source => source.MapFrom(x => x.Id))
                 .ForMember(dto => dto.Amount, source => source.MapFrom(x => x.Amount))
                 .ForMember(dto => dto.Humidity, source => source.MapFrom(x => x.Humidity));
 
+            CreateMap<FertilizationHistoryRecord, FertilizationHistoryRecordDto>()
+                .ForMember(dto => dto.Amount, source => source.MapFrom(x => x.Amount));
+
             CreateMap<HistoryRecord, HistoryRecordDto>()
                 .Include<HarvestHistoryRecord, HarvestHistoryRecordDto>()
-                .ForMember(dto => dto.Id, source => source.MapFrom(x => x.Id));
+                .Include<FertilizationHistoryRecord, FertilizationHistoryRecordDto>()
+                .ForMember(dto => dto.Id, source => source.MapFrom(x => x.Id))
+                .ForMember(dto => dto.Type, source => source.MapFrom(x => x.GetType().Name.Replace("HistoryRecord", string.Empty)));
         }
     }
 }
