@@ -1,4 +1,5 @@
-﻿using HarvestHub.Modules.Fields.Application.CultivationHistories.Commands.AddHarvestHistoryRecord;
+﻿using HarvestHub.Modules.Fields.Application.CultivationHistories.Commands.AddFertilizationHistoryRecord;
+using HarvestHub.Modules.Fields.Application.CultivationHistories.Commands.AddHarvestHistoryRecord;
 using HarvestHub.Modules.Fields.Application.CultivationHistories.Dtos;
 using HarvestHub.Modules.Fields.Application.CultivationHistories.Queries;
 using MediatR;
@@ -53,6 +54,28 @@ namespace HarvestHub.Modules.Fields.Api.Controllers
             var records = await _sender.Send(new GetAllHistoryRecordsByFieldIdQuery(fieldId, ownerId), cancellationToken);
 
             return Ok(records);
+        }
+
+        [HttpPost("fertilization")]
+        public async Task<ActionResult> AddFertilizationHistoryRecord([FromRoute] Guid fieldId, [FromBody] AddFertilizationHistoryRecordByFieldIdRequest request, CancellationToken cancellationToken)
+        {
+            var (date, amount, fertilizerType) = request;
+            // change to context service
+            var ownerId = new Guid();
+
+            var historyRecordId = Guid.NewGuid();
+
+            await _sender.Send(
+                new AddFertilizationHistoryRecordCommand(
+                    fieldId,
+                    ownerId,
+                    historyRecordId,
+                    date,
+                    amount,
+                    fertilizerType
+                    ), cancellationToken);
+
+            return CreatedAtAction(nameof(GetHarvestHistoryRecords), new { FieldId = fieldId }, new { Id = historyRecordId });
         }
     }
 }
