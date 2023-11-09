@@ -1,5 +1,6 @@
 ﻿using HarvestHub.Modules.Fields.Application.CultivationHistories.Commands.AddFertilizationHistoryRecord;
 using HarvestHub.Modules.Fields.Application.CultivationHistories.Commands.AddHarvestHistoryRecord;
+using HarvestHub.Modules.Fields.Application.CultivationHistories.Commands.DeleteHistoryRecord;
 using HarvestHub.Modules.Fields.Application.CultivationHistories.Dtos;
 using HarvestHub.Modules.Fields.Application.CultivationHistories.Queries;
 using MediatR;
@@ -54,6 +55,17 @@ namespace HarvestHub.Modules.Fields.Api.Controllers
             var records = await _sender.Send(new GetAllHistoryRecordsByFieldIdQuery(fieldId, ownerId), cancellationToken);
 
             return Ok(records);
+        }
+
+        [HttpDelete("{historyRecordId:guid}")]
+        public async Task<ActionResult<IEnumerable<HistoryRecordDto>>> DeleteHistoryRecord([FromRoute] Guid fieldId, Guid historyRecordId, CancellationToken cancellationToken)
+        {
+            // change to context service
+            var ownerId = new Guid();
+
+            await _sender.Send(new DeleteHistoryRecordCommand(fieldId, ownerId, historyRecordId), cancellationToken);
+
+            return NoContent();
         }
 
         [HttpPost("fertilization")]
