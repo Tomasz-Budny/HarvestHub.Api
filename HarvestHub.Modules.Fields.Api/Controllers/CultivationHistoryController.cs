@@ -1,6 +1,7 @@
 ﻿using HarvestHub.Modules.Fields.Application.CultivationHistories.Commands.AddFertilizationHistoryRecord;
 using HarvestHub.Modules.Fields.Application.CultivationHistories.Commands.AddHarvestHistoryRecord;
 using HarvestHub.Modules.Fields.Application.CultivationHistories.Commands.DeleteHistoryRecord;
+using HarvestHub.Modules.Fields.Application.CultivationHistories.Commands.UpdateHistoryRecord;
 using HarvestHub.Modules.Fields.Application.CultivationHistories.Dtos;
 using HarvestHub.Modules.Fields.Application.CultivationHistories.Queries;
 using MediatR;
@@ -46,6 +47,20 @@ namespace HarvestHub.Modules.Fields.Api.Controllers
             return Ok(records);
         }
 
+        [HttpPut("harvest/{historyRecordId:guid}")]
+        public async Task<ActionResult> UpdateHarvestHistoryRecord([FromRoute] Guid fieldId, [FromRoute] Guid historyRecordId, [FromBody] UpdateHarvestHistoryRecordRequest request, CancellationToken cancellationToken)
+        {
+            var (date, cropType, amount, humidity) = request;
+            var harvestHistoryRecord = new HarvestHistoryRecordDto(historyRecordId, date, cropType, amount, humidity);
+
+            // change to context service
+            var ownerId = new Guid();
+
+            await _sender.Send(new UpdateHistoryRecordCommand(fieldId, ownerId, harvestHistoryRecord), cancellationToken);
+
+            return Ok();
+        }
+
         [HttpGet]
         public async Task<ActionResult<IEnumerable<HistoryRecordDto>>> GetAllHistoryRecords([FromRoute] Guid fieldId, CancellationToken cancellationToken)
         {
@@ -72,6 +87,7 @@ namespace HarvestHub.Modules.Fields.Api.Controllers
         public async Task<ActionResult> AddFertilizationHistoryRecord([FromRoute] Guid fieldId, [FromBody] AddFertilizationHistoryRecordByFieldIdRequest request, CancellationToken cancellationToken)
         {
             var (date, amount, fertilizerType) = request;
+
             // change to context service
             var ownerId = new Guid();
 
@@ -88,6 +104,20 @@ namespace HarvestHub.Modules.Fields.Api.Controllers
                     ), cancellationToken);
 
             return CreatedAtAction(nameof(GetHarvestHistoryRecords), new { FieldId = fieldId }, new { Id = historyRecordId });
+        }
+
+        [HttpPut("fertilization/{historyRecordId:guid}")]
+        public async Task<ActionResult> UpdateFertilizationHistoryRecord([FromRoute] Guid fieldId, [FromRoute] Guid historyRecordId, [FromBody] UpdateFertilizationHistoryRecordRequest request, CancellationToken cancellationToken)
+        {
+            var (date, fertilizationType, amount) = request;
+            var harvestHistoryRecord = new FertilizationHistoryRecordDto(historyRecordId, date, fertilizationType, amount);
+
+            // change to context service
+            var ownerId = new Guid();
+
+            await _sender.Send(new UpdateHistoryRecordCommand(fieldId, ownerId, harvestHistoryRecord), cancellationToken);
+
+            return Ok();
         }
     }
 }

@@ -5,8 +5,8 @@ namespace HarvestHub.Modules.Fields.Core.CultivationHistories.Entities
 {
     public class FertilizationHistoryRecord : HistoryRecord
     {
-        public FertilizerType FertilizerType { get; }
-        public Amount Amount { get; }
+        public FertilizerType FertilizerType { get; private set; }
+        public Amount Amount { get; private set; }
         public FertilizationHistoryRecord(
             HistoryRecordId id,
             DateTime date,
@@ -17,6 +17,16 @@ namespace HarvestHub.Modules.Fields.Core.CultivationHistories.Entities
         {
             FertilizerType = fertilizerType;
             Amount = amount;
+        }
+
+        public override void Update(HistoryRecord updatedHistoryRecord)
+        {
+            base.Update(updatedHistoryRecord);
+
+            var updatedFertilizationHistoryRecord = (FertilizationHistoryRecord)updatedHistoryRecord;
+
+            Amount = updatedFertilizationHistoryRecord.Amount;
+            FertilizerType = updatedFertilizationHistoryRecord.FertilizerType;
         }
     }
 }

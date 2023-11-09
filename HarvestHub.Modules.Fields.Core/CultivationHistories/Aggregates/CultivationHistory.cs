@@ -41,6 +41,20 @@ namespace HarvestHub.Modules.Fields.Core.CultivationHistories.Aggregates
             _history.Remove(historyRecord);
         }
 
+        public void Update(HistoryRecord updatedHistoryRecord)
+        {
+            var historyRecordId = updatedHistoryRecord.Id;
+
+            var historyRecord = _history.Find(historyRecord => historyRecord.Id == historyRecordId);
+
+            if (historyRecord is null)
+            {
+                throw new HistoryRecordNotExistException(historyRecordId);
+            }
+
+            historyRecord.Update(updatedHistoryRecord);
+        }
+
         public IEnumerable<T> GetAllByType<T>() where T : HistoryRecord
         {
             return _history.OfType<T>();

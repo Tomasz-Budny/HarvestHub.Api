@@ -11,5 +11,10 @@ namespace HarvestHub.Modules.Fields.Core.CultivationHistories.Entities
         {
             Date = date;
         }
+
+        public virtual void Update(HistoryRecord updatedHistoryRecord)
+        {
+            Date = updatedHistoryRecord.Date;
+        }
     }
 }

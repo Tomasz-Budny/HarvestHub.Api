@@ -5,9 +5,9 @@ namespace HarvestHub.Modules.Fields.Core.CultivationHistories.Entities
 {
     public class HarvestHistoryRecord : HistoryRecord
     {
-        public Amount Amount { get; set; }
-        public CropType CropType { get; set; }
-        public Humidity Humidity { get; set; }
+        public Amount Amount { get; private set; }
+        public CropType CropType { get; private set; }
+        public Humidity Humidity { get; private set; }
         public HarvestHistoryRecord(
             HistoryRecordId id,
             DateTime date,
@@ -20,6 +20,17 @@ namespace HarvestHub.Modules.Fields.Core.CultivationHistories.Entities
             Amount = amount;
             CropType = cropType;
             Humidity = humidity;
+        }
+
+        public override void Update(HistoryRecord updatedHistoryRecord)
+        {
+            base.Update(updatedHistoryRecord);
+
+            var updatedHarvestHistoryRecord = (HarvestHistoryRecord)updatedHistoryRecord;
+
+            Amount = updatedHarvestHistoryRecord.Amount;
+            CropType = updatedHarvestHistoryRecord.CropType;
+            Humidity = updatedHarvestHistoryRecord.Humidity;
         }
     }
 }

@@ -18,6 +18,7 @@ namespace HarvestHub.Modules.Fields.Api.Controllers
         {
             var (name, center, area, color, vertices) = request;
             var fieldId = Guid.NewGuid();
+
             // change to context service
             var ownerId = new Guid();
 
@@ -39,6 +40,7 @@ namespace HarvestHub.Modules.Fields.Api.Controllers
         {
             // change to context service
             var ownerId = new Guid();
+
             var fields = await _sender.Send(new GetAllFieldsQuery(ownerId), cancellationToken);
 
             return Ok(fields);
@@ -49,6 +51,7 @@ namespace HarvestHub.Modules.Fields.Api.Controllers
         {
             // change to context service
             var ownerId = new Guid();
+
             await _sender.Send(new DeleteFieldCommand(fieldId, ownerId), cancellationToken);
 
             return NoContent();
@@ -59,6 +62,7 @@ namespace HarvestHub.Modules.Fields.Api.Controllers
         {
             // change to context service
             var ownerId = new Guid();
+
             var field = await _sender.Send(new GetFieldDetailsQuery(ownerId, fieldId), cancellationToken);
 
             return Ok(field);
