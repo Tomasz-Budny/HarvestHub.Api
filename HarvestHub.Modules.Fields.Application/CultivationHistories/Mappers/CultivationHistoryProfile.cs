@@ -19,7 +19,7 @@ namespace HarvestHub.Modules.Fields.Application.CultivationHistories.Mappers
                 .Include<HarvestHistoryRecord, HarvestHistoryRecordDto>()
                 .Include<FertilizationHistoryRecord, FertilizationHistoryRecordDto>()
                 .ForMember(dto => dto.Id, source => source.MapFrom(x => x.Id))
-                .ForMember(dto => dto.Type, source => source.MapFrom(x => x.GetType().Name.Replace("HistoryRecord", string.Empty)));
+                .ForMember(dto => dto.Type, source => source.MapFrom(x => x.GetType().Name.Replace("HistoryRecord", string.Empty).ToLower()));
 
             CreateMap<HarvestHistoryRecordDto, HarvestHistoryRecord>()
                 .ForMember(x => x.Id, dto => dto.MapFrom(x => x.Id))
