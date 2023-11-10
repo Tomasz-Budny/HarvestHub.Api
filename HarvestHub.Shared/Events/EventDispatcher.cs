@@ -37,7 +37,10 @@ namespace HarvestHub.Shared.Events
             }
 
             var tasks = handlers.Select(x => (Task)method.Invoke(x, new object[] { @event, cancellationToken }));
-            await Task.WhenAll(tasks);
+            foreach( var task in tasks )
+            {
+                await task;
+            }
         }
     }
 }

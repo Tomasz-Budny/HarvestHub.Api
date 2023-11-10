@@ -1,4 +1,5 @@
-﻿using HarvestHub.Modules.Fields.Core.Fields.Exceptions;
+﻿using HarvestHub.Modules.Fields.Core.CultivationHistories.Repositories;
+using HarvestHub.Modules.Fields.Core.Fields.Exceptions;
 using HarvestHub.Modules.Fields.Core.Fields.Repositories;
 using HarvestHub.Shared.Messaging;
 
@@ -7,10 +8,12 @@ namespace HarvestHub.Modules.Fields.Application.Fields.Commands.PatchFieldDetail
     internal class PatchFieldDetailsCommandHandler : ICommandHandler<PatchFieldDetailsCommand>
     {
         private readonly IFieldRepository _fieldRepository;
+        private readonly ICultivationHistoryRepository _cultivationHistoryRepository;
 
-        public PatchFieldDetailsCommandHandler(IFieldRepository fieldRepository)
+        public PatchFieldDetailsCommandHandler(IFieldRepository fieldRepository, ICultivationHistoryRepository cultivationHistoryRepository)
         {
             _fieldRepository = fieldRepository;
+            _cultivationHistoryRepository = cultivationHistoryRepository;
         }
         public async Task Handle(PatchFieldDetailsCommand request, CancellationToken cancellationToken)
         {

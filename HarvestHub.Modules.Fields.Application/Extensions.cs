@@ -13,6 +13,8 @@ namespace HarvestHub.Modules.Fields.Application
                 configuration.RegisterServicesFromAssemblies(typeof(Extensions).Assembly);
             });
 
+            services.AddAutoMapper(typeof(Extensions).Assembly);
+
             services.Scan(s => s.FromAssemblies(Assembly.GetExecutingAssembly())
                 .AddClasses(c => c.AssignableTo(typeof(IEventHandler<>)))
                 .AsImplementedInterfaces()

@@ -23,6 +23,22 @@ namespace HarvestHub.Modules.Fields.Infrastructure.Persistance.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
+            modelBuilder.Entity("HarvestHub.Modules.Fields.Core.Fields.Aggregates.CultivationHistory", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("FieldId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("FieldId")
+                        .IsUnique();
+
+                    b.ToTable("CultivationHistories", "fields");
+                });
+
             modelBuilder.Entity("HarvestHub.Modules.Fields.Core.Fields.Aggregates.Field", b =>
                 {
                     b.Property<Guid>("Id")
@@ -68,6 +84,33 @@ namespace HarvestHub.Modules.Fields.Infrastructure.Persistance.Migrations
                     b.ToTable("Fields", "fields");
                 });
 
+            modelBuilder.Entity("HarvestHub.Modules.Fields.Core.Fields.Entities.HistoryRecord", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid?>("CultivationHistoryId")
+                        .HasColumnType("uniqueidentifier")
+                        .HasColumnName("CultivationHistoryId");
+
+                    b.Property<DateTime>("Date")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Type")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CultivationHistoryId");
+
+                    b.ToTable("HistoryRecords", "fields");
+
+                    b.HasDiscriminator<string>("Type").HasValue("HistoryRecord");
+
+                    b.UseTphMappingStrategy();
+                });
+
             modelBuilder.Entity("HarvestHub.Modules.Fields.Core.Owners.Aggregates.Owner", b =>
                 {
                     b.Property<Guid>("Id")
@@ -101,6 +144,48 @@ namespace HarvestHub.Modules.Fields.Infrastructure.Persistance.Migrations
                     b.ToTable("Owners", "fields");
                 });
 
+            modelBuilder.Entity("HarvestHub.Modules.Fields.Core.Fields.Entities.FertilizationHistoryRecord", b =>
+                {
+                    b.HasBaseType("HarvestHub.Modules.Fields.Core.Fields.Entities.HistoryRecord");
+
+                    b.Property<double>("Amount")
+                        .ValueGeneratedOnUpdateSometimes()
+                        .HasColumnType("float")
+                        .HasColumnName("Amount");
+
+                    b.Property<int>("FertilizerType")
+                        .HasColumnType("int");
+
+                    b.HasDiscriminator().HasValue("fertilization");
+                });
+
+            modelBuilder.Entity("HarvestHub.Modules.Fields.Core.Fields.Entities.HarvestHistoryRecord", b =>
+                {
+                    b.HasBaseType("HarvestHub.Modules.Fields.Core.Fields.Entities.HistoryRecord");
+
+                    b.Property<double>("Amount")
+                        .ValueGeneratedOnUpdateSometimes()
+                        .HasColumnType("float")
+                        .HasColumnName("Amount");
+
+                    b.Property<int>("CropType")
+                        .HasColumnType("int");
+
+                    b.Property<uint>("Humidity")
+                        .HasColumnType("bigint");
+
+                    b.HasDiscriminator().HasValue("harvest");
+                });
+
+            modelBuilder.Entity("HarvestHub.Modules.Fields.Core.Fields.Aggregates.CultivationHistory", b =>
+                {
+                    b.HasOne("HarvestHub.Modules.Fields.Core.Fields.Aggregates.Field", null)
+                        .WithOne()
+                        .HasForeignKey("HarvestHub.Modules.Fields.Core.Fields.Aggregates.CultivationHistory", "FieldId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
             modelBuilder.Entity("HarvestHub.Modules.Fields.Core.Fields.Aggregates.Field", b =>
                 {
                     b.OwnsMany("HarvestHub.Modules.Fields.Core.Fields.Entities.Vertex", "Vertices", b1 =>
@@ -132,6 +217,19 @@ namespace HarvestHub.Modules.Fields.Infrastructure.Persistance.Migrations
                         });
 
                     b.Navigation("Vertices");
+                });
+
+            modelBuilder.Entity("HarvestHub.Modules.Fields.Core.Fields.Entities.HistoryRecord", b =>
+                {
+                    b.HasOne("HarvestHub.Modules.Fields.Core.Fields.Aggregates.CultivationHistory", null)
+                        .WithMany("History")
+                        .HasForeignKey("CultivationHistoryId")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("HarvestHub.Modules.Fields.Core.Fields.Aggregates.CultivationHistory", b =>
+                {
+                    b.Navigation("History");
                 });
 #pragma warning restore 612, 618
         }

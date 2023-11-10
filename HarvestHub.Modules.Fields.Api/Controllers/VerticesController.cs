@@ -25,7 +25,7 @@ namespace HarvestHub.Modules.Fields.Api.Controllers
         }
 
         [HttpPost("replace")]
-        public async Task<ActionResult> Insert([FromRoute] Guid fieldId, [FromBody] ReplaceVerticesRequest request, CancellationToken cancellationToken)
+        public async Task<ActionResult> Replace([FromRoute] Guid fieldId, [FromBody] ReplaceVerticesRequest request, CancellationToken cancellationToken)
         {
             var (verticesDto, area, pointDto) = request;
             // change to context service

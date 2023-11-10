@@ -1,7 +1,7 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using HarvestHub.Modules.Fields.Application;
-using HarvestHub.Modules.Fields.Infrastructure;
 using Microsoft.Extensions.Configuration;
+using HarvestHub.Modules.Fields.Infrastructure;
 
 namespace HarvestHub.Modules.Fields.Api
 {

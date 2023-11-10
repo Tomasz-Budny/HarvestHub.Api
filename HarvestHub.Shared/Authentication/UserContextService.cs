@@ -1,5 +1,4 @@
-﻿using HarvestHub.Shared.Authentication;
-using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Http;
 using System.Security.Claims;
 
 namespace HarvestHub.Shared.Authentication
