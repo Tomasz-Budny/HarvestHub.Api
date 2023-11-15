@@ -13,9 +13,17 @@ namespace HarvestHub.Modules.Weather.Api.Services
             _httpClient = httpClient;
             _weatherApiOptions = weatherApiOptions.Value;
         }
-        public Task<object> GetDayForecast(double latitude, double longitude, int days)
+        public async Task<object> GetDayForecast(double latitude, double longitude, int days)
         {
-            throw new NotImplementedException();
+            var url = $"?key={_weatherApiOptions.Key}&q={latitude.ToString().Replace(',', '.')},{longitude.ToString().Replace(',', '.')}&days={days}&aqi=no&alerts=no";
+            var response = await _httpClient.GetAsync(url);
+
+            if (!response.IsSuccessStatusCode)
+            {
+                throw new Exception();
+            }
+
+            return response;
         }
     }
 }

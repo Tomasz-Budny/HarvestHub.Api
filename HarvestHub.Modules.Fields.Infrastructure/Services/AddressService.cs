@@ -17,9 +17,9 @@ namespace HarvestHub.Modules.Fields.Infrastructure.Services
             _httpClient = httpClient;
             _googleApiOptions = googleApiOptions.Value;
         }
-        public async Task<Address> GetAddressAsync(double Latitude, double Longitude)
+        public async Task<Address> GetAddressAsync(double latitude, double longitude)
         {
-            var url = $"json?latlng={Latitude.ToString().Replace(',', '.')},{Longitude.ToString().Replace(',', '.')}&key={_googleApiOptions.Key}";
+            var url = $"json?latlng={latitude.ToString().Replace(',', '.')},{longitude.ToString().Replace(',', '.')}&key={_googleApiOptions.Key}";
             var response = await _httpClient.GetAsync(url);
 
             if(!response.IsSuccessStatusCode)
