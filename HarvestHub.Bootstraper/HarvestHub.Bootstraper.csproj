@@ -20,6 +20,7 @@
     <ProjectReference Include="..\HarvestHub.Modules.Fields.Api\HarvestHub.Modules.Fields.Api.csproj" />
     <ProjectReference Include="..\HarvestHub.Modules.Notifications.Api\HarvestHub.Modules.Notifications.Api.csproj" />
     <ProjectReference Include="..\HarvestHub.Modules.Users.Api\HarvestHub.Modules.Users.Api.csproj" />
+    <ProjectReference Include="..\HarvestHub.Modules.Weather.Api\HarvestHub.Modules.Weather.Api.csproj" />
   </ItemGroup>
 
 </Project>
