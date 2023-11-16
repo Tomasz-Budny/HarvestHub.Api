@@ -1,6 +1,10 @@
-﻿using HarvestHub.Modules.Weather.Api.Exceptions;
+﻿using HarvestHub.Modules.Weather.Api.Dtos;
+using HarvestHub.Modules.Weather.Api.Dtos.Externals.WeatherApi;
+using HarvestHub.Modules.Weather.Api.Exceptions;
+using HarvestHub.Modules.Weather.Api.Mappers;
 using HarvestHub.Modules.Weather.Api.Services.Options;
 using Microsoft.Extensions.Options;
+using System.Net.Http.Json;
 
 namespace HarvestHub.Modules.Weather.Api.Services
 {
@@ -14,7 +18,7 @@ namespace HarvestHub.Modules.Weather.Api.Services
             _httpClient = httpClient;
             _weatherApiOptions = weatherApiOptions.Value;
         }
-        public async Task<object> GetDayForecast(double latitude, double longitude, int days)
+        public async Task<IEnumerable<DayForecastDto>> GetDayForecast(double latitude, double longitude, int days)
         {
             var url = $"?key={_weatherApiOptions.Key}&q={latitude.ToString().Replace(',', '.')},{longitude.ToString().Replace(',', '.')}&days={days}&aqi=no&alerts=no";
             var response = await _httpClient.GetAsync(url);
@@ -24,9 +28,11 @@ namespace HarvestHub.Modules.Weather.Api.Services
                 throw new WeatherApiRequestFailedException();
             }
 
+            var weatherApiResponse = await response.Content.ReadFromJsonAsync<WeatherApiResponse>();
 
+            var dayForecasts = WeatherMapper.MapToDayForecastDto(weatherApiResponse);
 
-            return response;
+            return dayForecasts;
         }
     }
 }
