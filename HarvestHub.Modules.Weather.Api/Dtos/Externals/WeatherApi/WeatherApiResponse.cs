@@ -2,24 +2,29 @@
 {
     public class WeatherApiResponse
     {
-        public Forecast forecast { get; set; }
+        public Forecast Forecast { get; set; }
     }
 
     public class Forecast
     {
-        public List<ForecastDayDto> forecastday { get; set; }
+        public List<ForecastDayDto> Forecastday { get; set; }
     }
 
     public class ForecastDayDto
     {
-        public string date { get; set; }
-        public DayDto day { get; set; }
+        public string Date { get; set; }
+        public DayDto Day { get; set; }
     }
 
     public class DayDto
     {
-        public double avgtemp_c { get; set; }
-        public string condition { get; set; }
-        public int daily_chance_of_rain { get; set; }
+        public double Avgtemp_c { get; set; }
+        public ConditionDto Condition { get; set; }
+        public int Daily_chance_of_rain { get; set; }
+    }
+
+    public class ConditionDto
+    {
+        public int Code { get; set; }
     }
 }

@@ -2,6 +2,7 @@
 {
     public enum WeatherStatus
     {
+        Unknown,
         Sunny,
         Cloudy,
         Overcast,

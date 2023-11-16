@@ -7,28 +7,38 @@ namespace HarvestHub.Modules.Weather.Api.Mappers
     {
         public static IEnumerable<DayForecastDto> MapToDayForecastDto(WeatherApiResponse response)
         {
-            return response.forecast.forecastday.Select(forecastDay => new DayForecastDto
+            return response.Forecast.Forecastday.Select(forecastDay => new DayForecastDto
             {
-                Temperature = forecastDay.day.avgtemp_c,
-                WeekDay = DateTime.Parse(forecastDay.date).DayOfWeek.ToString(),
-                WeatherStatus = MapToWeatherStatus(forecastDay.day.condition),
-                RainChances = forecastDay.day.daily_chance_of_rain
-            });
+                Temperature = forecastDay.Day.Avgtemp_c,
+                WeekDay = DateTime.Parse(forecastDay.Date).DayOfWeek.ToString(),
+                WeatherStatus = MapToWeatherStatus(forecastDay.Day.Condition.Code),
+                RainChances = forecastDay.Day.Daily_chance_of_rain
+            }); ;
         }
 
-        private static WeatherStatus MapToWeatherStatus(string condition)
+        private static WeatherStatus MapToWeatherStatus(int conditionCode)
         {
-            switch (condition.ToLower())
+            if(conditionCode == 1000) 
             {
-                case "sunny":
-                    return WeatherStatus.Sunny;
-                case "cloudy":
-                    return WeatherStatus.Cloudy;
-                case "overcast":
-                    return WeatherStatus.Overcast;
-                default:
-                    throw new Exception($"Unknown weather condition: {condition}");
+                return WeatherStatus.Sunny;
             }
+
+            if(conditionCode >= 1003 && conditionCode <= 1006)
+            {
+                return WeatherStatus.Cloudy;
+            }
+
+            if(conditionCode >= 1009 && conditionCode <= 1030)
+            {
+                return WeatherStatus.Overcast;
+            }
+
+            if (conditionCode >= 1063 && conditionCode <= 1282)
+            {
+                return WeatherStatus.Rainy;
+            }
+
+            return WeatherStatus.Unknown;
         }
     }
 }

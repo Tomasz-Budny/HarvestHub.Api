@@ -7,10 +7,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Controllers\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\HarvestHub.Modules.Weather.Shared\HarvestHub.Modules.Weather.Shared.csproj" />
   </ItemGroup>
 

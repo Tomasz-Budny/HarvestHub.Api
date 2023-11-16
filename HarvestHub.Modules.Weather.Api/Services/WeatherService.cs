@@ -20,7 +20,7 @@ namespace HarvestHub.Modules.Weather.Api.Services
         }
         public async Task<IEnumerable<DayForecastDto>> GetDayForecast(double latitude, double longitude, int days)
         {
-            var url = $"?key={_weatherApiOptions.Key}&q={latitude.ToString().Replace(',', '.')},{longitude.ToString().Replace(',', '.')}&days={days}&aqi=no&alerts=no";
+            var url = $"forecast.json?key={_weatherApiOptions.Key}&q={latitude.ToString().Replace(',', '.')},{longitude.ToString().Replace(',', '.')}&days={days}&aqi=no&alerts=no";
             var response = await _httpClient.GetAsync(url);
 
             if (!response.IsSuccessStatusCode)

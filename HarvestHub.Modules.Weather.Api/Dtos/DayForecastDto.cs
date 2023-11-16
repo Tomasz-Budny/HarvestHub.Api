@@ -1,6 +1,6 @@
 ﻿namespace HarvestHub.Modules.Weather.Api.Dtos
 {
-    internal class DayForecastDto
+    public class DayForecastDto
     {
         public double Temperature { get; set; }
         public string WeekDay { get; set; }
