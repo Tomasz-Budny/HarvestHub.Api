@@ -1,4 +1,5 @@
-﻿using HarvestHub.Modules.Weather.Api.Services.Options;
+﻿using HarvestHub.Modules.Weather.Api.Exceptions;
+using HarvestHub.Modules.Weather.Api.Services.Options;
 using Microsoft.Extensions.Options;
 
 namespace HarvestHub.Modules.Weather.Api.Services
@@ -20,8 +21,10 @@ namespace HarvestHub.Modules.Weather.Api.Services
 
             if (!response.IsSuccessStatusCode)
             {
-                throw new Exception();
+                throw new WeatherApiRequestFailedException();
             }
+
+
 
             return response;
         }
