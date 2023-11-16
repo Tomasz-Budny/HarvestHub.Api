@@ -15,7 +15,7 @@ namespace HarvestHub.Modules.Weather.Api.Controllers
             _weatherService = weatherService;
         }
 
-        [HttpGet]
+        [HttpGet("day_forecast")]
         public async Task<ActionResult<IEnumerable<DayForecastDto>>> GetDayForecasts([FromQuery] double latitude, [FromQuery] double longitude, [FromQuery] int days)
         {
             var dayForecasts = await _weatherService.GetDayForecast(latitude, longitude, days);

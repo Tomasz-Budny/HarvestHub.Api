@@ -10,7 +10,7 @@ namespace HarvestHub.Modules.Weather.Api.Mappers
             return response.Forecast.Forecastday.Select(forecastDay => new DayForecastDto
             {
                 Temperature = forecastDay.Day.Avgtemp_c,
-                WeekDay = DateTime.Parse(forecastDay.Date).DayOfWeek.ToString(),
+                WeekDay = forecastDay.Date.DayOfWeek,
                 WeatherStatus = MapToWeatherStatus(forecastDay.Day.Condition.Code),
                 RainChances = forecastDay.Day.Daily_chance_of_rain
             }); ;

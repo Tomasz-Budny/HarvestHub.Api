@@ -12,7 +12,7 @@
 
     public class ForecastDayDto
     {
-        public string Date { get; set; }
+        public DateTime Date { get; set; }
         public DayDto Day { get; set; }
     }
 
