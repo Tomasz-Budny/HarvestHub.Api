@@ -8,7 +8,7 @@ namespace HarvestHub.Modules.Fields.Core.Fields.ValueObjects
 
         public Latitude(double value)
         {
-            if (value < -90 || value > 190)
+            if (value < -90 || value > 90)
             {
                 throw new InvalidLatitudeValueException(value);
             }
