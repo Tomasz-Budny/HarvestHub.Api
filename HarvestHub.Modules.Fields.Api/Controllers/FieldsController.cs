@@ -54,7 +54,7 @@ namespace HarvestHub.Modules.Fields.Api.Controllers
 
             await _sender.Send(new DeleteFieldCommand(fieldId, ownerId), cancellationToken);
 
-            return NoContent();
+            return Ok(fieldId);
         }
 
         [HttpGet("{fieldId:guid}/details")]
