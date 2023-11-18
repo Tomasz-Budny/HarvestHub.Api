@@ -31,15 +31,21 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HarvestHub.Modules.Notifica
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Fields", "Fields", "{42D67394-48B4-4E3D-8F10-F4A42915106C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HarvestHub.Modules.Fields.Api", "HarvestHub.Modules.Fields.Api\HarvestHub.Modules.Fields.Api.csproj", "{29EE788A-7C5B-45E0-B556-F4C929EEF70D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HarvestHub.Modules.Fields.Api", "HarvestHub.Modules.Fields.Api\HarvestHub.Modules.Fields.Api.csproj", "{29EE788A-7C5B-45E0-B556-F4C929EEF70D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HarvestHub.Modules.Fields.Application", "HarvestHub.Modules.Fields.Application\HarvestHub.Modules.Fields.Application.csproj", "{EB50B9BA-6EC2-4610-A7F9-2E20C4D9F34E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HarvestHub.Modules.Fields.Application", "HarvestHub.Modules.Fields.Application\HarvestHub.Modules.Fields.Application.csproj", "{EB50B9BA-6EC2-4610-A7F9-2E20C4D9F34E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HarvestHub.Modules.Fields.Core", "HarvestHub.Modules.Fields.Core\HarvestHub.Modules.Fields.Core.csproj", "{E572BB72-B2B6-43D2-ADCB-3235ED9C12C9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HarvestHub.Modules.Fields.Core", "HarvestHub.Modules.Fields.Core\HarvestHub.Modules.Fields.Core.csproj", "{E572BB72-B2B6-43D2-ADCB-3235ED9C12C9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HarvestHub.Modules.Fields.Infrastructure", "HarvestHub.Modules.Fields.Infrastructure\HarvestHub.Modules.Fields.Infrastructure.csproj", "{8F66955C-0FBF-42FF-8297-FDDA39E1544F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HarvestHub.Modules.Fields.Infrastructure", "HarvestHub.Modules.Fields.Infrastructure\HarvestHub.Modules.Fields.Infrastructure.csproj", "{8F66955C-0FBF-42FF-8297-FDDA39E1544F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HarvestHub.Modules.Fields.Shared", "HarvestHub.Modules.Fields.Shared\HarvestHub.Modules.Fields.Shared.csproj", "{A9D401A8-DD6C-42DF-B12D-C380B3098B88}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HarvestHub.Modules.Fields.Shared", "HarvestHub.Modules.Fields.Shared\HarvestHub.Modules.Fields.Shared.csproj", "{A9D401A8-DD6C-42DF-B12D-C380B3098B88}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Weather", "Weather", "{AD6362B3-A542-4203-A3BC-F706D6D689AF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HarvestHub.Modules.Weather.Api", "HarvestHub.Modules.Weather.Api\HarvestHub.Modules.Weather.Api.csproj", "{08B55605-E2AD-43B6-A5ED-4E7A36DF8558}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HarvestHub.Modules.Weather.Shared", "HarvestHub.Modules.Weather.Shared\HarvestHub.Modules.Weather.Shared.csproj", "{449E81E4-CF3B-43DE-9B52-807F81DEAFB7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -99,6 +105,14 @@ Global
 		{A9D401A8-DD6C-42DF-B12D-C380B3098B88}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A9D401A8-DD6C-42DF-B12D-C380B3098B88}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A9D401A8-DD6C-42DF-B12D-C380B3098B88}.Release|Any CPU.Build.0 = Release|Any CPU
+		{08B55605-E2AD-43B6-A5ED-4E7A36DF8558}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{08B55605-E2AD-43B6-A5ED-4E7A36DF8558}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{08B55605-E2AD-43B6-A5ED-4E7A36DF8558}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{08B55605-E2AD-43B6-A5ED-4E7A36DF8558}.Release|Any CPU.Build.0 = Release|Any CPU
+		{449E81E4-CF3B-43DE-9B52-807F81DEAFB7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{449E81E4-CF3B-43DE-9B52-807F81DEAFB7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{449E81E4-CF3B-43DE-9B52-807F81DEAFB7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{449E81E4-CF3B-43DE-9B52-807F81DEAFB7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -120,6 +134,9 @@ Global
 		{E572BB72-B2B6-43D2-ADCB-3235ED9C12C9} = {42D67394-48B4-4E3D-8F10-F4A42915106C}
 		{8F66955C-0FBF-42FF-8297-FDDA39E1544F} = {42D67394-48B4-4E3D-8F10-F4A42915106C}
 		{A9D401A8-DD6C-42DF-B12D-C380B3098B88} = {42D67394-48B4-4E3D-8F10-F4A42915106C}
+		{AD6362B3-A542-4203-A3BC-F706D6D689AF} = {7DA7AC88-B3D1-456B-A587-66F83A3701D3}
+		{08B55605-E2AD-43B6-A5ED-4E7A36DF8558} = {AD6362B3-A542-4203-A3BC-F706D6D689AF}
+		{449E81E4-CF3B-43DE-9B52-807F81DEAFB7} = {AD6362B3-A542-4203-A3BC-F706D6D689AF}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {FC2FFB6E-0CAB-498C-8ED1-16B5DE435878}

@@ -3,6 +3,7 @@ using HarvestHub.Shared;
 using HarvestHub.Shared.Exceptions;
 using HarvestHub.Modules.Notifications.Api;
 using HarvestHub.Modules.Fields.Api;
+using HarvestHub.Modules.Weather.Api;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -12,6 +13,7 @@ builder.Services
     .AddShared()
     .AddFieldsModule(configuration)
     .AddNotificationsModule(configuration)
+    .AddWeatherModule(configuration)
     .AddUsersModule(configuration);
 
 builder.Services.AddControllers();
@@ -22,7 +24,8 @@ builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowAny", builder =>
     {
-        builder.AllowAnyHeader()
+        builder
+        .AllowAnyHeader()
         .AllowAnyMethod()
         .AllowAnyOrigin();
     });

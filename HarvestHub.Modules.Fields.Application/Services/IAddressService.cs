@@ -4,6 +4,6 @@ namespace HarvestHub.Modules.Fields.Application.Services
 {
     public interface IAddressService
     {
-        Task<Address> GetAddressAsync(double Latitude, double Longitude);
+        Task<Address> GetAddressAsync(double latitude, double longitude);
     }
 }

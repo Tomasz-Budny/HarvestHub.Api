@@ -10,8 +10,9 @@ namespace HarvestHub.Modules.Fields.Application.Fields.Mappers
         {
             var center = PointMapper.MapToDto(field.Center);
             var verticesDto = field.Vertices.Select(vertex => VertexMapper.MapToDto(vertex));
+            var addressDto = AddressMapper.MapToDto(field.Address);
 
-            return new FieldDto(field.Id, field.Name, center, field.Area, field.Color, verticesDto);
+            return new FieldDto(field.Id, field.Name, center, field.Area, field.Color, addressDto, verticesDto);
         }
     }
 }
