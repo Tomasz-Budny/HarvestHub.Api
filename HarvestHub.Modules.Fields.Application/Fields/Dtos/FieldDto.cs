@@ -8,6 +8,7 @@ namespace HarvestHub.Modules.Fields.Application.Fields.Dtos
         PointDto Center, 
         double Area, 
         string Color, 
+        AddressDto Address,
         IEnumerable<VertexDto> Paths
     );
 }
