@@ -14,7 +14,7 @@ namespace HarvestHub.Modules.Fields.Api.Controllers
         public FieldsController(ISender sender) : base(sender) { }
 
         [HttpPost]
-        public async Task<ActionResult> Create(CreateFieldRequest request, CancellationToken cancellationToken)
+        public async Task<ActionResult<Guid>> Create(CreateFieldRequest request, CancellationToken cancellationToken)
         {
             var (name, center, area, color, vertices) = request;
             var fieldId = Guid.NewGuid();
