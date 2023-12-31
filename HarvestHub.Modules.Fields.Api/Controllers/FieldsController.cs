@@ -69,7 +69,7 @@ namespace HarvestHub.Modules.Fields.Api.Controllers
         }
 
         [HttpPatch("{fieldId:guid}/details")]
-        public async Task<ActionResult<FieldDetailsDto>> PatchFieldDetails([FromRoute] Guid fieldId,[FromBody] PatchFieldDetailsRequest request, CancellationToken cancellationToken)
+        public async Task<ActionResult> PatchFieldDetails([FromRoute] Guid fieldId,[FromBody] PatchFieldDetailsRequest request, CancellationToken cancellationToken)
         {
             var (name, classStatus, ownershipStatus, color) = request;
             // change to context service

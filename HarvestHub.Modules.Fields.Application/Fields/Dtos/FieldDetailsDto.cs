@@ -8,7 +8,7 @@ namespace HarvestHub.Modules.Fields.Application.Fields.Dtos
         PointDto Center, 
         DateTime CreatedAt, 
         double Area, 
-        FieldClassStatus Class, 
+        FieldClassStatus FieldClass, 
         OwnershipStatus OwnershipStatus,
         AddressDto Address, 
         string Color
