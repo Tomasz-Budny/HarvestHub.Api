@@ -62,5 +62,13 @@ namespace HarvestHub.Modules.Users.Api.Controllers
 
             return Ok();
         }
+
+        [HttpGet("email_unique")]
+        public async Task<ActionResult<bool>> IsEmailUnique([FromQuery] string email)
+        {
+            var isUnique = await _usersService.IsEmailUnique(email);
+
+            return Ok(isUnique);
+        } 
     }
 }

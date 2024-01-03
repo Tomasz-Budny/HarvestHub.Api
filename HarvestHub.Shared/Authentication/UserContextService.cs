@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using HarvestHub.Shared.Exceptions;
+using Microsoft.AspNetCore.Http;
 using System.Security.Claims;
 
 namespace HarvestHub.Shared.Authentication
@@ -11,15 +12,18 @@ namespace HarvestHub.Shared.Authentication
         {
             _httpContextAccessor = httpContextAccessor;
         }
-        public Guid? GetUserId
+        public Guid GetUserId
         {
             get
             {
-                var sub = _httpContextAccessor?.HttpContext?.User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier);
-                if (sub == null) return null;
-                var isValid = Guid.TryParse(sub.Value, out var subId);
-                if (isValid) return subId;
-                return null;
+                var sub = (_httpContextAccessor?.HttpContext?.User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier)) ?? throw new UnauthenticatedException();
+                var isValid = Guid.TryParse(sub.Value, out Guid subId);
+                if (!isValid)
+                {
+                    throw new UnauthenticatedException();
+                }
+
+                return subId;
             }
         }
     }

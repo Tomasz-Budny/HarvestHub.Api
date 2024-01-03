@@ -4,6 +4,7 @@ using HarvestHub.Modules.Fields.Application.CultivationHistories.Commands.Delete
 using HarvestHub.Modules.Fields.Application.CultivationHistories.Commands.UpdateHistoryRecord;
 using HarvestHub.Modules.Fields.Application.CultivationHistories.Dtos;
 using HarvestHub.Modules.Fields.Application.CultivationHistories.Queries;
+using HarvestHub.Shared.Authentication;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
@@ -12,14 +13,14 @@ namespace HarvestHub.Modules.Fields.Api.Controllers
     [Route("api/fields/{fieldId:guid}/history")]
     public class CultivationHistoryController : ApiController
     {
-        public CultivationHistoryController(ISender sender) : base(sender) { }
+        public CultivationHistoryController(ISender sender, IUserContextService userContextService) : base(sender, userContextService) { }
 
         [HttpPost("harvest")]
         public async Task<ActionResult> AddHarvestHistoryRecord([FromRoute] Guid fieldId, [FromBody] AddHarvestHistoryRecordByFieldIdRequest request, CancellationToken cancellationToken)
         {
             var (date, amount, cropType, humidity) = request;
-            // change to context service
-            var ownerId = new Guid();
+
+            var ownerId = _userContextService.GetUserId;
 
             var historyRecordId = Guid.NewGuid();
 
@@ -39,8 +40,7 @@ namespace HarvestHub.Modules.Fields.Api.Controllers
         [HttpGet("harvest")]
         public async Task<ActionResult<IEnumerable<HarvestHistoryRecordDto>>> GetHarvestHistoryRecords([FromRoute] Guid fieldId, CancellationToken cancellationToken)
         {
-            // change to context service
-            var ownerId = new Guid();
+            var ownerId = _userContextService.GetUserId;
 
             var records = await _sender.Send(new GetHarvestHistoryRecordsByFieldIdQuery(fieldId, ownerId), cancellationToken);
 
@@ -53,8 +53,7 @@ namespace HarvestHub.Modules.Fields.Api.Controllers
             var (date, cropType, amount, humidity) = request;
             var harvestHistoryRecord = new HarvestHistoryRecordDto(historyRecordId, date, cropType, amount, humidity);
 
-            // change to context service
-            var ownerId = new Guid();
+            var ownerId = _userContextService.GetUserId;
 
             await _sender.Send(new UpdateHistoryRecordCommand(fieldId, ownerId, harvestHistoryRecord), cancellationToken);
 
@@ -64,8 +63,7 @@ namespace HarvestHub.Modules.Fields.Api.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<HistoryRecordDto>>> GetAllHistoryRecords([FromRoute] Guid fieldId, CancellationToken cancellationToken)
         {
-            // change to context service
-            var ownerId = new Guid();
+            var ownerId = _userContextService.GetUserId;
 
             var records = await _sender.Send(new GetAllHistoryRecordsByFieldIdQuery(fieldId, ownerId), cancellationToken);
 
@@ -75,8 +73,7 @@ namespace HarvestHub.Modules.Fields.Api.Controllers
         [HttpDelete("{historyRecordId:guid}")]
         public async Task<ActionResult<IEnumerable<HistoryRecordDto>>> DeleteHistoryRecord([FromRoute] Guid fieldId, Guid historyRecordId, CancellationToken cancellationToken)
         {
-            // change to context service
-            var ownerId = new Guid();
+            var ownerId = _userContextService.GetUserId;
 
             await _sender.Send(new DeleteHistoryRecordCommand(fieldId, ownerId, historyRecordId), cancellationToken);
 
@@ -88,8 +85,7 @@ namespace HarvestHub.Modules.Fields.Api.Controllers
         {
             var (date, amount, fertilizerType) = request;
 
-            // change to context service
-            var ownerId = new Guid();
+            var ownerId = _userContextService.GetUserId;
 
             var historyRecordId = Guid.NewGuid();
 
@@ -112,8 +108,7 @@ namespace HarvestHub.Modules.Fields.Api.Controllers
             var (date, fertilizationType, amount) = request;
             var harvestHistoryRecord = new FertilizationHistoryRecordDto(historyRecordId, date, fertilizationType, amount);
 
-            // change to context service
-            var ownerId = new Guid();
+            var ownerId = _userContextService.GetUserId;
 
             await _sender.Send(new UpdateHistoryRecordCommand(fieldId, ownerId, harvestHistoryRecord), cancellationToken);
 

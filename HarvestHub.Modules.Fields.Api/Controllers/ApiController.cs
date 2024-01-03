@@ -1,4 +1,5 @@
-﻿using MediatR;
+﻿using HarvestHub.Shared.Authentication;
+using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
 namespace HarvestHub.Modules.Fields.Api.Controllers
@@ -7,10 +8,12 @@ namespace HarvestHub.Modules.Fields.Api.Controllers
     public class ApiController : ControllerBase
     {
         protected readonly ISender _sender;
+        protected readonly IUserContextService _userContextService;
 
-        protected ApiController(ISender sender)
+        protected ApiController(ISender sender, IUserContextService userContextService)
         {
             _sender = sender;
+            _userContextService = userContextService;
         }
     }
 }

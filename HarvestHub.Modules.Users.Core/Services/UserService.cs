@@ -8,6 +8,7 @@ using HarvestHub.Modules.Users.Dal.Entity;
 using HarvestHub.Modules.Users.Dal.Persistance;
 using HarvestHub.Modules.Users.Shared.Events;
 using HarvestHub.Shared.Messaging;
+using Humanizer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 
@@ -189,6 +190,18 @@ namespace HarvestHub.Modules.Users.Core.Services
             user.PasswordResetToken = null;
             user.ResetTokenExpires = null;
             await _dbContext.SaveChangesAsync();
+        }
+
+        public async Task<bool> IsEmailUnique(string email)
+        {
+            if (!EmailValidator.Validate(email))
+            {
+                throw new UserEmailInvalidException(email);
+            }
+
+            var exists = await _dbContext.Users.AnyAsync(u => u.Email == email);
+
+            return !exists;
         }
     }
 }

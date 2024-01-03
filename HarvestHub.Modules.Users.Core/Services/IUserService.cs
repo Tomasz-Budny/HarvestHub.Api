@@ -10,6 +10,6 @@ namespace HarvestHub.Modules.Users.Core.Services
         Task<string> Login(LoginUserDto dto);
         Task ForgetPassword(string email);
         Task ChangePassword(ChangePasswordDto dto);
-
+        Task<bool> IsEmailUnique(string email);
     }
 }
