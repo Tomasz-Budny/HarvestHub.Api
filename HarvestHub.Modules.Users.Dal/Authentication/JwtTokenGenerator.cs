@@ -1,4 +1,5 @@
 ﻿using HarvestHub.Modules.Users.Dal.Authentication.Options;
+using HarvestHub.Modules.Users.Dal.Entity;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
@@ -15,11 +16,12 @@ namespace HarvestHub.Modules.Users.Dal.Authentication
         {
             _jwtOptions = jwtOptions.Value;
         }
-        public string GenerateToken(Guid userId)
+        public string GenerateToken(User user)
         {
             var claims = new[]
             {
-                new Claim(JwtRegisteredClaimNames.Sub, userId.ToString()),
+                new Claim(JwtRegisteredClaimNames.Sub, user.Id.ToString()),
+                new Claim("userName", user.FirstName),
                 new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString())
             };
 

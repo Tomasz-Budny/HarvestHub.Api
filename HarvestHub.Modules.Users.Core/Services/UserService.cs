@@ -127,7 +127,7 @@ namespace HarvestHub.Modules.Users.Core.Services
                 throw new UserPasswordInvalidException();
             }
 
-            var token = _jwt.GenerateToken(user.Id);
+            var token = _jwt.GenerateToken(user);
             return token;
         }
 

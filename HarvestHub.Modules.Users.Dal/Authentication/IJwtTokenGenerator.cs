@@ -1,7 +1,9 @@
-﻿namespace HarvestHub.Modules.Users.Dal.Authentication
+﻿using HarvestHub.Modules.Users.Dal.Entity;
+
+namespace HarvestHub.Modules.Users.Dal.Authentication
 {
     public interface IJwtTokenGenerator
     {
-        string GenerateToken(Guid userId);
+        string GenerateToken(User user);
     }
 }
